@@ -1,3 +1,2 @@
 # edusoft
-
-prodemy Gen-14
+pull_request = astri
