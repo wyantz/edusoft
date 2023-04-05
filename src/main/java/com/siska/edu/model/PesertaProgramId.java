@@ -8,8 +8,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Awiyanto Ajisasongko
@@ -17,6 +19,8 @@ import lombok.Data;
  * Mar 30, 2023
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Embeddable
 public class PesertaProgramId implements Serializable {
