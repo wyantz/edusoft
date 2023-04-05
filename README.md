@@ -1,2 +1,3 @@
-# edusoft
-  - Taopik Romdoni
+#edusoft
+pull_request = astri
+
