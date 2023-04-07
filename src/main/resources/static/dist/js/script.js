@@ -139,7 +139,7 @@ $(document).ready(function() {
 						});
 					/*location.reload(true)*/
 					showData;
-					$('#alert').html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'><strong> Data berhasil dihapus</strong></div>'")
+					$('#alert').html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'><strong> Data berhasil dihapus</strong></div>")
 						.fadeIn()
 						.fadeOut(4000, function() {
 							$('#alert').html("");
@@ -236,7 +236,7 @@ $(document).ready(function() {
 					*/
 				},
 				error: function() {
-					$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data cannot be null</strong></div>'")
+					$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data tidak boleh kosong</strong></div>'")
 						.fadeIn()
 						.fadeOut(4000, function() {
 							$('#alert').html("");
@@ -347,7 +347,7 @@ $(document).ready(function() {
 					}, 2001)
 				},
 				error: function() {
-					$("#msg").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data cannot be null</strong></div>");
+					$("#msg").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>");
 				}
 			});
 		}
