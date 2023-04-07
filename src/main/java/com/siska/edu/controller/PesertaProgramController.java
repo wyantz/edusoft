@@ -7,11 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siska.edu.model.PesertaProgram;
+import com.siska.edu.model.PesertaProgramId;
 import com.siska.edu.service.PesertaProgramService;
 
 @RestController
@@ -26,19 +28,19 @@ public class PesertaProgramController {
 		return new ResponseEntity<List<PesertaProgram>>(pesertaProgramService.listAll(), HttpStatus.OK);
 	}
 
-	@RequestMapping("/pesertaprogram/save")
+	@PostMapping("/pesertaprogram/save")
 	public ResponseEntity<Void> saveOrUpdatePesertaProgram(@RequestBody PesertaProgram pesertaProgram) {
 		pesertaProgramService.save(pesertaProgram);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@RequestMapping("/pesertaprogram/{id}")
-	public ResponseEntity<PesertaProgram> getPesertaProgram(@PathVariable long id) {
+	public ResponseEntity<PesertaProgram> getPesertaProgram(@PathVariable PesertaProgramId id) {
 		return new ResponseEntity<PesertaProgram>(pesertaProgramService.get(id), HttpStatus.OK);
 	}
 
-	@RequestMapping("/pesertaprogram/delete/{id}")
-	public ResponseEntity<Void> deletePesertaProgram(@PathVariable long id) {
+	@RequestMapping("/pesertaprogram/delete")
+	public ResponseEntity<Void> deletePesertaProgram(@RequestBody PesertaProgramId id) {
 		pesertaProgramService.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}

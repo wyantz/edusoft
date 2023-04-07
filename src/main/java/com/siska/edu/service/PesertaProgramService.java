@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.siska.edu.model.PesertaProgram;
+import com.siska.edu.model.PesertaProgramId;
 import com.siska.edu.repository.PesertaProgramRepository;
 
 @Service
@@ -17,19 +18,20 @@ public class PesertaProgramService {
 	PesertaProgramRepository repo;
 
 	public List<PesertaProgram> listAll() {
-		return (List<PesertaProgram>) repo.findAll();
+		return (List<PesertaProgram>) repo.findByOrderByIdAsc();
 	}
 
 	public void save(PesertaProgram pesertaProgram) {
 		repo.save(pesertaProgram);
 	}
 
-	public PesertaProgram get(long id) {
+	public PesertaProgram get(PesertaProgramId id) {
 		return repo.findById(id).get();
 	}
 
-	public void delete(long id) {
-		repo.deleteById(id);
+	public void delete(PesertaProgramId id) {
+		 repo.deleteById(id); 
+//		repo.deleteByObject(id);
 	}
 
 //	public List<PesertaProgram> search(String keyword) {
