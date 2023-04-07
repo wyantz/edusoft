@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -9,27 +8,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AdminLTE 3 | Peserta Program</title>
-<!-- Toastr -->
-<link rel="stylesheet" th:href="@{/plugins/toastr/toastr.min.css}">
+
+<!-- jQuery UI -->
 <link rel="stylesheet" th:href="@{/dist/css/jquery-ui.min.css}">
 <!-- date-range-picker -->
 <link rel="stylesheet"
 	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- date-time-picker -->
-<!-- <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"> -->
-
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
 <link rel="stylesheet"
 	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- Theme style -->
 <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -369,11 +362,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<div id="alert" style="height: 40px;"></div>
 							</div>
 							<div class="col">
-								<!-- <label>
-								"Cari: "
-								<input id="search" type="text" name="table_search"
-										class="form-control form-control-sm float-right">
-							</label> -->
 								<div class="input-group justify-content-end">
 									<input id="search" type="text" name="table_search"
 										class="form-control float-right" placeholder="Cari...">
@@ -425,7 +413,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div id="headerModal" class="modal-header">
-					<h5 class="modal-title">Form Add Customer</h5>
+					<h5 class="modal-title">Form Tambah Peserta Program</h5>
 				</div>
 				<div class="modal-body">
 					<div id="msg"></div>
@@ -459,31 +447,73 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<div class="form-group">
 								<label for="tanggalMasuk" class="form-label">Tanggal
 									Masuk</label> <input type="text" id="datepicker" name="tanggalMasuk"
-									class="form-control">
+									class="form-control" autocomplete="off">
 							</div>
 							<div id="footerModal" class="modal-footer">
 								<button id="closeModal" type="button"
-									class="btn btn-outline-secondary" data-bs-dismiss="modal">
-									<i class="fas fa-times"></i> Cancel
+									class="btn btn-outline-secondary" data-dismiss="modal">
+									<i class="fas fa-times"></i> Batal
 								</button>
 								<button id="addNew" type="submit" class="btn btn-primary">
-									<i class="fas fa-save fa-fw"></i> Save
+									<i class="fas fa-save fa-fw"></i> Simpan
 								</button>
 							</div>
-							<!-- <label for="tanggalMasuk" class="form-label">Tanggal
-								Masuk</label>
-							<div class="mb-3 input-group date" data-target-input="nearest">
-								<input id="reservationdate" type="text"
-									class="form-control datetimepicker-input"
-									data-target="#reservationdate" />
-								<div class="input-group-append" data-target="#reservationdate"
-									data-toggle="datetimepicker">
-									<div class="input-group-text">
-										<i class="fa fa-calendar"></i>
-									</div>
-								</div>
-								<div id="invalid-tanggalMasuk"></div>
-							</div> -->
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="editModal" class="modal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div id="headerModal-edit" class="modal-header">
+					<h5 class="modal-title">Form Edit Peserta Program</h5>
+				</div>
+				<div class="modal-body">
+					<div id="msg-edit"></div>
+					<form id="form-validation-edit">
+						<div id="form-edit">
+							<div class="form-group">
+								<label for="angkatan" class="form-label">Angkatan</label> <input
+									type="number" id="eAngkatan" name="angkatan"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="biodataId" class="form-label">Biodata</label> <input
+									type="number" id="eBiodataId" name="biodataId"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="programPembelajaranId" class="form-label">Program
+									Pembelajaran</label> <input type="number" id="eProgramPembelajaranId"
+									name="programPembelajaranId" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="currentLevel" class="form-label">Tingkat
+									Pendidikan</label> <input type="number" id="eCurrentLevel"
+									name="currentLevel" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input
+									type="number" id="eTahunMasuk" name="tahunMasuk"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="tanggalMasuk" class="form-label">Tanggal
+									Masuk</label>
+								<input type="text" id="eDatepicker" name="tanggalMasuk"
+									class="form-control" autocomplete="off">
+							</div>
+							<div id="footerModal-edit" class="modal-footer">
+								<button type="button" class="btn btn-outline-secondary"
+									data-dismiss="modal">
+									<i class="fas fa-times"></i> Batal
+								</button>
+								<button id="addNew" type="submit" class="btn btn-primary">
+									<i class="fas fa-save fa-fw"></i> Simpan
+								</button>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -501,22 +531,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- AdminLTE App -->
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<!-- Toastr -->
-	<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
 	<!-- jQuery UI -->
 	<script th:src="@{/plugins/jquery/jquery-ui.js}"></script>
 	<!-- jQuery Validation -->
 	<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
 	<script
 		th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
-
 	<!-- date-range-picker -->
 	<script th:src="@{/plugins/moment/moment.min.js}"></script>
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-	<!-- <script type="text/javascript" src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-	 -->
-	<!-- date-time-picker -->
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
 </body>
 </html>

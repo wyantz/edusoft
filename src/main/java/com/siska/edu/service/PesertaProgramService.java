@@ -30,12 +30,7 @@ public class PesertaProgramService {
 	}
 
 	public void delete(PesertaProgramId id) {
-		 repo.deleteById(id); 
-//		repo.deleteByObject(id);
+		repo.deleteById(id);
 	}
-
-//	public List<PesertaProgram> search(String keyword) {
-//		return repo.search(keyword);
-//	}
 
 }
