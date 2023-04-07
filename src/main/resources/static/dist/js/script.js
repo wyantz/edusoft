@@ -49,7 +49,6 @@ $(document).ready(function() {
 						'slow', function() {
 							$(this).remove();
 						});
-					showData;
 					$('#alert').html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'><strong> Data berhasil dihapus</strong></div>")
 						.fadeIn()
 						.fadeOut(4000, function() {
@@ -332,7 +331,7 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
+
 	//	datepicker
 	$(document).ready(function() {
 		$('#datepicker').datepicker({
