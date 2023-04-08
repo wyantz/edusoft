@@ -364,4 +364,7 @@ $(document).ready(function() {
 	$("#addButton").click(function() {
 		$("#addModal").modal('show');
 	});
+	//	Input mask
+	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
+	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
 });

@@ -440,14 +440,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									name="currentLevel" class="form-control">
 							</div>
 							<div class="form-group">
-								<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input
+								<label for="tahunMasuk" class="form-label">Tahun Masuk</label>
+								<!-- <input
 									type="number" id="tahunMasuk" name="tahunMasuk"
-									class="form-control">
+									class="form-control"> -->
+								<input type="text" id="tahunMasuk" name="tahunMasuk"
+									class="form-control" data-inputmask-alias="datetime"
+									data-inputmask-inputformat="yyyy" data-mask>
 							</div>
 							<div class="form-group">
 								<label for="tanggalMasuk" class="form-label">Tanggal
 									Masuk</label> <input type="text" id="datepicker" name="tanggalMasuk"
 									class="form-control" autocomplete="off">
+
 							</div>
 							<div id="footerModal" class="modal-footer">
 								<button id="closeModal" type="button"
@@ -496,13 +501,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							</div>
 							<div class="form-group">
 								<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input
-									type="number" id="eTahunMasuk" name="tahunMasuk"
-									class="form-control">
+									type="text" id="eTahunMasuk" name="tahunMasuk"
+									class="form-control" data-inputmask-alias="datetime"
+									data-inputmask-inputformat="yyyy" data-mask>
 							</div>
 							<div class="form-group">
 								<label for="tanggalMasuk" class="form-label">Tanggal
-									Masuk</label>
-								<input type="text" id="eDatepicker" name="tanggalMasuk"
+									Masuk</label> <input type="text" id="eDatepicker" name="tanggalMasuk"
 									class="form-control" autocomplete="off">
 							</div>
 							<div id="footerModal-edit" class="modal-footer">
@@ -540,5 +545,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- date-range-picker -->
 	<script th:src="@{/plugins/moment/moment.min.js}"></script>
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+	<!-- input mask -->
+	<script th:src="@{/plugins/inputmask/jquery.inputmask.min.js}"></script>
 </body>
 </html>
