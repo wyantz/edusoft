@@ -1,3 +1,5 @@
+-- Dijalankan secara manual (copas) melalui pgAdmin
+
 INSERT INTO T_ROLE (RLID,RLNM) VALUES ('ROLE_ADMIN','Administrator');
 INSERT INTO T_ROLE (RLID,RLNM) VALUES ('ROLE_USER','User');
 
