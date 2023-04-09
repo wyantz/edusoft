@@ -27,14 +27,26 @@
 			<div class="card-body">
 				<p class="login-box-msg">Sign in to start your session</p>
 
-				<div th:if="${param.error}">Invalid username and password.</div>
-				<div th:if="${param.logout}">You have been logged out.</div>
+				<div th:if="${param.error}"
+					class="alert alert-danger alert-dismissible text-center">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					Invalid username and password.
+				</div>
+				<div th:if="${param.logout}"
+					class="alert alert-danger alert-dismissible text-center">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					You have been logged out.
+				</div>
 				<form th:action="@{/login}" method="post">
 					<div>
-						<input type="text" name="userid" class="form-control mb-3" placeholder="username"/>
+						<input type="text" name="userid" class="form-control mb-3"
+							placeholder="username" />
 					</div>
 					<div>
-						<input type="password" name="password" class="form-control mb-3" placeholder="password"/>
+						<input type="password" name="password" class="form-control mb-3"
+							placeholder="password" />
 					</div>
 					<div>
 						<button type="submit" class="btn btn-primary btn-block">Login</button>
