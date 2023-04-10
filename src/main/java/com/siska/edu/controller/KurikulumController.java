@@ -61,5 +61,4 @@ public class KurikulumController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-
 }

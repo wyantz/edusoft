@@ -4,7 +4,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -335,7 +335,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-
+			 <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="username"></span></div>
 				<!-- Default box -->
 				<a href="#"><button class="btn btn-primary btn-md"
 						data-toggle="modal" data-target="#add">
@@ -431,7 +431,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 				</form>
 			</div>
-
 
 		</div>
 	</div>
