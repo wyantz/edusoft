@@ -240,6 +240,7 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
 	$('#form-validation-edit').validate({
 		rules: {
 			angkatan: {
