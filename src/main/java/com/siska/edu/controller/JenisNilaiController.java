@@ -31,8 +31,8 @@ public class JenisNilaiController {
 	public ResponseEntity<List<JenisNilai>> getCompanyList() {
 		return new ResponseEntity<List<JenisNilai>>(service.getJenisNilaiList(), HttpStatus.OK);
 	}
-	@GetMapping("/jenis_nilai/{id}") 
-	public ResponseEntity<JenisNilai> getJenisNilai(@PathVariable JenisNilaiId id) {
+	@PostMapping("/jenis_nilai/get") 
+	public ResponseEntity<JenisNilai> getJenisNilai(@RequestBody JenisNilaiId id) {
 		return new ResponseEntity<JenisNilai>(service.getJenisNilaiById(id), HttpStatus.OK);
 	}
 
