@@ -4,16 +4,12 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AdminLTE 3 | Starter</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- jQuery validation plugin -->
-<script
-	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
 <!-- Theme style -->
 <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<script th:src="@{/dist/js/kurikulum.js}"></script>
+
 
 
 </head>
@@ -183,7 +179,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="img-circle elevation-2" alt="User Image">
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Alexander Pierce</a>
+						<a href="#" class="d-block" ><span th:text="${user}" id="username-login"></span></a>
 					</div>
 				</div>
 
@@ -335,12 +331,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-			 <div sec:authorize="isAuthenticated()">Authenticated as <span sec:authentication="username"></span></div>
 				<!-- Default box -->
-				<a href="#"><button class="btn btn-primary btn-md"
+				<a href="#"><button class="btn btn-primary btn-sm"
 						data-toggle="modal" data-target="#add">
 						<i class="fas fa-plus"></i>&nbsp; Tambah Kurikulum
-					</button></a> <p id="err" style="display: inline; margin-left: 450px"></p>
+					</button></a>
+				<p id="err" style="display: inline; margin-left: 450px"></p>
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">Tabel Kurikulum</h3>
@@ -400,35 +396,86 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">Tambah Kurikulum</h4>
-
 				</div>
-				<form id="addForm">
-					<div class="modal-body">
-
-						<!-- <div id='msg'/> -->
-						<div class="form-floating mb-3">
-						   <!--  <label for="nama">Nama Kurikulum</label> -->
-							<input type="text" id="nama" name="nama" class="form-control"
-								placeholder="Nama Kurikulum" required>
+				<div class="modal-body">
+					<span id='add-msg'></span>
+					<form id="add-form">
+						<div class="form-group">
+							<label for="keterangan">Nama :</label>
+							<div class="form-floating mb-3">
+								<input type="text" id="nama" name="nama" class="form-control"
+									placeholder="Nama Kurikulum" required>
+							</div>
 						</div>
-						<div class="form-floating mb-3">
-							<input type="text" id="keterangan" name="keterangan"
-								class="form-control input-lg" placeholder="Keterangan"
-								style="height: 100px" required>
+						<div class="form-group">
+							<label for="keterangan">Keterangan :</label>
+							<div class="form-floating mb-3">
+								<input type="text" id="keterangan" name="keterangan"
+									class="form-control input-lg" placeholder="Keterangan" required>
+							</div>
 						</div>
-						<p id="msg"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="addNew"
+						class="btn btn-primary swalDefaultSuccess btn-sm">
+						<i class="fas fa-save"></i>&nbsp; Simpan
+					</button>
+					<button type="button" class="btn btn-default btn-sm"
+						data-dismiss="modal">
+						<i class="fas fa-times"></i>&nbsp; Batal
+					</button>
+				</div>
+				</form>
+			</div>
 
-					</div>
-					<div class="modal-footer">
-						<button type="submit" id="addNew"
-							class="btn btn-primary swalDefaultSuccess btn-sm">
-							<i class="fas fa-save"></i>&nbsp; Simpan
-						</button>
-						<button type="button" class="btn btn-default btn-sm"
-							data-dismiss="modal">
-							<i class="fas fa-times"></i>&nbsp; Batal
-						</button>
-					</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="edit" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Ubah Data Kurikulum</h4>
+				</div>
+				<div class="modal-body">
+					<span id='edit-msg'></span>
+					<form id="edit-form">
+						<div class="form-group">
+							<label for="id">ID : </label>
+							<div class="form-floating mb-3">
+								<input type="text" id="edId" name="id" class="form-control"
+									placeholder="ID" required readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edNama">Nama : </label>
+							<div class="form-floating mb-3">
+								<input type="text" id="edNama" name="nama" class="form-control"
+									placeholder="Nama Kurikulum" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="edKeterangan">Keterangan : </label>
+							<div class="form-floating mb-3">
+								<input type="text" id="edKeterangan" name="keterangan"
+									class="form-control input-lg" placeholder="Keterangan" required>
+							</div>
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="addNew"
+						class="btn btn-primary swalDefaultSuccess btn-sm">
+						<i class="fas fa-save"></i>&nbsp; Simpan
+					</button>
+					<button type="button" class="btn btn-default btn-sm"
+						data-dismiss="modal">
+						<i class="fas fa-times"></i>&nbsp; Batal
+					</button>
+				</div>
 				</form>
 			</div>
 
@@ -438,10 +485,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 	<!-- jQuery -->
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+	<!-- jQuery Validation -->
+	<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
 	<!-- Bootstrap 4 -->
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- AdminLTE App -->
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
+	<script th:src="@{/dist/js/kurikulum.js}"></script>
 
 </body>
 </html>

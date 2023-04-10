@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siska.edu.dao.KurikulumDao;
@@ -29,6 +30,10 @@ public class KurikulumController {
 	@GetMapping
 	public ResponseEntity<List<Kurikulum>> getKurikulumList() {
 		return new ResponseEntity<List<Kurikulum>>((List<Kurikulum>) kd.findAll(), HttpStatus.OK);
+	}
+	@GetMapping("/search/{keyword}")
+	public ResponseEntity<List<Kurikulum>> getKurikulum(@PathVariable String keyword) {
+		return new ResponseEntity<List<Kurikulum>>(kd.search(keyword), HttpStatus.OK);
 	}
 
 	@PostMapping
