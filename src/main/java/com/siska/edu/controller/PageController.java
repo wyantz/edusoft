@@ -9,11 +9,6 @@ public class PageController {
 	public String indexPage() {
 		return "index";
 	}
-	@RequestMapping("/login.html")
-	public String loginPage() {
-		return "login";
-	}
-
 	@RequestMapping("/tables/biodata")
 	public String biodataPage() {
 		return "pages/biodata";

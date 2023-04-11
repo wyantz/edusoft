@@ -32,9 +32,9 @@ public class Kurikulum extends BaseEntity {
 	@Column(name = "KURID")
 	private Integer id;
 	
-	@Column(name = "KURNM", length = 100)
+	@Column(name = "KURNM", length = 100, nullable = false)
 	private String nama;
 
-	@Column(name = "KURDESC", length = 255)
+	@Column(name = "KURDESC", length = 255, nullable = false)
 	private String keterangan;
 }

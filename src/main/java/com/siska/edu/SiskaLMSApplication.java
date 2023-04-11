@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages =  "com.siska.edu")
+@ComponentScan(basePackages =  "com.siska.edu.controller")
 public class SiskaLMSApplication {
 
 	public static void main(String[] args) {

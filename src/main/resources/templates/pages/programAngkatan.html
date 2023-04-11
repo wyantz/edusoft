@@ -16,7 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- Theme style -->
   <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -364,24 +363,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <h3 class="card-title">Tabel Program Angkatan</h3>
 
           <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 250px;">
-              <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
               <div class="input-group-append">
                 <button type="submit" class="btn btn-default">
                   <i class="fas fa-search"></i>
                 </button>
-               	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
-				  <i class="fas fa-plus"></i> Add New
-				</button>
               </div>
             </div>
           </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-          <table id="program_angkatan" class="table table-hover text-nowrap">
-                  
+          <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>User</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>183</td>
+                      <td>John Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-success">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>219</td>
+                      <td>Alexander Pierce</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-warning">Pending</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>657</td>
+                      <td>Bob Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-primary">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>175</td>
+                      <td>Mike Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-danger">Denied</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>134</td>
+                      <td>Jim Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-success">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>494</td>
+                      <td>Victoria Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-warning">Pending</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>832</td>
+                      <td>Michael Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-primary">Approved</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                    <tr>
+                      <td>982</td>
+                      <td>Rocky Doe</td>
+                      <td>11-7-2014</td>
+                      <td><span class="tag tag-danger">Denied</span></td>
+                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    </tr>
+                  </tbody>
           </table>
         </div>
         <!-- /.card-body -->
@@ -415,118 +477,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<div id="addModal" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tahun masuk program</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-       	   	<form id="add-program-angkatan">
-	            <div class="modal-body">
-	           	   	<div class="status-msg"></div>
-					<div class="input-form">
-						<div class="form-group">
-							<label for="angkatan">Angkatan : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="angkatan" name="angkatan" placeholder="angkatan" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="programPembelajaranId">Program Pembelajaran : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="programPembelajaranId" name="programPembelajaranId" placeholder="tahun program" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="tahunMasuk">Tahun Masuk : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="tahunMasuk" name="tahunMasuk" placeholder="tahun" class="form-control">
-							</div>
-						</div>
-					</div>
-	            </div>
-	            <div class="modal-footer">
-	            	<button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
-	              	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
-	            </div>
-       	   	</form>
-        </div>
-    </div>
-</div>
-<!-- ./add modal -->
-
-<div id="editModal" class="modal fade" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tahun masuk program</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-       	   	<form id="edit-program-angkatan">
-	            <div class="modal-body">
-	           	   	<div class="status-msg"></div>
-					<div class="input-form">
-						<div class="form-group">
-							<label for="eAngkatan">Angkatan : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="eAngkatan" name="eAngkatan" placeholder="angkatan" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="eProgramPembelajaranId">Program Pembelajaran : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="eProgramPembelajaranId" name="eProgramPembelajaranId" placeholder="tahun program" class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="eTahunMasuk">Tahun Masuk : </label>
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-								</div>
-								<input type="text" id="eTahunMasuk" name="eTahunMasuk" placeholder="tahun" class="form-control">
-							</div>
-						</div>
-					</div>
-	            </div>
-	            <div class="modal-footer">
-	            	<button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
-	              	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
-	            </div>
-       	   	</form>
-        </div>
-    </div>
-</div>
-<!-- ./edit modal -->
-
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
 <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-<!-- jQuery Validation -->
-<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
 <!-- Bootstrap 4 -->
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
-<!-- Program Angkatan -->
-<script th:src="@{/dist/js/programAngkatan.js}"></script>
-
 </body>
 </html>

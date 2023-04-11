@@ -3,7 +3,7 @@
  */
 package com.siska.edu.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -36,10 +36,8 @@ public class PesertaProgram {
 	@Column(name = "PPTHMASUK")
 	private Integer tahunMasuk;
 	
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-DDTHH:mm:ss")
 	@Column(name = "PPTGLMASUK")
-	private LocalDate tanggalMasuk;
+	private LocalDateTime tanggalMasuk;
 	
-	@Column(name = "current_level")
 	private Integer currentLevel;
 }

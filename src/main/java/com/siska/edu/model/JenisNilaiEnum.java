@@ -9,5 +9,5 @@ package com.siska.edu.model;
  * Mar 30, 2023
  */
 public enum JenisNilaiEnum {
-	NILAI_1,NILAI_2,NILAI_3,NILAI_4,NILAI_5
+	NILAI_1_5
 }
