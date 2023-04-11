@@ -10,14 +10,16 @@ import javax.persistence.Embeddable;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Awiyanto Ajisasongko
  *
  * Mar 30, 2023
  */
+// @Builder
 @Data
-@Builder
+@NoArgsConstructor
 @Embeddable
 public class ProgramAngkatanLevelId implements Serializable {
 	private static final long serialVersionUID = -2417903319115301268L;

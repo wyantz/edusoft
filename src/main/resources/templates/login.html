@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AdminLTE 3 | Login</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+<!-- icheck bootstrap -->
+<link rel="stylesheet"
+	th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+</head>
+<body class="hold-transition login-page">
+	<div class="login-box">
+		<!-- /.login-logo -->
+		<div class="card card-outline card-primary">
+			<div class="card-header text-center">
+				<a class="h1"><b>Admin</b>LTE</a>
+			</div>
+			<div class="card-body">
+				<p class="login-box-msg">Sign in to start your session</p>
+
+				<div th:if="${param.error}"
+					class="alert alert-danger alert-dismissible text-center">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					Invalid username and password.
+				</div>
+				<div th:if="${param.logout}"
+					class="alert alert-danger alert-dismissible text-center">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">&times;</button>
+					You have been logged out.
+				</div>
+				<form th:action="@{/login}" method="post">
+					<div>
+						<input type="text" name="userid" class="form-control mb-3"
+							placeholder="username" autocomplete="off"/>
+					</div>
+					<div>
+						<input type="password" name="password" class="form-control mb-3"
+							placeholder="password" />
+					</div>
+					<div>
+						<button type="submit" class="btn btn-primary btn-block">Login</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</div>
+	<!-- /.login-box -->
+
+	<!-- jQuery -->
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap 4 -->
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/dist/js/adminlte.min.js}"></script>
+</body>
+</html>

@@ -18,7 +18,9 @@ public class PageController {
 	}
 
 	@RequestMapping("/tables/biodata")
-	public String biodataPage() {
+	public String biodataPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/biodata";
 	}
 	@RequestMapping("/tables/pesertaProgram")

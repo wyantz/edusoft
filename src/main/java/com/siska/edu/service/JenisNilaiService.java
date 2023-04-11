@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.siska.edu.model.JenisNilai;
 import com.siska.edu.model.JenisNilaiId;
-import com.siska.edu.repository.JenisNilaiRepository;
+import com.siska.edu.repo.JenisNilaiRepository;
 
 @Service
 public class JenisNilaiService {

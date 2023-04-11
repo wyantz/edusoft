@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.siska.edu.model.PesertaProgram;
 import com.siska.edu.model.PesertaProgramId;
-import com.siska.edu.repository.PesertaProgramRepository;
+import com.siska.edu.repo.PesertaProgramRepository;
 
 @Service
 @Transactional
