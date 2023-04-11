@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siska.edu.dao.KurikulumDao;
 import com.siska.edu.model.Kurikulum;
+import com.siska.edu.repo.KurikulumDao;
 
 @RestController
 @CrossOrigin(origins = "*")

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.siska.edu.repository;
+package com.siska.edu.repo;
 
 import java.util.List;
 
