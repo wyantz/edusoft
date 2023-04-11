@@ -2,7 +2,7 @@ function showMapelTable() {
 	$('#mapelTable tbody').empty();
 	let urlPath = "";
 	if ($('#table_search').val() == "") {
-		urlPath = "http://localhost:8080/mapel";
+		urlPath = "http://localhost:8080/mapel/";
 	}
 	else {
 		urlPath = "http://localhost:8080/mapel/search/" + $('#table_search').val();
@@ -83,7 +83,7 @@ $(document).ready(function() {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: "http://localhost:8080/mapel/save",
+				url: "http://localhost:8080/mapel/",
 				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': "admin" }),
 				cache: false,
 				success: function() {
@@ -126,7 +126,7 @@ $(document).ready(function() {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
-				url: "http://localhost:8080/mapel/save",
+				url: "http://localhost:8080/mapel/",
 				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': "admin", 'updatedBy': "admin" }),
 				cache: false,
 				success: function() {
@@ -158,7 +158,7 @@ $(document).ready(function() {
 			let parent = $(this).parent().parent();
 			$.ajax({
 				type: "DELETE",
-				url: "http://localhost:8080/mapel/delete/" + kode,
+				url: "http://localhost:8080/mapel/" + kode,
 				cache: false,
 				success: function() {
 					parent.fadeOut('slow', function() {

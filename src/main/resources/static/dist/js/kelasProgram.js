@@ -1,8 +1,8 @@
 const APIs = {
-  getKelasProgram: "http://localhost:8080/klpg/api/get/",
-  deleteKelasProgram: "http://localhost:8080/klpg/api/delete/",
-  postKelasProgram: "http://localhost:8080/klpg/api/post/",
-  patchKelasProgram: "http://localhost:8080/klpg/api/patch/",
+  getKelasProgram: "http://localhost:8080/klpg/api/",
+  deleteKelasProgram: "http://localhost:8080/klpg/api/",
+  postKelasProgram: "http://localhost:8080/klpg/api/",
+  patchKelasProgram: "http://localhost:8080/klpg/api/",
 };
 
 $(document).ready(function () {
