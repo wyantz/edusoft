@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Starter</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="index3.html" class="brand-link">
+        <img th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+      </a>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img th:src="@{/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <a href="#" class="d-block"><span th:text="${user}" id="logged_user"></span></a>
+          </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+          <div class="input-group" data-widget="sidebar-search">
+            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-sidebar">
+                <i class="fas fa-search fa-fw"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Data Diri
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/tables/biodata}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Biodata</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/pesertaProgram}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Peserta Program</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/waliSiswa}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Wali Siswa</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- end of data diri sidebar -->
+
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Program
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/tables/programAngkatan}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Program Angkatan</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/program-angkatan-level}" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Program Angkatan Level</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/programPembelajaran}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Program Pembelajaran</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- end of program sidebar -->
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Nilai dan Kurikulum
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/tables/jenisNilai}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Jenis Nilai</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/kelasProgram}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kelas Program</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/kurikulum}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kurikulum</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- end of nilai dan kurikulum sidebar -->
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Mapel
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/tables/mapel}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Mapel</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/mapelPeserta}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Mapel Peserta</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- end of mapel sidebar -->
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Referensi
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a th:href="@{/tables/referensi}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Referensi</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a th:href="@{/tables/silabus}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Silabus</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Program Angkatan Level</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Program Angkatan Level</li>
+              </ol>
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Tabel Program Angkatan Level</h3>
+
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 250px;">
+                <input type="text" id="table_search" name="table_search" class="form-control float-right"
+                  placeholder="Search">
+
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_modal"
+                    id="show_add_modal">
+                    <i class="fas fa-plus"></i> Add New
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body table-responsive p-0">
+            <table id="program_angkatan_level" class="table table-hover text-nowrap">
+
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+      <div class="p-3">
+        <h5>Title</h5>
+        <p>Sidebar content</p>
+      </div>
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="float-right d-none d-sm-inline">
+        Anything you want
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <div id="add_modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Program Angkatan Level</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form id="add_data">
+          <div class="modal-body">
+            <div class="status-msg"></div>
+            <div class="input-form">
+              <div class="form-group">
+                <label for="program_pembelajaran_id">Program Pembelajaran : </label>
+                <select name="program_pembelajaran_id" id="program_pembelajaran_id"
+                  class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="angkatan">Angkatan : </label>
+                <select name="angkatan" id="angkatan" class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="level">Level : </label>
+                <select name="level" id="level" class="select2 form-control"></select>
+              </div>
+
+              <div class="form-group">
+                <label for="tahun_mulai">Tahun Mulai : </label>
+                <select name="tahun_mulai" id="tahun_mulai" class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="bulan_mulai">Bulan Mulai : </label>
+                <select id="bulan_mulai" name="bulan_mulai" class="form-control select2" style="width: 100%;">
+                  <option value="" selected disabled>-- pilih bulan --</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tahun_berakhir">Tahun Berakhir : </label>
+                <select name="tahun_berakhir" id="tahun_berakhir" class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="bulan_berakhir">Bulan Berakhir : </label>
+                <select id="bulan_berakhir" name="bulan_berakhir" class="form-control select2" style="width: 100%;">
+                  <option value="" selected disabled>-- pilih bulan --</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i
+                class="fas fa-times"></i>&nbsp; Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ./add modal -->
+
+  <div id="edit_modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Program Angkatan Level</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form id="edit_data">
+          <div class="modal-body">
+            <div class="status-msg"></div>
+            <div class="input-form">
+              <div id="created_by"></div>
+              <div id="created_at"></div>
+              <div class="form-group">
+                <label for="edit_progbel_id">Program Pembelajaran : </label>
+                <select name="edit_progbel_id" id="edit_progbel_id" class="select2 form-control" disabled></select>
+              </div>
+              <div class="form-group">
+                <label for="edit_angkatan">Angkatan : </label>
+                <select name="edit_angkatan" id="edit_angkatan" class="select2 form-control" disabled></select>
+              </div>
+              <div class="form-group">
+                <label for="edit_level">Level : </label>
+                <select name="edit_level" id="edit_level" class="select2 form-control" disabled></select>
+              </div>
+
+              <div class="form-group">
+                <label for="edit_tahun_mulai">Tahun Mulai : </label>
+                <select name="edit_tahun_mulai" id="edit_tahun_mulai" class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="edit_bulan_mulai">Bulan Mulai : </label>
+                <select id="edit_bulan_mulai" name="edit_bulan_mulai" class="form-control select2" style="width: 100%;">
+                  <option value="" selected disabled>-- pilih bulan --</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="edit_tahun_berakhir">Tahun Berakhir : </label>
+                <select name="edit_tahun_berakhir" id="edit_tahun_berakhir" class="select2 form-control"></select>
+              </div>
+              <div class="form-group">
+                <label for="edit_bulan_berakhir">Bulan Berakhir : </label>
+                <select id="edit_bulan_berakhir" name="edit_bulan_berakhir" class="form-control select2" style="width: 100%;">
+                  <option value="" selected disabled>-- pilih bulan --</option>
+                  <option value="1">Januari</option>
+                  <option value="2">Februari</option>
+                  <option value="3">Maret</option>
+                  <option value="4">April</option>
+                  <option value="5">Mei</option>
+                  <option value="6">Juni</option>
+                  <option value="7">Juli</option>
+                  <option value="8">Agustus</option>
+                  <option value="9">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i
+                class="fas fa-times"></i>&nbsp; Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ./edit modal -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+  <!-- jQuery Validation -->
+  <script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+  <!-- Bootstrap 4 -->
+  <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <!-- AdminLTE App -->
+  <script th:src="@{/dist/js/adminlte.min.js}"></script>
+  <!-- Program Angkatan -->
+  <script th:src="@{/dist/js/program-angkatan-level.js}"></script>
+
+</body>
+
+</html>
