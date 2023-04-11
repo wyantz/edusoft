@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.siska.edu.model.WaliSiswa;
 import com.siska.edu.model.WaliSiswaId;
-import com.siska.edu.repository.WaliSiswaRepository;
+import com.siska.edu.repo.WaliSiswaRepository;
 
 @Service
 @Transactional

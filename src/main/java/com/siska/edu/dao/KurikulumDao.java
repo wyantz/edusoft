@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.siska.edu.model.Kurikulum;
-import com.siska.edu.model.ProgramAngkatan;
 
 
 public interface KurikulumDao extends CrudRepository<Kurikulum, Integer> {
