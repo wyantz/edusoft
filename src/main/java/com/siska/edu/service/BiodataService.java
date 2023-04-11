@@ -5,13 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.siska.edu.model.Biodata;
 import com.siska.edu.repo.BiodataRepository;
 
 @Service
-@Transactional
 public class BiodataService {
 	@Autowired
 	private BiodataRepository repo;
