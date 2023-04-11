@@ -76,7 +76,6 @@ $(document).ready(function() {
 			data: id,
 			cache: false,
 			success: function(json) {
-				$("#editModal").modal('show');
 				$('#eAngkatan').empty();
 				$('#eBiodataId').empty();
 				var optionsAngkatan = [];
@@ -89,6 +88,7 @@ $(document).ready(function() {
 				$('#eCurrentLevel').val(json.currentLevel);
 				$('#eTahunMasuk').val(json.tahunMasuk);
 				$('#eDatepicker').val(json.tanggalMasuk);
+				$("#editModal").modal('show');
 			},
 			error: function() {
 				alert("ID " + id + " tidak ditemukan");
@@ -330,9 +330,9 @@ $(document).ready(function() {
 	});
 	//	menampilkan modal
 	$("#addButton").click(function() {
-		$("#addModal").modal('show');
 		listAngkatan();
 		listBiodataId();
+		$("#addModal").modal('show');
 	});
 	//	Input mask
 	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
