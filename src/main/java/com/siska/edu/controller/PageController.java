@@ -55,7 +55,7 @@ public class PageController {
 	}
 	@RequestMapping("/tables/mapel")
 	public String mapelPage() {
-		return "pages/mapel";
+		return "pages/mapel-new";
 	}
 	@RequestMapping("/tables/mapelPeserta")
 	public String mapelPesertaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
