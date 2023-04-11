@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -69,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img th:src="@{/dist/img/user1-128x128.jpg}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -85,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/dist/img/user8-128x128.jpg}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -101,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img th:src="@{/dist/img/user3-128x128.jpg}" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -162,7 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -171,10 +170,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img th:src="@{/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><span th:text="${user}" id="username"></span></a>
         </div>
       </div>
 
@@ -326,6 +325,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
             </ul>
+            <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-danger btn-sm">Log Out</button>
+        </form>
           </li>
         </ul>
       </nav>
@@ -358,13 +360,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <section class="content">
 
       <!-- Default box -->
+      <div class="row">
+      <div class="col">
+      <button id="tombolAddModal" class="btn bg-gradient-primary mb-3"><i class="fas fa-plus fa-fw"></i> Add Item</button>
+      </div>
+      </div>
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Tabel Mata Pelajaran Peserta</h3>
 
           <div class="card-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <input id="myInput" type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
               <div class="input-group-append">
                 <button type="submit" class="btn btn-default">
@@ -376,74 +383,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
-          <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>134</td>
-                      <td>Jim Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>494</td>
-                      <td>Victoria Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>832</td>
-                      <td>Michael Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>982</td>
-                      <td>Rocky Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody>
+          <table id="list" class="table table-hover text-nowrap">
+                  
           </table>
         </div>
         <!-- /.card-body -->
@@ -477,13 +418,78 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
+<!-- Modal Tambah Data -->
+<div class="modal fade" id="modal-default">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div id="modal-header" class="modal-header">
+					<h4 class="modal-title">Form Nilai Peserta</h4> 					
+					<button type="button" class="close" data-dismiss="modal"
+ 						aria-label="Close"> 
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				<div id='msg'></div>
+					<form id="form-validation">
+						<div id="form" class="form">
+							<div class="form-group">
+								<label for="programPembelajaranId" class="form-label">Program Pembelajaran ID</label> 
+								<input class="form-control" type="number" id="programPembelajaranId" name="programPembelajaranId">
+								<!-- <select id="programPembelajaranId" name="programPembelajaranId"
+									class="form-control form-control-sm"></select> -->
+							</div>
+							<div class="form-group">
+								<label for="angkatan">Angkatan</label> 
+								<!--<input class="form-control" type="number" id="angkatan" name="angkatan"> -->
+								<select id="angkatan" name="angkatan"
+									class="form-control form-control-sm"></select>
+							</div>
+							<div class="form-group">
+								<label for="biodataId">Biodata ID</label> 
+								<input class="form-control form-control-sm" type="number" id="biodataId" name="biodataId">
+							</div>
+							<div class="form-group">
+								<label for="kodeMapel">Kode Mapel</label> 
+								<input class="form-control form-control-sm" type="text" id="kodeMapel" name="kodeMapel">
+							</div>
+							<div class="form-group">
+								<label for="nilai">Nilai</label> 
+								<input class="form-control form-control-sm" type="number" id="nilai" name="nilai">
+							</div>
+							<div class="form-group">
+								<label for="keterangan">Keterangan</label> 
+								<input class="form-control form-control-sm" type="text" id="keterangan" name="keterangan">
+							</div>
+							<div class="form-group">
+								<label for="saran">Saran</label> 
+								<input class="form-control form-control-sm" type="text" id="saran" name="saran">
+							</div>
+						<div id="modal-footer" class="modal-footer">
+							<button type="submit" class="btn btn-block btn-outline-primary btn-sm" id="addNew"><i class="far fa-save"></i> Save</button>
+							<button type="button" class="btn btn-block btn-outline-secondary btn-sm" data-dismiss="modal" id="closeTombol">Close</button>
+						</div>
+						</div>
+					</form>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+	</div>
+	<!-- /.modal -->
+
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
 <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 <!-- Bootstrap 4 -->
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- jQuery Validation -->
+<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
 <!-- AdminLTE App -->
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
+<!-- Mapel Peserta -->
+<script type="text/javascript" th:src="@{/dist/js/mapelpeserta.js}"></script>
 </body>
 </html>
