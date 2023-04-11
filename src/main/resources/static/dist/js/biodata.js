@@ -28,7 +28,7 @@ function showTable() {
 			tr.push('<td>' + json[i].asalSekolah + '</td>');
 			tr.push('<td>' + json[i].levelSekolahAsal + '</td>');
 			tr.push('<td>' + json[i].kodePekerjaan + '</td>');
-			tr.push('<td><a class=\'btn btn-primary edit\'><i class="fas fa-edit fa-fw"></i> Edit</a>&nbsp;&nbsp;&nbsp;<a class=\'btn btn-danger delete\' id=' + json[i].id + '><i class="fas fa-trash fa-fw"></i> Delete</a></td>');
+			tr.push('<td><a class=\'btn btn-primary edit\' id=' + json[i].id + '><i class="fas fa-edit fa-fw"></i> Edit</a>&nbsp;&nbsp;&nbsp;<a class=\'btn btn-danger delete\' id=' + json[i].id + '><i class="fas fa-trash fa-fw"></i> Delete</a></td>');
 			tr.push('</tr>');
 		}
 		tr.push('</tbody>');
@@ -36,11 +36,9 @@ function showTable() {
 	});
 }
 
-
-
 $(document).ready(function() {
 	showTable();
-	
+
 	$('.close').click(function() {
 		$("#msg").html("");
 	})
@@ -57,7 +55,7 @@ $(document).ready(function() {
 
 	// datepicker
 	$(document).ready(function() {
-		$('#tanggalLahir').datepicker({
+		$('#tanggalLahir, #etanggalLahir').datepicker({
 			changeMonth: true,
 			changeYear: true,
 			"setDate": new Date(),
@@ -66,7 +64,7 @@ $(document).ready(function() {
 		});
 	});
 
-		$('#form-validation').validate({
+	$('#form-validation').validate({
 		rules: {
 			nik: {
 				required: true
@@ -136,7 +134,7 @@ $(document).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/biodata/save",
 				data: JSON.stringify(
-					{ 'createdBy': 'lia', 'updatedBy': 'haha', 'nik': $('#nik').val(), 'nama': $('#nama').val(), 'tanggalLahir': $('#tanggalLahir').val().toString(), 'tempatLahir': $('#tempatLahir').val(), 'kodeJenisKelamin': $('#kodeJenisKelamin').val(), 'asalSekolah': $('#asalSekolah').val(), 'levelSekolahAsal': $('#levelSekolahAsal').val(), 'kodePekerjaan': $('#kodePekerjaan').val() }),
+					{ 'createdBy': $('#username-login').html(), 'updatedBy': $('#username-login').html(), 'nik': $('#nik').val(), 'nama': $('#nama').val(), 'tanggalLahir': $('#tanggalLahir').val().toString(), 'tempatLahir': $('#tempatLahir').val(), 'kodeJenisKelamin': $('#kodeJenisKelamin').val(), 'asalSekolah': $('#asalSekolah').val(), 'levelSekolahAsal': $('#levelSekolahAsal').val(), 'kodePekerjaan': $('#kodePekerjaan').val() }),
 				/*data: JSON.stringify(biodata),*/
 				cache: false,
 				success: function(result) {
@@ -159,8 +157,8 @@ $(document).ready(function() {
 					}, 1000);
 					setTimeout(function() {
 						$("#form").show();
-						$("#headerModal").hide();
-						$("#footerModal").hide();
+						$("#headerModal").show();
+						$("#footerModal").show();
 					}, 1500);
 
 				},
@@ -197,32 +195,129 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	$('#form-validation-edit').validate({
+		rules: {
+			enik: {
+				required: true
+			},
+			enama: {
+				required: true
+			},
+			etanggalLahir: {
+				required: true
+			},
+			etempatLahir: {
+				required: true
+			},
+			ekodeJenisKelamin: {
+				required: true,
+			},
+			easalSekolah: {
+				required: true
+			},
+			elevelSekolahAsal: {
+				required: true
+			},
+			ekodePekerjaan: {
+				required: true
+			},
+		},
+		messages: {
+			enik: {
+				required: "NIK tidak boleh kosong"
+			},
+			enama: {
+				required: "Nama tidak boleh kosong"
+			},
+			etanggalLahir: {
+				required: "Tanggal Lahir tidak boleh kosong"
+			},
+			etempatLahir: {
+				required: "Tempat Lahir tidak boleh kosong"
+			},
+			ekodeJenisKelamin: {
+				required: "Jenis Kelamin tidak boleh kosong",
+			},
+			easalSekolah: {
+				required: "Asal Sekolah tidak boleh kosong"
+			},
+			elevelSekolahAsal: {
+				required: "Level Sekolah Asal tidak boleh kosong"
+			},
+			ekodePekerjaan: {
+				required: "Pekerjaan tidak boleh kosong"
+			},
+		},
+		errorElement: 'span',
+		errorPlacement: function(error, element) {
+			error.addClass('invalid-feedback');
+			element.closest('.form-group').append(error);
+		},
+		highlight: function(element, errorClass, validClass) {
+			$(element).addClass('is-invalid');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).removeClass('is-invalid');
+		},
+		submitHandler: function() {
+			$.ajax({
+				type: "POST",
+				contentType: "application/json; charset=utf-8",
+				url: "http://localhost:8080/biodata/save",
+				data: JSON.stringify(
+					{ 'createdAt': $('#createdAt').val(),'createdBy': $('#username-login').html(), 'updatedBy': $('#username-login').html(), 'id': $('#biodataId').val(), 'nik': $('#enik').val(), 'nama': $('#enama').val(), 'tanggalLahir': $('#etanggalLahir').val().toString(), 'tempatLahir': $('#etempatLahir').val(), 'kodeJenisKelamin': $('#ekodeJenisKelamin').val(), 'asalSekolah': $('#easalSekolah').val(), 'levelSekolahAsal': $('#elevelSekolahAsal').val(), 'kodePekerjaan': $('#ekodePekerjaan').val() }),
+				/*data: JSON.stringify(biodata),*/
+				cache: false,
+				success: function(result) {
+					$("#msg-edit").html("<div class='alert alert-success text-centre' role=''alert'><strong>Data Berhasil diedit</strong></div>");
+					$("#form-edit").hide();
+					$("#headerModal-edit").hide();
+					$("#footerModal-edit").hide();
+					setTimeout(function() {
+						showTable();
+						$("#msg-edit").html("");
+						$('#enik').val('');
+						$('#enama').val('');
+						$('#etanggalLahir').val('');
+						$('#etempatLahir').val('');
+						$('#ekodeJenisKelamin').val('');
+						$('#easalSekolah').val('');
+						$('#elevelSekolahAsal').val('');
+						$('#ekodePekerjaan').val('');
+						$("#exampleModal-edit").modal('hide');
+					}, 1000);
+					setTimeout(function() {
+						$("#form-edit").show();
+						$("#headerModal-edit").show();
+						$("#footerModal-edit").show();
+					}, 1500);
 
-	$(document).delegate('.edit', 'click', function() {
-		var parent = $(this).parent().parent();
-		var id = parent.children("td:nth-child(1)");
-		var nik = parent.children("td:nth-child(2)");
-		var nama = parent.children("td:nth-child(3)");
-		var tanggalLahir = parent.children("td:nth-child(4)");
-		var tempatLahir = parent.children("td:nth-child(5)");
-		var kodeJenisKelamin = parent.children("td:nth-child(6)");
-		var asalSekolah = parent.children("td:nth-child(7)");
-		var levelSekolahAsal = parent.children("td:nth-child(8)");
-		var kodePekerjaan = parent.children("td:nth-child(9)");
-		var buttons = parent.children("td:nth-child(10)");
-		console.log(kodeJenisKelamin.html());
-
-		nik.html("<input type='text' id='nik' value='" + nik.html() + "' class='form-control'/>");
-		nama.html("<input type='text' id='nama' value='" + nama.html() + "' class='form-control'/>");
-		tanggalLahir.html("<input type='text' id='tanggalLahir' value='" + tanggalLahir.html() + "' class='form-control'/>");
-		tempatLahir.html("<input type='text' id='tempatLahir' value='" + tempatLahir.html() + "' class='form-control'/>");
-		kodeJenisKelamin.html("<input type='text' id='kodeJenisKelamin' value='" + kodeJenisKelamin.html() + "' class='form-control'/>");
-		asalSekolah.html("<input type='text' id='asalSekolah' value='" + asalSekolah.html() + "' class='form-control'/>");
-		levelSekolahAsal.html("<input type='text' id='levelSekolahAsal' value='" + levelSekolahAsal.html() + "' class='form-control'/>");
-		kodePekerjaan.html("<input type='text' id='tanggalLahir' value='" + kodePekerjaan.html() + "' class='form-control'/>");
-		buttons.html("<a id='save' class='btn btn-success toastsDefaultDanger'><i class='fas fa-save fa-fw'></i>Save</a>&nbsp;&nbsp;&nbsp;<a class='btn btn-danger delete' id='" + id.html() + "'><i class='fas fa-trash fa-fw'></i>Delete</a>");
+				},
+				error: function(err) {
+					$("#msg-edit").html("<div class='alert alert-danger text-centre' role=''alert'><strong>Data tidak boleh kosong</strong></div>");
+				}
+			});
+		}
 	});
-
+	
+	$(document).delegate('.edit', 'click', function() {
+		$("#exampleModal-edit").modal('show');
+		var id = $(this).attr('id');
+		$.getJSON('http://localhost:8080/biodata/' + id, function(json) {
+			$('#biodataId').val(id);
+			$('#createdAt').val(json.createdAt);
+			$('#enik').val(json.nik);
+			$('#enama').val(json.nama);
+			$('#etanggalLahir').val(json.tanggalLahir);
+			$('#etempatLahir').val(json.tempatLahir);
+			$('#ekodeJenisKelamin').val(json.kodeJenisKelamin).prop('selected');
+			$('#easalSekolah').val(json.asalSekolah);
+			$('#elevelSekolahAsal').val(json.levelSekolahAsal).prop('selected');
+			$('#ekodePekerjaan').val(json.kodePekerjaan);
+		});
+	});		
+		
 	$(document).delegate('#save', 'click', function() {
 		var parent = $(this).parent().parent();
 		var id = parent.children("td:nth-child(1)");

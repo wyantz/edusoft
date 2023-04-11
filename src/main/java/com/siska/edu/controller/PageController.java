@@ -1,16 +1,26 @@
 package com.siska.edu.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
+	
+	@RequestMapping("/login.html")
+	public String loginPage() {
+		return "login";
+	}
 	@RequestMapping("/")
 	public String indexPage() {
 		return "index";
 	}
 	@RequestMapping("/tables/biodata")
-	public String biodataPage() {
+	public String biodataPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/biodata";
 	}
 	@RequestMapping("/tables/pesertaProgram")
