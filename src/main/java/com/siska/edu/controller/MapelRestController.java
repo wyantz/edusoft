@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.siska.edu.model.Mapel;
-import com.siska.edu.repository.MapelRepository;
+import com.siska.edu.repo.MapelRepository;
 
 @RestController
 @CrossOrigin(origins="*")
