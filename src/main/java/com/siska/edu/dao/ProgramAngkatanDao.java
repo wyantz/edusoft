@@ -20,7 +20,7 @@ public class ProgramAngkatanDao {
 	ProgramAngkatanRepository repository;
 	
 	public List<ProgramAngkatan> listAll() {
-		return (List<ProgramAngkatan>) repository.findAll();
+		return (List<ProgramAngkatan>) repository.findByOrderByIdAsc();
 	}
 	
 	public void save(ProgramAngkatan programAngkatan) {

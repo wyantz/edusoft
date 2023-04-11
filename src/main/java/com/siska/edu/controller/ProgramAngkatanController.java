@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.siska.edu.dao.ProgramAngkatanDao;
 import com.siska.edu.model.ProgramAngkatan;
 import com.siska.edu.model.ProgramAngkatanId;
+import com.siska.edu.model.ProgramPembelajaran;
+import com.siska.edu.repo.ProgramPembelajaranRepository;
 
 @RestController
 @RequestMapping("/programAngkatan")
@@ -26,31 +28,39 @@ public class ProgramAngkatanController {
 	@Autowired
 	private ProgramAngkatanDao service;
 	
+	@Autowired
+	private ProgramPembelajaranRepository repo;
+	
 	@GetMapping("/")
-	public ResponseEntity<List<ProgramAngkatan>> getProgramAngkatan() {
+	public ResponseEntity<List<ProgramAngkatan>> getProgAngData() {
 		return new ResponseEntity<List<ProgramAngkatan>>(service.listAll(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<Void> saveOrUpdateCustomer(@RequestBody ProgramAngkatan program) {
+	public ResponseEntity<Void> saveOrUpdateProgAngData(@RequestBody ProgramAngkatan program) {
 		service.save(program);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Void> deleteCustomer(@RequestBody ProgramAngkatanId id) {
+	public ResponseEntity<Void> deleteProgAngDataById(@RequestBody ProgramAngkatanId id) {
 		service.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<ProgramAngkatan> getCustomer(@RequestBody ProgramAngkatanId id) {
+	public ResponseEntity<ProgramAngkatan> getProgAngDataById(@RequestBody ProgramAngkatanId id) {
 		return new ResponseEntity<ProgramAngkatan>(service.get(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/search/{keyword}")
-	public ResponseEntity<List<ProgramAngkatan>> searchCustomer(@PathVariable String keyword) {
+	public ResponseEntity<List<ProgramAngkatan>> searchProgAngData(@PathVariable String keyword) {
 		return new ResponseEntity<List<ProgramAngkatan>>(service.search(keyword), HttpStatus.OK);
 	}
 	
+	@GetMapping("/progbel")
+	public ResponseEntity<List<ProgramPembelajaran>> getProgBelData() {
+		return new ResponseEntity<List<ProgramPembelajaran>>(repo.findByOrderByIdAsc(), HttpStatus.OK);
+	}
+
 }

@@ -2,31 +2,31 @@
  * @author Fajri Rahman
  */
 
-// a function to control the modal behaviour when data record successfully added, including the success message
+// Fungsi untuk menampilkan status setelah save atau update data
 function queryStatus(state) {
 	if (state == "insert") {
 		$(".status-msg").html("<span style='color: green'>Data added successfully</span>");
 	}
 	else if (state == "update") {
-		$(".status-msg").html("<span style='color: green'>Data updated successfully</span>");		
+		$(".status-msg").html("<span style='color: green'>Data updated successfully</span>");
 	}
 	$('.input-form').hide();
 	$('.modal-footer').hide();
-	setTimeout(function() {
+	setTimeout(function () {
 		$('#editModal').modal('hide');
 		$('#addModal').modal('hide');
 		$('.status-msg').html("");
 		$('input').val('');
 	}, 1000);
-	setTimeout(function() {
+	setTimeout(function () {
 		$('.input-form').show();
 		$('.modal-footer').show();
 	}, 1500);
 	showData();
 }
-// end of status result function
+// ./query status
 
-// a function to show the data based on keyword in real time
+// Fungsi untuk menampilkan data
 function showData() {
 	$('#program_angkatan').empty();
 	var urlPath = "";
@@ -41,7 +41,7 @@ function showData() {
 		tr.push('<thead>');
 		tr.push('<tr>');
 		tr.push('<th>Angkatan</th>');
-		tr.push('<th>Tahun Pembelajaran</th>');
+		tr.push('<th>Program Belajar</th>');
 		tr.push('<th>Tahun Masuk</th>');
 		tr.push('<th>Action</th>');
 		tr.push('</tr>');
@@ -60,29 +60,63 @@ function showData() {
 		$('#program_angkatan').append($(tr.join('')));
 	});
 }
+// ./show data
 
-$(document).ready(function() {
-	// show data on table
+// Fungsi untuk menambah opsi program belajar pada menu dropdown
+function listProgBel() {
+	$('#programPembelajaranId').empty();
+	$.getJSON("http://localhost:8080/programAngkatan/progbel", function (json) {
+		var options = [];
+		options.push('<option value="" selected="selected">-- Pilih program belajar --</option>');
+		for (i = 0; i < json.length; i++) {
+			options.push('<option value="' + json[i].id + '">' + json[i].nama + '</option>')
+		}
+		$('#programPembelajaranId, #edit_progbel_id').append($(options.join('')));
+	});
+}
+// ./list program belajar
+
+// Fungsi untuk menambah opsi program belajar pada menu dropdown
+function listAngkatan() {
+	$('#angkatan').empty();
+	var options = [];
+	options.push('<option value="" selected="selected">-- Pilih tahun angkatan --</option>');
+	for (i = 1900; i < 2200; i++) {
+		options.push('<option value="' + i + '">' + i + '</option>')
+	}
+	$('#angkatan, #edit_angkatan').append($(options.join('')));
+}
+// ./list program belajar
+
+// jQuery
+$(document).ready(function () {
+	// Memanggil fungsi untuk menampilkan data
 	showData();
-	// end show data
-	
-	// show filtered data based on table_search keyword
+	// ./show data
+
+	// Menampilkan data berdasarkan keyword pada search-box
 	$('#table_search').on('keyup', function() {
 		showData();
 	});
-	// end filtered data
-	
-	// insert new data with validation
-	$('#add-program-angkatan').validate({
-		// input field restriction
+	// ./show filtered data
+
+	// Event untuk menampilkan modal add
+	$('#show_add_modal').click(function () {
+		$('.status-msg').html("");
+		listAngkatan();
+		listProgBel();
+	})
+	// ./show add modal
+
+	// Menambahkan data baru dengan validasi jQuery
+	$('#add_program_angkatan').validate({
+		// Rules untuk tiap field
 		rules: {
 			angkatan: {
-				required: true,
-				number: true
+				required: true
 			},
 			programPembelajaranId: {
-				required : true,
-				number: true
+				required: true
 			},
 			tahunMasuk: {
 				required: true,
@@ -92,35 +126,48 @@ $(document).ready(function() {
 		// error messages on each field
 		messages: {
 			angkatan: {
-				required: "Field angkatan tidak boleh kosong!",
-				number: "Field harus berupa angka!"
+				required: "Pilih tahun angkatan!",
 			},
 			programPembelajaranId: {
-				required : "Field pembelajaran tidak boleh kosong!",
-				number: "Field harus berupa angka!"
+				required: "Pilih program belajar!",
 			},
 			tahunMasuk: {
 				required: "Field tahun tidak boleh kosong!",
-				number: "Field harus berupa angka!"
+				number: "Field harus berupa angka!",
 			},
 		},
 		// if all input is valid, data will be transfered to REST controller
-		submitHandler: function() {
-			$.ajax({
-				type: "POST",
-				contentType: "application/json; charset=utf-8",
-				url: "http://localhost:8080/programAngkatan/save",
-				data: JSON.stringify({ id:{ 'angkatan': $('#angkatan').val(), 'programPembelajaranId': $('#programPembelajaranId').val() }, 'tahunMasuk': $('#tahunMasuk').val() }),
-				cache: false,
-				success: function() {
-					queryStatus("insert");
-				},
-				error: function() {
-					$('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error inserting record').fadeIn().fadeOut(4000, function() {
-						$(this).remove();
-					});
+		submitHandler: function () {
+			// Validasi id baru untuk memeriksa apakah sudah terdaftar atau belum
+			$.getJSON("http://localhost:8080/programAngkatan/", function (json) {
+				var isExist = false;
+				for (var i = 0; i < json.length; i++) {
+					if ($('#angkatan').val() == json[i].id.angkatan && $('#programPembelajaranId').val() == json[i].id.programPembelajaranId) {
+						$(".status-msg").html("<span style='color: red'>Angkatan dengan program tersebut sudah terdaftar!</span>");
+						return true;
+					}
 				}
-			})
+				// Data akan diinput jika id baru belum terdaftar
+				if (!isExist) {
+					$.ajax({
+						type: "POST",
+						contentType: "application/json; charset=utf-8",
+						url: "http://localhost:8080/programAngkatan/save",
+						data: JSON.stringify({ id: { 'angkatan': $('#angkatan').val(), 'programPembelajaranId': $('#programPembelajaranId').val() }, 'tahunMasuk': $('#tahunMasuk').val() }),
+						cache: false,
+						success: function() {
+							queryStatus("insert");
+						},
+						error: function() {
+							$('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error inserting record').fadeIn().fadeOut(4000, function() {
+								$(this).remove();
+							});
+						}
+					})
+				}
+				// ./save
+			});
+			// ./new id validation
 		},
 		// if there is any blank input, show the message below the input field using invalid-feedback class from bootstrap
 		errorElement: 'span',
@@ -152,7 +199,6 @@ $(document).ready(function() {
 					parent.fadeOut('slow', function() {
 						$(this).remove();
 					});
-					showData();
 				},
 				error: function() {
 					$('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error deleting record').fadeIn().fadeOut(4000, function() {
@@ -168,52 +214,51 @@ $(document).ready(function() {
 	$(document).delegate('.edit', 'click', function() {
 		$('#editModal').modal('show');
 		var id = $(this).attr('id');
+		$('.status-msg').html("");
+		listAngkatan();
+		listProgBel();
 		$.ajax({
 			type: "POST",
 			url: "http://localhost:8080/programAngkatan/update",
 			contentType: "application/json; charset=utf-8",
 			data: id,
 			cache: false,
-			success: function(data) {
-				$('#eAngkatan').val(data.id.angkatan);
-				$('#eProgramPembelajaranId').val(data.id.programPembelajaranId); 
-				$('#eTahunMasuk').val(data.tahunMasuk);
+			success: function(response) {
+				$('#edit_angkatan').val(response.id.angkatan).prop("selected", "selected");
+				$('#edit_progbel_id').val(response.id.programPembelajaranId).prop("selected", "selected");
+				$('#edit_tahun_masuk').val(response.tahunMasuk);
 			},
 			error: function() {
-				
+
 			}
 		});
 	});
 	// end of show edit modal
 
 	// update selected data with validation
-	$('#edit-program-angkatan').validate({ 
+	$('#edit_program_angkatan').validate({
 		// input field restriction
 		rules: {
-			eAngkatan: {
+			edit_angkatan: {
 				required: true,
-				number: true
 			},
-			eProgramPembelajaranId: {
-				required : true,
-				number: true
+			edit_progbel_id: {
+				required: true,
 			},
-			eTahunMasuk: {
+			edit_tahun_masuk: {
 				required: true,
 				number: true
 			},
 		},
 		// error messages on each field
 		messages: {
-			eAngkatan: {
+			edit_angkatan: {
 				required: "Field angkatan tidak boleh kosong!",
-				number: "Field harus berupa angka!"
 			},
-			eProgramPembelajaranId: {
-				required : "Field pembelajaran tidak boleh kosong!",
-				number: "Field harus berupa angka!"
+			edit_progbel_id: {
+				required: "Field pembelajaran tidak boleh kosong!",
 			},
-			eTahunMasuk: {
+			edit_tahun_masuk: {
 				required: "Field tahun tidak boleh kosong!",
 				number: "Field harus berupa angka!"
 			},
@@ -224,8 +269,7 @@ $(document).ready(function() {
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/programAngkatan/save",
-				data: JSON.stringify({ id:{ 'angkatan': $('#eAngkatan').val(), 'programPembelajaranId': $('#eProgramPembelajaranId').val() }, 'tahunMasuk': $('#eTahunMasuk').val() }),
-//				data: JSON.stringify({ id:{ 'programPembelajaranId': $('#programPembelajaranId').val() }, 'tahunMasuk': $('#tahunMasuk').val() }),
+				data: JSON.stringify({ id: { 'angkatan': $('#edit_angkatan').val(), 'programPembelajaranId': $('#edit_progbel_id').val() }, 'tahunMasuk': $('#edit_tahun_masuk').val() }),
 				cache: false,
 				success: function() {
 					queryStatus("update");
