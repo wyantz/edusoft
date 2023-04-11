@@ -349,74 +349,143 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						</div>
 					</div>
 					<!-- /.card-header -->
-					<div class="card-body table-responsive p-0" style="padding : 20px;">
+					<div class="card-body table-responsive p-0" style="padding: 20px;">
 						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#exampleModal" style="margin : 20px;">Tambahkan Jenis Nilai +</button>
+							data-target="#addModal" style="margin: 20px;">Tambahkan
+							Jenis Nilai +</button>
 						<!-- Table -->
 						<table class="table table-hover text-nowrap" id="tbdata">
-							
+
 						</table>
 					</div>
 					<!-- /.card-body -->
-					
+
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						role="dialog" aria-labelledby="exampleModalLabel"
-						aria-hidden="true">
+					<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Add Company</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Add</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
-									<div id='msg' />
-									<h3>Add a New Company</h3>
+									<div id='msg-add'></div>
+									<h3>Add Jenis Nilai</h3>
+									<form id="validationAdd">
 
-									<div class="mb-3">
-										<!-- <label for="exampleInputEmail1" class="form-label">Kode</label>
-										<input type="text" class="form-c-l"
-											aria-describedby="emailHelp" id="kode" name="kode"> -->
-										<label>Kode</label> <select id="kode" name="kode"
-											class="from-control">
-			
-											<option
-												th:each="kodeOpt : ${T(com.siska.edu.model.JenisNilaiEnum).values()}"
-												th:value="${kodeOpt}" th:text="${kodeOpt}" class="form-select"></option>
-											
-										</select>
-									</div>
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">nilai</label>
-										<input type="text" class="form-control"
-											aria-describedby="emailHelp" id="nilai" name="nilai">
-									</div>
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Keterangan</label>
-										<input type="text" class="form-control"
-											aria-describedby="emailHelp" id="keterangan"
-											name="keterangan">
-									</div>
-									<div class="mb-3">
-										<label for="exampleInputEmail1" class="form-label">Kriteria</label>
-										<input type="text" class="form-control"
-											aria-describedby="emailHelp" id="kriteria" name="kriteria">
-									</div>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">Close</button>
-									<button type="submit" id="addNew" class="btn btn-primary">Submit</button>
+										<div class="form-group">
+											<!-- <div class="form-group">
+												<label>Select</label> <select class="form-control">
+													<option>option 1</option>
+													<option>option 2</option>
+													<option>option 3</option>
+													<option>option 4</option>
+													<option>option 5</option>
+												</select>
+											</div> -->
+											<label>Kode</label> <select id="addKode" name="kode"
+												class="form-control">
+
+												<option
+													th:each="kodeOpt : ${T(com.siska.edu.model.JenisNilaiEnum).values()}"
+													th:value="${kodeOpt}" th:text="${kodeOpt}"
+													class="form-select"></option>
+
+											</select>
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">nilai</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="addNilai" name="nilai">
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">Keterangan</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="addKeterangan"
+												name="keterangan">
+										</div>
+
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">Kriteria</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="addKriteria"
+												name="kriteria">
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+
+									</form>
+
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!-- /.card -->
 
+
+					<!-- MODAL EDIT -->
+					<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="editModalLabel">Edit</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div id='msg-edit'></div>
+									<h3>Edit Jenis Nilai</h3>
+									<form id="validationEdit">
+
+
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">Kode</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="editKode" name="kode"
+												disabled="disabled">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">nilai</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="editNilai" name="nilai"
+												disabled="disabled">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">Keterangan</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="editKeterangan"
+												name="keterangan">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1" class="form-label">Kriteria</label>
+											<input type="text" class="form-control"
+												aria-describedby="emailHelp" id="editKriteria"
+												name="kriteria">
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Submit</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.card -->
 			</section>
 			<!-- /.content -->
 		</div>
@@ -453,6 +522,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<!-- AdminLTE App -->
 	<script th:src="@{/dist/js/adminlte.min.js}"></script>
 	<script th:src="@{/dist/js/jenisNilaiScript.js}"></script>
+	<!--validation  -->
+	<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+	<script
+		th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
 
 </body>
 </html>
