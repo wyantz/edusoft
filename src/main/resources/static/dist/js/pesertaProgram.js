@@ -202,6 +202,7 @@ $(document).ready(function() {
 			});
 		}
 	});
+
 	//form validation ubah data
 	$('#form-validation-edit').validate({
 		rules: {
