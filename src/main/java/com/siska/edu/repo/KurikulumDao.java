@@ -1,4 +1,4 @@
-package com.siska.edu.dao;
+package com.siska.edu.repo;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.siska.edu.model.Referensi;
 import com.siska.edu.model.ReferensiId;
 import com.siska.edu.model.ReferensiType;
-import com.siska.edu.repository.ReferensiRepository;
+import com.siska.edu.repo.ReferensiRepository;
 
 /**
  * @author Jeremy
