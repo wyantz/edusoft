@@ -1,6 +1,9 @@
 package com.siska.edu.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -9,6 +12,11 @@ public class PageController {
 	public String indexPage() {
 		return "index";
 	}
+	@RequestMapping("/login.html")
+	public String loginPage() {
+		return "login";
+	}
+
 	@RequestMapping("/tables/biodata")
 	public String biodataPage() {
 		return "pages/biodata";
@@ -38,7 +46,9 @@ public class PageController {
 		return "pages/kelasProgram";
 	}
 	@RequestMapping("/tables/kurikulum")
-	public String kurikulumPage() {
+	public String kurikulumPage(Model m, @AuthenticationPrincipal UserDetails curentUser) {
+		String name = curentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/kurikulum";
 	}
 	@RequestMapping("/tables/mapel")
