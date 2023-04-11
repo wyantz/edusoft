@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
-	
-	@RequestMapping("/login.html")
-	public String loginPage() {
-		return "login";
-	}
 	@RequestMapping("/")
 	public String indexPage() {
 		return "index";
 	}
+	@RequestMapping("/login.html")
+	public String loginPage() {
+		return "login";
+	}
+
 	@RequestMapping("/tables/biodata")
 	public String biodataPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
 		String name = currentUser.getUsername();
@@ -48,7 +48,9 @@ public class PageController {
 		return "pages/kelasProgram";
 	}
 	@RequestMapping("/tables/kurikulum")
-	public String kurikulumPage() {
+	public String kurikulumPage(Model m, @AuthenticationPrincipal UserDetails curentUser) {
+		String name = curentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/kurikulum";
 	}
 	@RequestMapping("/tables/mapel")

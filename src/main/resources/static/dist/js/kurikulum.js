@@ -9,8 +9,8 @@ function success_add() {
 		$('#add-msg').html(null);
 	}, 1000);
 	setTimeout(function() {
-		$("#addForm").show();
-	}, 1500);
+		$("#add-form").show();
+	}, 1300);
 	showTable("");
 
 }
@@ -41,11 +41,11 @@ function error() {
 /*Dipanggil untuk menampilkan data dalam bentuk tabel ketika parameter keywordnya diisi "" maka akan menampilkan seluruh data,
 ketika keywordnya tidak "" maka akan menamapilkan data sesuai keyword yang dimasukan*/
 function showTable(keyword) {
-	let url ="";
-	if(keyword === "") {
+	let url = "";
+	if (keyword === "") {
 		url = 'http://localhost:8080/kurikulum';
 	} else {
-		url = 'http://localhost:8080/kurikulum/search/'+keyword;
+		url = 'http://localhost:8080/kurikulum/search/' + keyword;
 	}
 	$.getJSON(url, function(json) {
 		$('table').empty();
@@ -78,7 +78,8 @@ function showTable(keyword) {
 $(document).ready(function() {
 	showTable("");
 
-/*Menambahkan data dengan validasi terlebih dahulu*/
+
+	/*Menambahkan data dengan validasi terlebih dahulu*/
 	$('#add-form').validate({
 		rules: {
 			nama: {
@@ -110,7 +111,7 @@ $(document).ready(function() {
 						type: "POST",
 						contentType: "application/json; charset=utf-8",
 						url: "http://localhost:8080/kurikulum",
-						data: JSON.stringify({ 'nama': $('#nama').val(), 'keterangan': $('#keterangan').val(), 'createdBy': $('#username-login').html()}),
+						data: JSON.stringify({ 'nama': $('#nama').val(), 'keterangan': $('#keterangan').val(), 'createdBy': $('#username-login').html() }),
 						cache: false,
 						success: success_add,
 						error: function() {
@@ -138,13 +139,15 @@ $(document).ready(function() {
 	});
 
 
-/*	fitur filter jquery untuk menampilkan data berdasarka keyword yang dimasukan pada form input search*/
+	/*	fitur filter jquery untuk menampilkan data berdasarka keyword yang dimasukan pada form input search*/
 	$("#search").on("keyup", function() {
 		var keyword = $(this).val().toLowerCase();
 		showTable(keyword);
 	});
 
-/*Menghapus data berdasarkan id*/
+
+
+	/*Menghapus data berdasarkan id*/
 	$(document).delegate('.delete', 'click', function() {
 		if (confirm('Anda yakin ingin menghapus data ini.?')) {
 			var id = $(this).attr('id');
@@ -167,8 +170,8 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
-/*	Menambahkan data lama ke form ubah data*/
+
+	/*	Menambahkan data lama ke form ubah data*/
 	let nama = "";
 	$(document).delegate('.edit', 'click', function() {
 		var parent = $(this).parent().parent();
@@ -181,8 +184,8 @@ $(document).ready(function() {
 		$("#edKeterangan").val(keterangan.html());
 
 	});
-	
-/*	Edit data dengan validasi terlebih dahulu*/
+
+	/*	Edit data dengan validasi terlebih dahulu*/
 	$('#edit-form').validate({
 		rules: {
 			nama: {
@@ -257,6 +260,19 @@ $(document).ready(function() {
 			$(element).removeClass('is-invalid');
 		}
 	});
+/*	$.getJSON("http://localhost:8080/kurikulum", function(json) {
+
+		$('#pagination-demo').twbsPagination({
+			totalPages: json.length,
+			visiblePages: 3,
+			onPageClick: function(event, page) {
+				$('#page-content').text('Page ' + page);
+			}
+		});
+
+	});*/
+
+
 
 
 });

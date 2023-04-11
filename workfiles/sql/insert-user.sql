@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+-- Dijalankan secara manual (copas) melalui pgAdmin
+
+=======
+>>>>>>> branch 'main' of git@github.com:TaopikR/edusoft.git
 INSERT INTO T_ROLE (RLID,RLNM) VALUES ('ROLE_ADMIN','Administrator');
 INSERT INTO T_ROLE (RLID,RLNM) VALUES ('ROLE_USER','User');
 
