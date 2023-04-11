@@ -58,7 +58,9 @@ public class PageController {
 		return "pages/mapel";
 	}
 	@RequestMapping("/tables/mapelPeserta")
-	public String mapelPesertaPage() {
+	public String mapelPesertaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/mapelPeserta";
 	}
 	@RequestMapping("/tables/referensi")
