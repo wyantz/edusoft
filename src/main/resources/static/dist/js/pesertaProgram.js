@@ -75,14 +75,17 @@ $(document).ready(function() {
 			url: "http://localhost:8080/pesertaprogram/get",
 			data: id,
 			cache: false,
-			success: function(data) {
+			success: function(json) {
 				$("#editModal").modal('show');
-				$('#eAngkatan').val(data.id.angkatan);
-				$('#eBiodataId').val(data.id.biodataId);
-				$('#eProgramPembelajaranId').val(data.id.programPembelajaranId);
-				$('#eCurrentLevel').val(data.currentLevel);
-				$('#eTahunMasuk').val(data.tahunMasuk);
-				$('#eDatepicker').val(data.tanggalMasuk);
+				$('#eAngkatan').empty();
+				var options = [];
+				options.push('<option value=' + json.id.angkatan + '>' + json.id.angkatan + '</option>');
+				$('#eAngkatan').append($(options.join('')));
+				$('#eBiodataId').val(json.id.biodataId);
+				$('#eProgramPembelajaranId').val(json.id.programPembelajaranId);
+				$('#eCurrentLevel').val(json.currentLevel);
+				$('#eTahunMasuk').val(json.tahunMasuk);
+				$('#eDatepicker').val(json.tanggalMasuk);
 			},
 			error: function() {
 				alert("ID " + id + " tidak ditemukan");
@@ -90,57 +93,7 @@ $(document).ready(function() {
 		});
 	});
 
-	//	Menyimpan baris data setelah edit
-	$(document).delegate('#save', 'click', function() {
-		var parent = $(this).parent().parent();
-		var angkatan = parent.children("td:nth-child(1)");
-		var biodataId = parent.children("td:nth-child(2)");
-		var programPembelajaranId = parent.children("td:nth-child(3)");
-		var currentLevel = parent.children("td:nth-child(4)");
-		var tahunMasuk = parent.children("td:nth-child(5)");
-		var tanggalMasuk = parent.children("td:nth-child(6)");
-
-		if (angkatan.children("input[type=number]").val() == "" || biodataId.children("input[type=number]").val() == "" || programPembelajaranId.children("input[type=number]").val() == "" || currentLevel.children("input[type=number]").val() == "" || tahunMasuk.children("input[type=number]").val() == "" || tanggalMasuk.children("input[type=text]").val() == "") {
-			$('#alert').html('<div class="alert alert-danger text-center" role="alert"><i class="icon fas fa-exclamation-triangle"><strong> Data tidak boleh kosong</strong></div>');
-			window.setTimeout(function() {
-				$("#alert").html("");
-			}, 3000)
-		} else {
-			$.ajax({
-				type: "POST",
-				contentType: "application/json; charset=utf-8",
-				url: "http://localhost:8080/pesertaprogram/save",
-				data: JSON.stringify({
-					'id': {
-						'angkatan': angkatan.children("input[type=number]").val(),
-						'biodataId': biodataId.children("input[type=number]").val(),
-						'programPembelajaranId': programPembelajaranId.children("input[type=number]").val()
-					},
-					'currentLevel': currentLevel.children("input[type=number]").val(),
-					'tahunMasuk': tahunMasuk.children("input[type=number]").val(),
-					'tanggalMasuk': tanggalMasuk.children("input[type=text]").val()
-				}),
-				cache: false,
-				success: function() {
-					$('#alert').html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'><strong> Data berhasil diubah</strong></div>")
-						.fadeIn()
-						.fadeOut(4000, function() {
-							$('#alert').html("");
-						});
-					showData();
-				},
-				error: function() {
-					$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data tidak boleh kosong</strong></div>")
-						.fadeIn()
-						.fadeOut(4000, function() {
-							$('#alert').html("");
-						});
-				}
-			});
-		}
-	});
-
-	//form validation
+	//form validation tambah data
 	$('#form-validation').validate({
 		rules: {
 			angkatan: {
@@ -205,7 +158,16 @@ $(document).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/pesertaprogram/save",
 				data: JSON.stringify(
-					{ 'id': { 'angkatan': $('#angkatan').val(), 'biodataId': $('#biodataId').val(), 'programPembelajaranId': $('#programPembelajaranId').val() }, 'currentLevel': $('#currentLevel').val(), 'tahunMasuk': $('#tahunMasuk').val(), 'tanggalMasuk': $('#datepicker').val().toString() }),
+					{
+						'id': {
+							'angkatan': $('#angkatan').val(),
+							'biodataId': $('#biodataId').val(),
+							'programPembelajaranId': $('#programPembelajaranId').val()
+						},
+						'currentLevel': $('#currentLevel').val(),
+						'tahunMasuk': $('#tahunMasuk').val(),
+						'tanggalMasuk': $('#datepicker').val().toString()
+					}),
 				cache: false,
 				success: function() {
 					$("#msg").html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'> Data berhasil ditambahkan</div>").fadeIn()
@@ -240,6 +202,7 @@ $(document).ready(function() {
 			});
 		}
 	});
+	//form validation ubah data
 	$('#form-validation-edit').validate({
 		rules: {
 			angkatan: {
@@ -331,6 +294,7 @@ $(document).ready(function() {
 			});
 		}
 	});
+	$('.select2').select2()
 
 	//	datepicker
 	$(document).ready(function() {
@@ -363,8 +327,21 @@ $(document).ready(function() {
 	//	menampilkan modal
 	$("#addButton").click(function() {
 		$("#addModal").modal('show');
+		listAngkatan();
 	});
 	//	Input mask
 	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
 	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
 });
+
+//ambil angkatan dari model angkatan
+function listAngkatan() {
+	$('#angkatan').empty();
+	$.getJSON("http://localhost:8080/programAngkatan/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
+		}
+		$('#angkatan').append($(options.join('')));
+	})
+}
