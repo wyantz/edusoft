@@ -1,6 +1,6 @@
 function showData() {
 	$("#tablepp").empty();
-	$.getJSON('http://localhost:8080/pesertaprogram', function(json) {
+	$.getJSON('http://localhost:8080/pesertaprogram/list', function(json) {
 		var tr = [];
 		tr.push('<thead>');
 		tr.push('<tr>');
@@ -76,16 +76,19 @@ $(document).ready(function() {
 			data: id,
 			cache: false,
 			success: function(json) {
-				$("#editModal").modal('show');
 				$('#eAngkatan').empty();
-				var options = [];
-				options.push('<option value=' + json.id.angkatan + '>' + json.id.angkatan + '</option>');
-				$('#eAngkatan').append($(options.join('')));
-				$('#eBiodataId').val(json.id.biodataId);
+				$('#eBiodataId').empty();
+				var optionsAngkatan = [];
+				optionsAngkatan.push('<option value=' + json.id.angkatan + '>' + json.id.angkatan + '</option>');
+				$('#eAngkatan').append($(optionsAngkatan.join('')));
+				var optionseBiodataId = [];
+				optionseBiodataId.push('<option value=' + json.id.biodataId + '>' + json.id.biodataId + '</option>');
+				$('#eBiodataId').append($(optionseBiodataId.join('')));
 				$('#eProgramPembelajaranId').val(json.id.programPembelajaranId);
 				$('#eCurrentLevel').val(json.currentLevel);
 				$('#eTahunMasuk').val(json.tahunMasuk);
 				$('#eDatepicker').val(json.tanggalMasuk);
+				$("#editModal").modal('show');
 			},
 			error: function() {
 				alert("ID " + id + " tidak ditemukan");
@@ -327,8 +330,9 @@ $(document).ready(function() {
 	});
 	//	menampilkan modal
 	$("#addButton").click(function() {
-		$("#addModal").modal('show');
 		listAngkatan();
+		listBiodataId();
+		$("#addModal").modal('show');
 	});
 	//	Input mask
 	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
@@ -344,5 +348,16 @@ function listAngkatan() {
 			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
 		}
 		$('#angkatan').append($(options.join('')));
+	})
+}
+//ambil ID biodata dari model biodata
+function listBiodataId() {
+	$('#biodataId').empty();
+	$.getJSON("http://localhost:8080/biodata", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
+		}
+		$('#biodataId').append($(options.join('')));
 	})
 }
