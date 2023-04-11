@@ -54,7 +54,9 @@ public class PageController {
 		return "pages/kurikulum";
 	}
 	@RequestMapping("/tables/mapel")
-	public String mapelPage() {
+	public String mapelPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/mapel";
 	}
 	@RequestMapping("/tables/mapelPeserta")
