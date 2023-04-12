@@ -7,9 +7,11 @@
 <!-- upper-link -->
 <div layout:fragment="upper-link">
 	<!-- jQuery UI -->
-	<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
+	<link rel="stylesheet"
+		th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
 	<!-- date-range-picker -->
-	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	<link rel="stylesheet"
+		th:href="@{/plugins/daterangepicker/daterangepicker.css}">
 </div>
 <!-- /upper-link -->
 </head>
@@ -54,11 +56,10 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fas fa-search"></i>
 								</button>
-								&nbsp;
-								&nbsp;
-								<a id="addButton" type="button" class="btn btn-primary col-auto"
-									data-toggle="modal" data-target="#exampleModal"><i
-									class="fas fa-plus fa-fw"></i><span> Add New</span></a>
+								<a id="addButton" type="button"
+									class="btn btn-primary col-auto" data-toggle="modal"
+									data-target="#exampleModal"><i class="fas fa-plus fa-fw"></i><span>
+										Add New</span></a>
 							</div>
 						</div>
 					</div>
@@ -97,14 +98,13 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div id="headerModal" class="modal-header">
-						<h5 class="modal-title">Form Biodata</h5>
+						<h3 class="modal-title">Form Add Biodata</h3>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<h3>Tambah Biodata Baru</h3>
 						<div id='msg'></div>
 						<form id="form-validation">
 							<div id="form">
@@ -130,7 +130,7 @@
 									<label class="form-label">Jenis Kelamin</label> <select
 										class="custom-select mr-sm-2" id="kodeJenisKelamin"
 										name="kodeJenisKelamin">
-										<option selected>Pilih...</option>
+										<option disabled value="" selected>Pilih...</option>
 										<option>L</option>
 										<option>P</option>
 									</select>
@@ -144,12 +144,10 @@
 									<label class="form-label">Level Sekolah Asal</label> <select
 										class="custom-select mr-sm-2" id="levelSekolahAsal"
 										name="levelSekolahAsal">
-										<option selected>Pilih...</option>
-										<option>KB</option>
-										<option>TK</option>
-										<option>SD</option>
-										<option>SMP</option>
-										<option>SMA</option>
+										<option disabled value="" selected>Pilih...</option>
+										<option
+											th:each="levelOpt : ${T(com.siska.edu.model.EduLevel).values()}"
+											th:value="${levelOpt}" th:text="${levelOpt}"></option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -177,14 +175,13 @@
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div id="headerModal-edit" class="modal-header">
-						<h5 class="modal-title">Form Edit Biodata</h5>
+						<h3 class="modal-title">Form Ubah Biodata</h3>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
-						<h3>Edit Biodata</h3>
 						<div id='msg-edit'></div>
 						<form id="form-validation-edit">
 							<div id="form-edit">
@@ -212,7 +209,7 @@
 									<label class="form-label">Jenis Kelamin</label> <select
 										class="custom-select mr-sm-2" id="ekodeJenisKelamin"
 										name="ekodeJenisKelamin">
-										<option selected>Pilih...</option>
+										<option disabled value="" selected>Pilih...</option>
 										<option>L</option>
 										<option>P</option>
 									</select>
@@ -226,12 +223,10 @@
 									<label class="form-label">Level Sekolah Asal</label> <select
 										class="custom-select mr-sm-2" id="elevelSekolahAsal"
 										name="elevelSekolahAsal">
-										<option selected>Pilih...</option>
-										<option>KB</option>
-										<option>TK</option>
-										<option>SD</option>
-										<option>SMP</option>
-										<option>SMA</option>
+										<option disabled value="" selected>Pilih...</option>
+										<option
+											th:each="levelOpt : ${T(com.siska.edu.model.EduLevel).values()}"
+											th:value="${levelOpt}" th:text="${levelOpt}"></option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -252,17 +247,17 @@
 			</div>
 		</div>
 		<!-- ./Edit Modal -->
-		</div>
-		<!-- bottom-script -->
-		<div layout:fragment="bottom-script">
-			<!-- Script -->
-			<script type="text/javascript" th:src="@{/dist/js/biodata.js}"></script>
-			<!-- jQuery UI -->
-			<script th:src="@{/plugins/jquery-ui/jquery-ui.js}"></script>
-			<!-- date-range-picker -->
-			<script th:src="@{/plugins/moment/moment.min.js}"></script>
-			<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-		</div>
-		<!-- /bottom-script -->
+	</div>
+	<!-- bottom-script -->
+	<div layout:fragment="bottom-script">
+		<!-- Script -->
+		<script type="text/javascript" th:src="@{/dist/js/biodata.js}"></script>
+		<!-- jQuery UI -->
+		<script th:src="@{/plugins/jquery-ui/jquery-ui.js}"></script>
+		<!-- date-range-picker -->
+		<script th:src="@{/plugins/moment/moment.min.js}"></script>
+		<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+	</div>
+	<!-- /bottom-script -->
 </body>
 </html>
