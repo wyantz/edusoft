@@ -23,7 +23,12 @@ function tampilkanTabel(){
 }
 
 $(document).ready(function() {
-			
+	
+			// Menipulasi tampilan menu
+			$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+			$("#menu_data_diri_3").addClass("active"); // tambahkan class active pada a dengan id menu-data-diri-3
+			$("#menu_data_diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-data-diri lalu pada parentnya (li) ditambahkan class menu-open
+		
 			//tampilkan tabel
 			tampilkanTabel();
 			
