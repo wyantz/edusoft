@@ -30,5 +30,9 @@ public class BiodataService {
 	public void deleteBiodataById(long id) {
 		this.repo.deleteById(id);
 	}
+	
+	public List<Biodata> search(String keyword) {
+	    return repo.search(keyword);
+	}
 
 }

@@ -3,7 +3,7 @@
  */
 package com.siska.edu.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,7 +50,7 @@ public class Biodata extends BaseEntity {
 	private String nama;
 	
 	@Column(name = "BIOTGLLAHIR")
-	private LocalDateTime tanggalLahir;
+	private LocalDate tanggalLahir;
 	
 	@Column(name = "BIOTMPLAHIR", length = 50)
 	private String tempatLahir;
