@@ -8,7 +8,7 @@ function showData() {
 		tr.push('<th>Nilai</th>');
 		tr.push('<th>Keterangan</th>');
 		tr.push('<th>Kriteria</th>');
-		tr.push('<th colspan="3">action</th>');
+		tr.push('<th colspan="3" style="text-align: center;">Aksi</th>');
 		tr.push('</tr>');
 		tr.push('</thead>');
 		tr.push('<tbody id="rows">');
@@ -18,9 +18,8 @@ function showData() {
 			tr.push('<td>' + json[i].id.nilai + '</td>');
 			tr.push('<td>' + json[i].keterangan + '</td>');
 			tr.push('<td>' + json[i].kriteria + '</td>');
-			tr.push('<td><a class=\'edit\' id=' + JSON.stringify(json[i].id) + ' ><button class="btn btn-primary">Edit</button></a></td>');
-			tr.push('<td><a class=\'delete\' id=' + JSON.stringify(json[i].id) + '><button class=" btn btn-danger">Delete</button></a></td>')
-			tr.push('<td></td>');
+			tr.push('<td style="text-align: center;"><a class=\'edit\' id=' + JSON.stringify(json[i].id) + ' ><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit fa-fw me-3"></i> Ubah</button></a></td>');
+			tr.push('<td style="text-align: center;"><a class=\'delete\' id=' + JSON.stringify(json[i].id) + '><button type="button" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-trash fa-fw"></i> Hapus</button></a></td>')
 			tr.push('</tr>');
 		}
 		tr.push('</tbody>');
@@ -88,61 +87,9 @@ $(document).ready(function() {
 			}
 		});
 
-		/*var parent = $(this).parent().parent();
-		var kode = parent.children("td:nth-child(1)");
-		var nilai = parent.children("td:nth-child(2)");
-		var keterangan = parent.children("td:nth-child(3)");
-		var kriteria = parent.children("td:nth-child(4)");
-		var buttonsSave = parent.children("td:nth-child(5)");
-		var buttonsDelete = parent.children("td:nth-child(6)");
-		var kosong = parent.children("td:nth-child(7)");*/
-
-
-
-		/*kode.html("<input type='text' id='txtName' value='" + kode.html() + "'/>");
-		nilai.html("<input type='text' id='txtName' value='" + nilai.html() + "'/>");
-		keterangan.html("<input type='text' id='txtName' value='" + keterangan.html() + "'/>");
-		kriteria.html("<input type='text' id='txtName' value='" + kriteria.html() + "'/>");
-		buttonsSave.html("<a id='save'><button  class='btn btn-primary'>Simpan</button></a>");
-		buttonsDelete.html("<button class=' btn btn-danger disabled' >Hapus</button>");
-		kosong.html("");*/
-
 	});
 
-/*	$(document).delegate('#save', 'click', function() {
-		var parent = $(this).parent().parent();
-		var kode = parent.children("td:nth-child(1)");
-		var nilai = parent.children("td:nth-child(2)");
-		var keterangan = parent.children("td:nth-child(3)");
-		var kriteria = parent.children("td:nth-child(4)");
-		var buttonsEdit = parent.children("td:nth-child(5)");
-		var buttonsDelete = parent.children("td:nth-child(6)");
-		var kosong = parent.children("td:nth-child(7)");
-
-*/
-		/*if (kode.children("input[type=text]").val() == "" || nilai.children("input[type=text]").val() == "" || keterangan.children("input[type=text]").val() == "" || kriteria.children("input[type=text]").val() == "") {
-			alert(" Data tidak boleh kosong ");
-		} else {*/
-		/*	$.ajax({
-				type: "POST",
-				contentType: "application/json; charset=utf-8",
-				url: "http://localhost:8080/jenis_nilai/save",
-				data: JSON.stringify({ 'id': { 'kodeJenisNilai': kode, 'nilai': nilai }, 'keterangan': keterangan, 'kriteria': kriteria }),
-				cache: false,
-				success: function() {
-					showData();
-
-				},
-				error: function() {
-					$('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error updating record').fadeIn().fadeOut(4000, function() {
-						$(this).remove();
-					});
-				}
-			});*/
-
-		/*}*/
-
-/*	});*/
+	/* Add Validation */
 	$('#validationAdd').validate({
 		rules: {
 			kode: {
@@ -166,12 +113,12 @@ $(document).ready(function() {
 				required: "Nilai tidak boleh kosong"
 			},
 			keterangan: {
-				required: "Keterangan pembelajaran tidak boleh kosong"
+				required: "Keterangan  tidak boleh kosong"
 			},
 			kriteria: {
-				required: "kriteria pendidikan tidak boleh kosong"
+				required: "kriteria  tidak boleh kosong"
 			},
-			
+
 		},
 		errorElement: 'span',
 		errorPlacement: function(error, element) {
@@ -190,20 +137,20 @@ $(document).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/jenis_nilai/save",
 				data: JSON.stringify(
-					{ 'id': { 'kodeJenisNilai': $('#addKode').val(), 'nilai': $('#addNilai').val()}, 'keterangan': $('#addKeterangan').val(), 'kriteria': $('#addKriteria').val() }),
+					{ 'id': { 'kodeJenisNilai': $('#addKode').val(), 'nilai': $('#addNilai').val() }, 'keterangan': $('#addKeterangan').val(), 'kriteria': $('#addKriteria').val() }),
 				cache: false,
 				success: function() {
 					$("#msg-add").html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'> Data berhasil diubah</div>").fadeIn()
 						.fadeOut(1999, function() {
 							$("#msg-add").html("");
 						});
-				
+
 					window.setTimeout(function() {
 						showData();
 						$("#msg-add").html("");
 						$("#addModal").modal('hide');
 					}, 2000)
-					
+
 				},
 				error: function() {
 					$("#msg-add").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>");
@@ -212,6 +159,7 @@ $(document).ready(function() {
 		}
 	});
 	
+	/* Edit Validation */
 	$('#validationEdit').validate({
 		rules: {
 			kode: {
@@ -235,12 +183,12 @@ $(document).ready(function() {
 				required: "Nilai tidak boleh kosong"
 			},
 			keterangan: {
-				required: "Keterangan pembelajaran tidak boleh kosong"
+				required: "Keterangan tidak boleh kosong"
 			},
 			kriteria: {
-				required: "kriteria pendidikan tidak boleh kosong"
+				required: "kriteria tidak boleh kosong"
 			},
-			
+
 		},
 		errorElement: 'span',
 		errorPlacement: function(error, element) {
@@ -259,20 +207,20 @@ $(document).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/jenis_nilai/save",
 				data: JSON.stringify(
-					{ 'id': { 'kodeJenisNilai': $('#editKode').val(), 'nilai': $('#editNilai').val()}, 'keterangan': $('#editKeterangan').val(), 'kriteria': $('#editKriteria').val() }),
+					{ 'id': { 'kodeJenisNilai': $('#editKode').val(), 'nilai': $('#editNilai').val() }, 'keterangan': $('#editKeterangan').val(), 'kriteria': $('#editKriteria').val() }),
 				cache: false,
 				success: function() {
 					$("#msg-edit").html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'> Data berhasil diubah</div>").fadeIn()
 						.fadeOut(1999, function() {
 							$("#msg-edit").html("");
 						});
-				
+
 					window.setTimeout(function() {
 						showData();
 						$("#msg-edit").html("");
 						$("#editModal").modal('hide');
 					}, 2000)
-					
+
 				},
 				error: function() {
 					$("#msg-edit").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>");
@@ -280,32 +228,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
-	
-	/*ADD*/
-	/*$(document).delegate('#addNew', 'click', function(event) {
-		event.preventDefault();
-
-		var kode = $('#kode').val();
-		var nilai = $('#nilai').val();
-		var keterangan = $('#keterangan').val();
-		var kriteria = $('#kriteria').val();
-
-		$.ajax({
-			type: "POST",
-			contentType: "application/json; charset=utf-8",
-			url: "http://localhost:8080//jenis_nilai/save",
-			data: JSON.stringify({ 'id': { 'kodeJenisNilai': kode, 'nilai': nilai }, 'keterangan': keterangan, 'kriteria': kriteria }),
-			cache: false,
-			success: function(result) {
-				$("#msg").html("<span style='color: green'>Company added successfully</span>");
-				window.setTimeout(function() { location.reload() }, 1000)
-			},
-			error: function(err) {
-				$("#msg").html("<span style='color: red'>Name is required</span>");
-			}
-		});
-	});*/
 
 
 });
