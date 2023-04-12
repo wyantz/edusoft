@@ -20,8 +20,8 @@ function showTable() {
 			tr.push('<td>' + json[i].asalSekolah + '</td>');
 			tr.push('<td>' + json[i].levelSekolahAsal + '</td>');
 			tr.push('<td>' + json[i].kodePekerjaan + '</td>');
-			tr.push('<td class="text-center"><a class=\'btn btn-outline-warning edit\' id=' + json[i].id + '><i class="fas fa-edit"></i> Edit</a></td>');
-			tr.push('<td class="text-center"><a class=\'btn btn-outline-danger delete\' id=' + json[i].id + '><i class="fas fa-trash-alt"></i> Delete</a></td>');
+			tr.push('<td class="text-center"><a class=\'edit\' id=' + json[i].id + '><button type="button" class="btn btn-outline-primary btn-sm"><i class="fas fa-edit fa-fw me-3"></i> Ubah</button></a></td>');
+			tr.push('<td class="text-center"><a class=\'delete\' id=' + json[i].id + '><button type="button" class="btn btn-outline-danger btn-sm me-3"><i class="fas fa-trash fa-fw"></i> Hapus</button></a></td></td>');
 			tr.push('</tr>');
 		}
 		tr.push('</tbody>');
