@@ -22,6 +22,17 @@ function tampilkanTabel(){
 			});
 }
 
+function listBiodataId() {
+				$('#biodataId').empty();
+				$.getJSON("http://localhost:8080/biodata", function (json) {
+					var options = [];
+					for (var i = 0; i < json.length; i++) {
+						options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
+					}
+					$('#biodataId').append($(options.join('')));
+				})
+			}
+
 $(document).ready(function() {
 	
 			// Menipulasi tampilan menu
@@ -32,9 +43,11 @@ $(document).ready(function() {
 			//tampilkan tabel
 			tampilkanTabel();
 			
+			
 			//tampilkan modal 'add'
 			$("#tombolAddModal").click(function() {
 				$("#modal-default").modal('show');
+				listBiodataId();
 			})
 			
 			//add data
@@ -94,7 +107,6 @@ $(document).ready(function() {
 				}); 
 			});
 			
-			
 
 			//delete data
 			$(document).delegate('.delete', 'click', function() { 
@@ -121,7 +133,6 @@ $(document).ready(function() {
 					});
 				}
 			});
-			
 			
 			
 			//search data

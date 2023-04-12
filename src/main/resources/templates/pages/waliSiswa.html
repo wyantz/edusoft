@@ -92,16 +92,21 @@
 						<div>
 							<div id='msg'></div>
 							<p>
-								<label>Biodata Id</label> <input class="form-control"
-									type="number" id="biodataId" name="biodataId"
-									autocomplete="off"><br> <label>Jenis Wali
-									Siswa</label> &nbsp;&nbsp;&nbsp;&nbsp; <select id="kodeJenisWaliSiswa"
-									name="kodeJenisWaliSiswa" style="width: 150px;"><br>
-									<option>Ayah/Ibu</option>
-									<option>Saudara</option>
-									<option>Kerabat</option>
-									<option>Lainnya</option>
-								</select>
+								<div class="form-group">
+									<label for="biodataId">Biodata ID</label>
+									<select id="biodataId" name="biodataId"
+										class="form-control form-control-sm"></select>
+								</div>
+								<div class="form-group">
+									<label for="kodeJenisWaliSiswa">Jenis Wali Siswa</label>
+									<select id="kodeJenisWaliSiswa" name="kodeJenisWaliSiswa"
+											class="form-control form-control-sm">
+											<option>Ayah/Ibu</option>
+											<option>Saudara</option>
+											<option>Kerabat</option>
+											<option>Lainnya</option>
+									</select>
+								</div>
 							</p>
 						</div>
 						<div id='closeModal' class="modal-footer justify-content-between">
