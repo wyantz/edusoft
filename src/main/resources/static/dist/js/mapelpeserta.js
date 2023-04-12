@@ -1,14 +1,3 @@
-function listAngkatan() {
-	$('#angkatan').empty();
-	$.getJSON("http://localhost:8080/programAngkatan/", function(json) {
-		var options = [];
-		for (var i = 0; i < json.length; i++) {
-			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
-		}
-		$('#angkatan').append($(options.join('')));
-	})
-}
-
 function tampil() {
 	$('#list').empty();
 	$.getJSON('http://localhost:8080/mapelpeserta', function(json) {
@@ -42,13 +31,64 @@ function tampil() {
 	});
 }
 
+function listAngkatan() {
+	$('#angkatan').empty();
+	$.getJSON("http://localhost:8080/program-angkatan/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
+		}
+		$('#angkatan').append($(options.join('')));
+	})
+}
+
+function listKodeMapel() {
+	$('#kodeMapel').empty();
+	$.getJSON("http://localhost:8080/mapel/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].kode + '>' + json[i].kode + '</option>')
+		}
+		$('#kodeMapel').append($(options.join('')));
+	})
+}
+
+function listProgramPembelajaranId() {
+	$('#programPembelajaranId').empty();
+	$.getJSON("http://localhost:8080/programPembelajaran/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
+		}
+		$('#programPembelajaranId').append($(options.join('')));
+	})
+}
+
+function listBiodataId() {
+	$('#biodataId').empty();
+	$.getJSON("http://localhost:8080/biodata/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
+		}
+		$('#biodataId').append($(options.join('')));
+	})
+}
+
 $(document).ready(function() {
+	// Menipulasi tampilan menu
+	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+	$("#menu_mapel_2").addClass("active"); // tambahkan class active pada a dengan id menu-mapel-2
+	$("#menu_mapel").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
+
 	tampil();
 
 	$("#tombolAddModal").click(function() {
 		$("#modal-default").modal('show');
 		listAngkatan();
-		listProgramPembelajaranId();
+		listKodeMapel();
+		listProgramPembelajaranId()
+		listBiodataId();
 	})
 
 	$("#closeTombol").click(function() {
@@ -57,7 +97,6 @@ $(document).ready(function() {
 	$(".close").click(function() {
 		$("#msg").html("");
 	})
-
 
 	$(document).delegate('.delete', 'click', function() {
 		if (confirm('Do you really want to delete record?')) {
@@ -136,17 +175,19 @@ $(document).ready(function() {
 			'kodeMapel': kodeMapel.html()
 		}
 
-		if(nilai.children("input[type=number]").val() == "") {
+		if (nilai.children("input[type=number]").val() == "") {
 			alert(" Nilai tidak boleh kosong ");
-		} else if(nilai.children("input[type=number]").val() >= 0 && nilai.children("input[type=number]").val() <= 100 ){
+		} else if (nilai.children("input[type=number]").val() < 0 || nilai.children("input[type=number]").val() > 100) {
+			alert("Rentang nilai 0-100");
+		} else {
 			$.ajax({
 				type: "PUT",
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/mapelpeserta/save",
 				data: JSON.stringify(
 					{
-						'createdBy': $('#username').html(),
-						'updatedBy': $('#username').html(),
+						'createdBy': $('#username-login').html(),
+						'updatedBy': $('#username-login').html(),
 						id,
 						'nilai': nilai.children("input[type=number]").val(),
 						'keterangan': keterangan.children("input[type=text]").val(),
@@ -165,8 +206,6 @@ $(document).ready(function() {
 					});
 				}
 			});
-		} else {
-			alert("Rentang nilai 0-100");
 		}
 	});
 
@@ -227,7 +266,7 @@ $(document).ready(function() {
 				url: "http://localhost:8080/mapelpeserta/save",
 				data: JSON.stringify(
 					{
-						'createdBy': $('#username').html(),
+						'createdBy': $('#username-login').html(),
 						'id': {
 							'programPembelajaranId': $('#programPembelajaranId').val(),
 							'angkatan': $('#angkatan').val(),
@@ -240,9 +279,7 @@ $(document).ready(function() {
 					}),
 				cache: false,
 				success: function(result) {
-					$("#msg").html("<span style='color: green'>Nilai berhasil ditambahkan</span>").fadeOut(1999, function() {
-						$("#msg").html("");
-					});
+					$("#msg").html("<span style='color: green'>Nilai berhasil ditambahkan</span>");
 					$("#form").hide();
 					$("#modal-header").hide();
 					$("#modal-footer").hide();
