@@ -41,28 +41,6 @@ $(document).ready(function() {
 	$("#table_search").on("keyup", function() {
 		showTable();
 	});
-	
-	// datepicker
-	$(document).ready(function() {
-		$('#tanggalLahir').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			"setDate": new Date(),
-			dateFormat: "yy-mm-dd",
-			"autoclose": true
-		});
-	});
-	
-	// datepicker
-	$(document).ready(function() {
-		$('##etanggalLahir').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			"setDate": new Date(),
-			dateFormat: "yy-mm-dd",
-			"autoclose": true
-		});
-	});
 
 	$.validator.addMethod("uniqueKode", function(value, element) {
 		let urlCekKode = "http://localhost:8080/biodata/cek/" + value;
@@ -424,4 +402,25 @@ $(document).ready(function() {
 		});
 	});
 	
+	// datepicker
+	$(document).ready(function() {
+		$('#tanggalLahir').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			"setDate": new Date(),
+			dateFormat: "yy-mm-dd",
+			"autoclose": true
+		});
+	});
+	
+	// datepicker
+	$(document).ready(function() {
+		$('#etanggalLahir').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			"setDate": new Date(),
+			dateFormat: "yy-mm-dd",
+			"autoclose": true
+		});
+	});
 });
