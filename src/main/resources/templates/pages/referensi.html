@@ -1,9 +1,5 @@
 
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html lang="en" xmlns:th="http://www.thymeleaf.org"xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main-layout}">
 <head>
   <meta charset="utf-8">
@@ -16,7 +12,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
 	 </link>
-  <!-- Google Font: Source Sans Pro -->
 </head>
 <body class="h-100">
 <div layout:fragment="title">Referensi</div>
@@ -28,31 +23,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="col-sm-6">
 					<h1 class="m-0">Referensi</h1>
 				</div>
-				<!-- /.col -->
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="#">Home</a></li>
 						<li class="breadcrumb-item active">Referensi</li>
 					</ol>
 				</div>
-				<!-- /.col -->
 			</div>
-			<!-- /.row -->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModals">
 					<i class="fa fa-plus"></i> Add Data
 				</button>
 		</div>
-		<!-- /.container-fluid -->
 	</div>
-	<!-- /.content-header -->
 
-  <!-- Content Wrapper. Contains page content -->
-    <!-- Content Header (Page header) -->
 
 
     <!-- Main content -->
     <section class="content">
-      <!-- Default box -->
         <div class="card-header">
           <h3 class="card-title">Tabel Referensi</h3>
           <div class="card-tools">
@@ -67,13 +54,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
           </div>
         </div>
-        <!-- /.card-header -->
         
         <div class="card-body table-responsive p-0">
 
           <table class="table table-hover text-nowrap">
                   </table>
-                  
+				<!-- modal add data -->
                   <div id ="addModals" class="modal" tabindex="-1" role="dialog">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
@@ -83,12 +69,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
-<!--                   		<form id="add" action="#"> -->
+
 						
                   <div id='msg' align="center"></div>
 						<div  id="input-form">						
 					      <div class="modal-body">					       
-<!-- 						<div id='msg'/> -->
 							<div class="form-group">
 							<label>Kode</label>
 							<input type="text" id="kode" name="kode" class="form-control">
@@ -113,13 +98,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					      </div>
 						</div>
-<!-- 						</form> -->
 					    </div>
 					  </div>
 					</div>
+					<!-- end modal add data -->
 					
-					
-					
+					<!-- modal edit data -->
 					<div id ="editModal" class="modal" tabindex="-1" role="dialog">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
@@ -129,11 +113,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
-<!--                   		<form id="add" action="#"> -->
+
 						<div id='edit_msg' align="center"></div>
 						<div  id="edit-form">		
 					      <div class="modal-body">					       
-<!-- 						<div id='msg'/> -->
+
 							
 							<div class="form-group">
 							<label>Kode</label>
@@ -160,24 +144,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 					      </div>
 					      </div>
-<!-- 						</form> -->
+
 					    </div>
 					  </div>
 					</div>
-
-        <!-- /.card-body -->
+					<!-- end modal edit data -->
       </div>
-      <!-- /.card -->
     </section>
     </div>
-    <!-- /.content -->
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-<!-- ./wrapper -->
-<!-- REQUIRED SCRIPTS -->
-
-
+    
 <!-- jQuery -->
 <div layout:fragment="bottom-script">
 <!-- 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script> -->

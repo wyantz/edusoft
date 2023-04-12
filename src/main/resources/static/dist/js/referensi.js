@@ -1,4 +1,4 @@
-function sukses(){
+function sukses(){ //sukses add data
 	$("#msg").html("<div class='alert alert-success' role='alert'>Data added successfully</div>");
 	$("#input-form").hide();
 	setTimeout(function(){
@@ -13,7 +13,7 @@ function sukses(){
 	},1500);
 	tampilkanTable();
 }
-function edit_sukses(){
+function edit_sukses(){ //sukses edit data
 	$("#edit_msg").html("<div class='alert alert-success' role='alert'>Data edited successfully</div>");
 	$("#edit-form").hide();
 	setTimeout(function(){;
@@ -28,7 +28,7 @@ function edit_sukses(){
 	},1500);
 	tampilkanTable();
 }
-function tampilkanTable(){
+function tampilkanTable(){ //show table
 	$('table').empty();
 	$.getJSON('http://localhost:8080/referensi', function(json) {
 				var tr=[];
@@ -58,29 +58,29 @@ $(document).ready(function(){
 	$("#menu_referensi_1").addClass("active"); 
 	$("#menu_referensi").addClass("active").parent().addClass("menu-open");
 	
-	$("#search").on("keyup", function() {
+	$("#search").on("keyup", function() { //search
             var value = $(this).val().toLowerCase();
             $("#rows tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
 	tampilkanTable();
-	$(document).delegate('#addNew', 'click', function(event) {
+	$(document).delegate('#addNew', 'click', function(event) { //add new data
 				$.getJSON('http://localhost:8080/referensi', function(json){					
 				event.preventDefault();
 				var kode = $('#kode').val();
 				var jenis = $('#jenis').val();
 				var keterangan = $('#keterangan').val();
-				if(kode=="" || jenis=="" || keterangan==""){
+				if(kode=="" || jenis=="" || keterangan==""){ // jika kode, jenis, dan keterangan kosong
 					$('#msg').html("<div class='alert alert-danger' role='alert'>Data tidak boleh kosong</div>");
 					setTimeout(function(){
 						$("#msg").html("");
 					},1000);
 				}
-				if(kode!="" && jenis!="" && keterangan!=""){
+				if(kode!="" && jenis!="" && keterangan!=""){// jika kode, jenis, dan keterangan tidak kosong
 					var dataTerdaftar = false;
 					for(var i = 0;i<json.length;i++){
-						if(kode==json[i].id.kode && jenis ==json[i].id.jenis){
+						if(kode==json[i].id.kode && jenis ==json[i].id.jenis){// jika id sudah ada
 							$('#msg').html("<div class='alert alert-danger' role='alert'>Id sudah terdaftar</div>");
 							setTimeout(function(){
 								$("#msg").html("");
@@ -88,7 +88,7 @@ $(document).ready(function(){
 							return true;
 						}
 					}
-					if(!dataTerdaftar){
+					if(!dataTerdaftar){ //jika id belum ada
 						$.ajax({
 							type: "POST",
 							contentType: "application/json; charset=utf-8",
@@ -105,7 +105,7 @@ $(document).ready(function(){
 				}
 				}); 
 			});
-			$(document).delegate('.delete', 'click', function() { 
+			$(document).delegate('.delete', 'click', function() { // delete data
 				if (confirm('Do you really want to delete record?')) {
 					var id = $(this).attr('id');
 //					var parent = $(this).parent().parent();
@@ -126,7 +126,7 @@ $(document).ready(function(){
 					});
 				}
 			});
-			$(document).delegate('.edit', 'click', function() {
+			$(document).delegate('.edit', 'click', function() { //edit data
 				var id = $(this).attr('id');
 				$.ajax({
 					type: "POST",
@@ -146,7 +146,7 @@ $(document).ready(function(){
 				});
 			});
 			
-			$(document).delegate('#saveEdit', 'click', function(event) {
+			$(document).delegate('#saveEdit', 'click', function(event) { // save edit data
 				event.preventDefault();
 				var kode = $('#edit_kode').val();
 				var jenis = $('#edit_jenis').val();
@@ -171,33 +171,4 @@ $(document).ready(function(){
 				});
 				}
 			});
-//			$(document).delegate('#save', 'click', function() {
-//				var parent = $(this).parent().parent();
-//				
-//				var id = parent.children("td:nth-child(1)");
-//				var jenis = parent.children("td:nth-child(2)");
-//				var keterangan = parent.children("td:nth-child(3)");
-//				var buttons = parent.children("td:nth-child(5)");
-//				
-//				$.ajax({
-//					type: "POST",
-//					contentType: "application/json; charset=utf-8",
-//					url: "http://localhost:8081/referensi/save",
-//					data: JSON.stringify({'id' : id.children("input[type=text]").val(), 
-//					'jenis' : jenis.children("input[type=text]").val(),
-//					'keterangan' : keterangan.children("input[type=text]").val()}),
-//					cache: false,
-//					success: function() {
-//						id.html(id.children("input[type=text]").val());
-//						jenis.html(jenis.children("input[type=text]").val());
-//						keterangan.html(keterangan.children("input[type=text]").val());
-//						buttons.html("<button class='edit' id='" + id.html() + "'>Edit</button>&nbsp;&nbsp;<button class='delete' id='" + id.html() + "'>Delete</button>");
-//					},
-//					error: function() {
-//						$('#err').html('<span style=\'color:red; font-weight: bold; font-size: 30px;\'>Error updating record').fadeIn().fadeOut(4000, function() {
-//							$(this).remove();
-//						});
-//					}
-//				});
-//			});
 });
