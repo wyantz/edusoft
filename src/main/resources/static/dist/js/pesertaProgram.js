@@ -362,6 +362,7 @@ function listAngkatan() {
 	$('#angkatan').empty();
 	$.getJSON("http://localhost:8080/program-angkatan/", function (json) {
 		var options = [];
+		options.push('<option value="" selected disabled> - Pilih - </option>');
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
 		}
@@ -373,6 +374,7 @@ function listBiodataId() {
 	$('#biodataId').empty();
 	$.getJSON("http://localhost:8080/biodata", function (json) {
 		var options = [];
+		options.push('<option value="" selected disabled> - Pilih - </option>');
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
 		}
@@ -384,6 +386,7 @@ function listProgramPembelajaranId() {
 	$('#programPembelajaranId').empty();
 	$.getJSON("http://localhost:8080/programPembelajaran/", function (json) {
 		var options = [];
+		options.push('<option value="" selected disabled> - Pilih - </option>');
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
 		}
