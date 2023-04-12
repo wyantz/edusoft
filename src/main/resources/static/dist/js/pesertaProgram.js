@@ -354,7 +354,7 @@ $(document).ready(function() {
 //ambil angkatan dari model angkatan
 function listAngkatan() {
 	$('#angkatan').empty();
-	$.getJSON("http://localhost:8080/programAngkatan/", function(json) {
+	$.getJSON("http://localhost:8080/program-angkatan/", function(json) {
 		var options = [];
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
