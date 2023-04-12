@@ -102,9 +102,6 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layo
 									th:value="${nilaiOpt}" th:text="${nilaiOpt}"></option>
 							</select>
 						</div>
-						<div sec:authorize="isAuthenticated()">
-							Authenticated as <span sec:authentication="userName"></span>
-						</div>
 					
 					</div>
 					<div class="modal-footer">
@@ -147,8 +144,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layo
 									th:value="${nilaiOpt}" th:text="${nilaiOpt}"></option>
 							</select>
 						</div>
-						<div sec:authorize="isAuthenticated()">
-							Authenticated as <span sec:authentication="userName"></span>
+						<div class="form-group">
+							<label hidden=true>This data was created by <span id="creator-name"></span></label> 
 						</div>
 					
 					</div>

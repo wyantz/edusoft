@@ -49,6 +49,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<a href="#" class="d-block"><span id="username-login" th:text="${user}"></span></a>
 					</div>
 				</div>
+				
+				<div class="my-3">
+					<a class="form-control form-control-sidebar btn bg-danger" th:href="@{/logout}">Logout</a>
+				</div>
 
 				<!-- SidebarSearch Form -->
 				<div class="form-inline">
