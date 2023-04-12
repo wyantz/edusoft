@@ -361,91 +361,148 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Tabel Program Pembelajaran</h3>
-
+				
           <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
+            <div class="input-group">
+				<input id="search" type="search" class="form-control"
+					placeholder="Search...">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn btn-default">
+							<i class="fa fa-search"></i>
+					</button>
+				</div>
+			</div>
           </div>
         </div>
+       
+        <div class="card-body">
+			<div class="row">
+				<div class="col">
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+				  <i class="fas fa-plus"></i> Tambah Program Pembelajaran
+				</button>
+				</div>
+			</div>
+		</div>			
         <!-- /.card-header -->
-        <div class="card-body table-responsive p-0">
-          <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>User</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Reason</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>219</td>
-                      <td>Alexander Pierce</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>657</td>
-                      <td>Bob Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>134</td>
-                      <td>Jim Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>494</td>
-                      <td>Victoria Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-warning">Pending</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>832</td>
-                      <td>Michael Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-primary">Approved</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                    <tr>
-                      <td>982</td>
-                      <td>Rocky Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
-                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                    </tr>
-                  </tbody>
-          </table>
-        </div>
+        <div class="card-body table-responsive p-0" style="height: 450px;">
+							<table id="tableprogbel"
+								class="table table-striped table-hover text-nowrap"></table>
+		</div>
+        <!-- add -->
+      <div id="addModal" class="modal fade" tabindex="-1">
+      	<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div id="headerModal" class="modal-header">
+					<h5 class="modal-title">Form Tambah Program Pembelajaran</h5>
+				</div>
+				<div class="modal-body">
+					<div id="status-msg"></div>
+						<form id="addprogbel">
+							<div id="form">
+							<div class="form-group">
+								<label for="id" class="form-label">ID</label> <input
+									type="number" id="id" name="id"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="nama" class="form-label">Nama</label> <input
+									type="text" id="nama" name="nama"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="levelAwal" class="form-label">Level Awal</label> <input
+									type="number" id="levelAwal" name="levelAwal"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="levelAwal" class="form-label">Level Akhir</label> <input
+									type="number" id="levelAkhir" name="levelAkhir"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="durasiLevel" class="form-label">Durasi Level</label> <input
+									type="number" id="durasiLevel" name="durasiLevel"
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="keterangan" class="form-label">Keterangan</label> <input
+									type="text" id="keterangan" name="keterangan"
+									class="form-control">
+							</div>
+							<div id="footerModal" class="modal-footer">
+								<button id="closeModal" type="button"
+									class="btn btn-outline-secondary" data-dismiss="modal">
+									<i class="fas fa-times"></i> Batal
+								</button>
+								<button id="addNew" type="submit" class="btn btn-primary">
+									<i class="fas fa-save fa-fw"></i> Simpan
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+      </div>
+      
+      <!-- edit -->
+      <div id="editModal" class="modal fade" tabindex="-1">
+      	<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div id="headerModal" class="modal-header">
+					<h5 class="modal-title">Form Tambah Program Pembelajaran</h5>
+				</div>
+				<div class="modal-body">
+					<div id="status-msg"></div>
+						<form id="editprogbel">
+							<div id="form">
+							<div class="form-group">
+								<label for="eId" class="form-label">ID</label> <input
+									type="number" id="eId" name="eId" disabled
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="eNama" class="form-label">Nama</label> <input
+									type="text" id="eNama" name="eNama" 
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="elevelAwal" class="form-label">Level Awal</label> <input
+									type="number" id="elevelAwal" name="elevelAwal" 
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="elevelAwal" class="form-label">Level Akhir</label> <input
+									type="number" id="elevelAkhir" name="elevelAkhir" 
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="edurasiLevel" class="form-label">Durasi Level</label> <input
+									type="text" id="edurasiLevel" name="edurasiLevel" 
+									class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="eKeterangan" class="form-label">Keterangan</label> <input
+									type="text" id="eKeterangan" name="eKeterangan" 
+									class="form-control">
+							</div>
+							<div id="footerModal" class="modal-footer">
+								<button id="closeModal" type="button"
+									class="btn btn-outline-secondary" data-dismiss="modal">
+									<i class="fas fa-times"></i> Batal
+								</button>
+								<button id="addNew" type="submit" class="btn btn-primary">
+									<i class="fas fa-save fa-fw"></i> Simpan
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+      </div>
+      
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
@@ -485,5 +542,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
 <script th:src="@{/dist/js/adminlte.min.js}"></script>
+
+<script th:src="@{/dist/js/programpembelajaran.js}"></script>
+<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
 </body>
 </html>

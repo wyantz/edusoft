@@ -1,4 +1,4 @@
-package com.siska.edu.repository;
+package com.siska.edu.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

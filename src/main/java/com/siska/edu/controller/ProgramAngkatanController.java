@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siska.edu.dao.ProgramAngkatanDao;
 import com.siska.edu.model.ProgramAngkatan;
 import com.siska.edu.model.ProgramAngkatanId;
 import com.siska.edu.model.ProgramPembelajaran;
+import com.siska.edu.repo.ProgramAngkatanDao;
 import com.siska.edu.repo.ProgramPembelajaranRepository;
 
 @RestController

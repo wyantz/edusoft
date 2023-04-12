@@ -18,7 +18,9 @@ public class PageController {
 	}
 
 	@RequestMapping("/tables/biodata")
-	public String biodataPage() {
+	public String biodataPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/biodata";
 	}
 	@RequestMapping("/tables/pesertaProgram")
@@ -52,15 +54,19 @@ public class PageController {
 		return "pages/kelasProgram";
 	}
 	@RequestMapping("/tables/kurikulum")
-	public String kurikulumPage() {
+	public String kurikulumPage(Model m, @AuthenticationPrincipal UserDetails curentUser) {
+		String name = curentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/kurikulum";
 	}
 	@RequestMapping("/tables/mapel")
 	public String mapelPage() {
-		return "pages/mapel";
+		return "pages/mapel-new";
 	}
 	@RequestMapping("/tables/mapelPeserta")
-	public String mapelPesertaPage() {
+	public String mapelPesertaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/mapelPeserta";
 	}
 	@RequestMapping("/tables/referensi")

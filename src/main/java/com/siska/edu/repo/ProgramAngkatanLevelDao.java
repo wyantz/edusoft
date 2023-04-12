@@ -1,4 +1,4 @@
-package com.siska.edu.dao;
+package com.siska.edu.repo;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.siska.edu.model.ProgramAngkatanLevel;
 import com.siska.edu.model.ProgramAngkatanLevelId;
-import com.siska.edu.repo.ProgramAngkatanLevelRepository;
 
 @Service
 @Transactional

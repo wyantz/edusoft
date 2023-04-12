@@ -16,9 +16,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
   <!-- Theme style -->
   <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+<<<<<<< HEAD
+  
+=======
+<<<<<<< HEAD
+=======
   <!-- Select box style -->
   <link rel="stylesheet" th:href="@{/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css}">
 
+>>>>>>> c2c60bfa17bec6e6b55937dada27e4ec5e5e2fd9
+>>>>>>> branch 'main' of git@github.com:TaopikR/edusoft.git
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -48,6 +55,204 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
         </div>
 
+<<<<<<< HEAD
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Data Diri
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/tables/biodata}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Biodata</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/pesertaProgram}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Peserta Program</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/waliSiswa}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Wali Siswa</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of data diri sidebar -->
+          
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Program
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/tables/programAngkatan}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Program Angkatan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/programPembelajaran}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Program Pembelajaran</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of program sidebar -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Nilai dan Kurikulum
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/tables/jenisNilai}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jenis Nilai</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/kelasProgram}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kelas Program</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/kurikulum}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kurikulum</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <!-- end of nilai dan kurikulum sidebar -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Mapel
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>   
+            <ul class="nav nav-treeview">  
+              <li class="nav-item">
+                <a th:href="@{/tables/mapel}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mapel</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/mapelPeserta}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mapel Peserta</p>
+                </a>
+              </li>       
+            </ul>
+          </li>
+          <!-- end of mapel sidebar -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Referensi
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">     
+              <li class="nav-item">
+                <a th:href="@{/tables/referensi}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Referensi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/tables/silabus}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Silabus</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Program Angkatan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Program Angkatan</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Tabel Program Angkatan</h3>
+
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 250px;">
+              <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
+
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default">
+                  <i class="fas fa-search"></i>
+                </button>
+               	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
+				  <i class="fas fa-plus"></i> Add New
+				</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table id="program_angkatan" class="table table-hover text-nowrap">
+                  
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+=======
         <!-- SidebarSearch Form -->
         <div class="form-inline">
           <div class="input-group" data-widget="sidebar-search">
@@ -59,6 +264,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
           </div>
         </div>
+>>>>>>> c2c60bfa17bec6e6b55937dada27e4ec5e5e2fd9
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -287,6 +493,145 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   <!-- ./wrapper -->
 
+<<<<<<< HEAD
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+    <div class="p-3">
+      <h5>Title</h5>
+      <p>Sidebar content</p>
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      Anything you want
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<div id="addModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tahun masuk program</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+       	   	<form id="add-program-angkatan">
+	            <div class="modal-body">
+	           	   	<div class="status-msg"></div>
+					<div class="input-form">
+						<div class="form-group">
+							<label for="angkatan">Angkatan : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="angkatan" name="angkatan" placeholder="angkatan" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="programPembelajaranId">Program Pembelajaran : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="programPembelajaranId" name="programPembelajaranId" placeholder="tahun program" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tahunMasuk">Tahun Masuk : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="tahunMasuk" name="tahunMasuk" placeholder="tahun" class="form-control">
+							</div>
+						</div>
+					</div>
+	            </div>
+	            <div class="modal-footer">
+	            	<button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
+	              	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
+	            </div>
+       	   	</form>
+        </div>
+    </div>
+</div>
+<!-- ./add modal -->
+
+<div id="editModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tahun masuk program</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+       	   	<form id="edit-program-angkatan">
+	            <div class="modal-body">
+	           	   	<div class="status-msg"></div>
+					<div class="input-form">
+						<div class="form-group">
+							<label for="eAngkatan">Angkatan : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="eAngkatan" name="eAngkatan" placeholder="angkatan" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="eProgramPembelajaranId">Program Pembelajaran : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="eProgramPembelajaranId" name="eProgramPembelajaranId" placeholder="tahun program" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="eTahunMasuk">Tahun Masuk : </label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+								</div>
+								<input type="text" id="eTahunMasuk" name="eTahunMasuk" placeholder="tahun" class="form-control">
+							</div>
+						</div>
+					</div>
+	            </div>
+	            <div class="modal-footer">
+	            	<button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
+	              	<button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
+	            </div>
+       	   	</form>
+        </div>
+    </div>
+</div>
+<!-- ./edit modal -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery Validation -->
+<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+<<<<<<< HEAD
+<!-- Program Angkatan -->
+<script th:src="@{/dist/js/programAngkatan.js}"></script>
+
+=======
+=======
   <div id="addModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -382,6 +727,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Select2 Bootstrap Plugin -->
   <script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
 
+>>>>>>> c2c60bfa17bec6e6b55937dada27e4ec5e5e2fd9
+>>>>>>> branch 'main' of git@github.com:TaopikR/edusoft.git
 </body>
 
 </html>

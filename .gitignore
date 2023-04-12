@@ -28,3 +28,4 @@ hs_err_pid*
 .classpath
 target
 bin
+/pom.xml
