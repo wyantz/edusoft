@@ -224,7 +224,7 @@ $(document).ready(function() {
 							'bulanMulai': $('#bulan_mulai').val(),
 							'tahunBerakhir': $('#tahun_berakhir').val(),
 							'bulanBerakhir': $('#bulan_berakhir').val(),
-							'createdBy': $('#logged_user').html()
+							'createdBy': $('#username-login').html()
 						}),
 						cache: false,
 						success: function() {
@@ -381,7 +381,7 @@ $(document).ready(function() {
 					'bulanBerakhir': $('#edit_bulan_berakhir').val(),
 					'createdBy': $('#created_by').val(),
 					'createdAt': $('#created_at').val(),
-					'updatedBy': $('#logged_user').html(),
+					'updatedBy': $('#username-login').html(),
 				}),
 				cache: false,
 				success: function() {
