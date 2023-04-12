@@ -3,13 +3,17 @@
  */
 package com.siska.edu.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Berisi data program, misal program reguler, program kelas khusus, program tahfiz, atau apapun.
@@ -21,6 +25,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "T_PROGBEL")
 public class ProgramPembelajaran {
