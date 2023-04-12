@@ -61,7 +61,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(
 						"/",
-						"/dashboard",
 						"/accessdenied",
 						"/dist/**",
 						"/plugins/**",
