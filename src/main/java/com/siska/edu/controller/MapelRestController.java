@@ -50,7 +50,7 @@ public class MapelRestController {
 	
 	@GetMapping("/search/{keyword}")
 	public ResponseEntity<List<Mapel>> searchMapel(@PathVariable String keyword){
-		return new ResponseEntity<List<Mapel>>(repo.search(keyword), HttpStatus.OK);
+		return new ResponseEntity<List<Mapel>>(repo.search(keyword.toLowerCase()), HttpStatus.OK);
 	}
 	
 	@GetMapping("/cek/{kode}")
