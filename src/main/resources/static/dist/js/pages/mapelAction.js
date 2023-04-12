@@ -44,10 +44,10 @@ $(document).ready(function() {
 			dataType: "text",
 			success: function(data) {
 				if (data === "false") {
-					console.log(data + ': This email exists.');
+					console.log(data + ': This kode exists.');
 					result = false;
 				} else {
-					console.log(data + ': This email does not exist.');
+					console.log(data + ': This kode does not exist.');
 					result = true;
 				}
 			},
@@ -90,7 +90,7 @@ $(document).ready(function() {
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/mapel/",
-				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': "admin" }),
+				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': $('#username-login').html() }),
 				cache: false,
 				success: function() {
 					showMapelTable();
@@ -129,11 +129,12 @@ $(document).ready(function() {
 			let kode = $('#editKode').val();
 			let nama = $('#editNama').val();
 			let kodeJenisNilai = $('#editKodeJenisNilai').val();
+			let createdBy = $('#creator-name').text()
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
 				url: "http://localhost:8080/mapel/",
-				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': "admin", 'updatedBy': "admin" }),
+				data: JSON.stringify({ 'kode': kode, 'nama': nama, 'kodeJenisNilai': kodeJenisNilai, 'createdBy': createdBy, 'updatedBy':  $('#username-login').html() }),
 				cache: false,
 				success: function() {
 					showMapelTable();
@@ -186,6 +187,7 @@ $(document).ready(function() {
 		$.getJSON('http://localhost:8080/mapel/' + kode, function(json) {
 			$('#editKode').val(kode);
 			$('#editNama').val(json.nama);
+			$('#creator-name').text(json.createdBy);
 			$('#editKodeJenisNilai').val(json.kodeJenisNilai);
 		});
 	})

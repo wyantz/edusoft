@@ -3,425 +3,226 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main-layout}">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AdminLTE 3 | Peserta Program</title>
-<!-- Select2 -->
-<link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
-<!-- jQuery UI -->
-<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.css}">
-<!-- date-range-picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-
+	<!-- upper-link -->
+	<div layout:fragment="upper-link">
+		<!-- Select2 -->
+		<link rel="stylesheet" th:href="@{/plugins/select2/css/select2.min.css}">
+		<!-- jQuery UI -->
+		<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.css}">
+		<!-- date-range-picker -->
+		<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	</div>
+	<!-- /upper-link -->
 </head>
-<body class="hold-transition sidebar-mini">
-	<div class="wrapper">
-
-		<!-- Navbar -->
-		<nav th:replace="~{fragments/navbar :: navbar}"></nav>
-		<!-- /.navbar -->
-
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a th:href="@{/}" class="brand-link"> <img
-				th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
-				class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">AdminLTE 3</span>
-			</a>
-
-			<!-- Sidebar -->
-			<div class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img th:src="@{/dist/img/user2-160x160.jpg}"
-							class="img-circle elevation-2" alt="User Image">
+<body class="h-100">
+	<div layout:fragment="title">Peserta Program</div>
+	<div layout:fragment="subtitle">Peserta Program</div>
+	<div layout:fragment="maincontent">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Peserta Program</h1>
 					</div>
-					<div class="info">
-						<a href="#" class="d-block">Alexander Pierce</a>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active">Peserta Program</li>
+						</ol>
 					</div>
+					<!-- /.col -->
 				</div>
-
-				<!-- SidebarSearch Form -->
-				<div class="form-inline">
-					<div class="input-group" data-widget="sidebar-search">
-						<input class="form-control form-control-sidebar" type="search"
-							placeholder="Search" aria-label="Search">
-						<div class="input-group-append">
-							<button class="btn btn-sidebar">
-								<i class="fas fa-search fa-fw"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<!-- Sidebar Menu -->
-				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column"
-						data-widget="treeview" role="menu" data-accordion="false">
-						<li class="nav-header">TABLES</li>
-						<!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-						<li class="nav-item menu-open"><a href="#"
-							class="nav-link active"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Data Diri <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/biodata}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Biodata</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/pesertaProgram}"
-									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
-										<p>Peserta Program</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/waliSiswa}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Wali Siswa</p>
-								</a></li>
-							</ul></li>
-						<!-- end of data diri sidebar -->
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Program <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a
-									th:href="@{/tables/programAngkatan}" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>Program Angkatan</p>
-								</a></li>
-								<li class="nav-item"><a
-									th:href="@{/tables/programPembelajaran}" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Program Pembelajaran</p>
-								</a></li>
-							</ul></li>
-						<!-- end of program sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Nilai dan Kurikulum <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/jenisNilai}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Jenis Nilai</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/kelasProgram}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Kelas Program</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/kurikulum}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Kurikulum</p>
-								</a></li>
-							</ul></li>
-						<!-- end of nilai dan kurikulum sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Mapel <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/mapel}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Mapel</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/mapelPeserta}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Mapel Peserta</p>
-								</a></li>
-							</ul></li>
-						<!-- end of mapel sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Referensi <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/referensi}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Referensi</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/silabus}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Silabus</p>
-								</a></li>
-							</ul></li>
-						<li class="nav-header">ADMIN</li>
-						<form th:action="@{/logout}" method="post">
-							<button type="submit" class="btn btn-danger btn-block">Logout</button>
-						</form>
-					</ul>
-				</nav>
-				<!-- /.sidebar-menu -->
+				<!-- /.row -->
 			</div>
-			<!-- /.sidebar -->
-		</aside>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0">Peserta Program</h1>
-						</div>
-						<!-- /.col -->
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Peserta Program</li>
-							</ol>
-						</div>
-						<!-- /.col -->
+		<!-- Main content -->
+		<section class="content">
+			<!-- Default box -->
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">Tabel Peserta Program</h3>
+					<div class="card-tools">
+						<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+							<i class="fas fa-minus"></i>
+						</button>
+						<button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+							<i class="fas fa-times"></i>
+						</button>
 					</div>
-					<!-- /.row -->
 				</div>
-				<!-- /.container-fluid -->
-			</div>
-			<!-- /.content-header -->
-
-			<!-- Main content -->
-			<section class="content">
-
-				<!-- Default box -->
-				<div class="card">
-					<div class="card-header">
-						<h3 class="card-title">Tabel Peserta Program</h3>
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool"
-								data-card-widget="collapse" title="Collapse">
-								<i class="fas fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-tool"
-								data-card-widget="remove" title="Remove">
-								<i class="fas fa-times"></i>
+				<!-- /.card-header -->
+				<div class="card-body table-responsive p-0">
+					<div class="row m-3">
+						<div class="col">
+							<button id="addButton" class="btn btn-primary" data-togle="modal" data-target="#addModal">
+								<i class="fas fa-plus fa-fw"></i> Tambah Peserta Program
 							</button>
 						</div>
-					</div>
-					<!-- /.card-header -->
-					<div class="card-body table-responsive p-0">
-						<div class="row m-3">
-							<div class="col">
-								<button id="addButton" class="btn btn-primary"
-									data-togle="modal" data-target="#addModal">
-									<i class="fas fa-plus fa-fw"></i> Tambah Peserta Program
-								</button>
-							</div>
-							<div class="col-6">
-								<div id="alert" style="height: 40px;"></div>
-							</div>
-							<div class="col">
-								<div class="input-group justify-content-end">
-									<input id="search" type="text" name="table_search"
-										class="form-control float-right" placeholder="Cari...">
+						<div class="col-6">
+							<div id="alert" style="height: 40px;"></div>
+						</div>
+						<div class="col">
+							<div class="input-group justify-content-end">
+								<input id="search" type="text" name="table_search" class="form-control float-right"
+									placeholder="Cari...">
 
-									<div class="input-group-append">
-										<button type="submit" class="btn btn-default">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-default">
+										<i class="fas fa-search"></i>
+									</button>
 								</div>
 							</div>
 						</div>
-						<div class="card-body table-responsive p-0" style="height: 450px;">
-							<table id="tablepp"
-								class="table table-striped table-head-fixed text-nowrap"></table>
-						</div>
 					</div>
-					<!-- /.card-body -->
+					<div class="card-body table-responsive p-0" style="height: 450px;">
+						<table id="tablepp" class="table table-striped table-head-fixed text-nowrap"></table>
+					</div>
 				</div>
-				<!-- /.card -->
-
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-			<div class="p-3">
-				<h5>Title</h5>
-				<p>Sidebar content</p>
+				<!-- /.card-body -->
 			</div>
-		</aside>
-		<!-- /.control-sidebar -->
+			<!-- /.card -->
+		</section>
+		<!-- /.content -->
 
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- To the right -->
-			<div class="float-right d-none d-sm-inline">Anything you want</div>
-			<!-- Default to the left -->
-			<strong>Copyright &copy; 2014-2021 <a
-				href="https://adminlte.io">AdminLTE.io</a>.
-			</strong> All rights reserved.
-		</footer>
-	</div>
-	<!-- ./wrapper -->
-	<div id="addModal" class="modal" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered modal-lg">
-			<div class="modal-content">
-				<div id="headerModal" class="modal-header">
-					<h5 class="modal-title">Form Tambah Peserta Program</h5>
-				</div>
-				<div class="modal-body">
-					<div id="msg"></div>
-					<form id="form-validation">
-						<div id="form">
-							<label for="angkatan" class="form-label mb-3">Angkatan</label>
-							<div class="form-group">
-								<select id="angkatan" name="angkatan"
-									class="form-control select2" style="width: 100%;"></select>
-							</div>
-							<div class="form-group">
-								<label for="biodataId" class="form-label">Biodata</label> <select
-									id="biodataId" name="biodataId" class="form-control select2"
-									style="width: 100%;"></select>
+		<!-- addModal -->
+		<div id="addModal" class="modal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div id="headerModal" class="modal-header">
+						<h5 class="modal-title">Form Tambah Peserta Program</h5>
+					</div>
+					<div class="modal-body">
+						<div id="msg"></div>
+						<form id="form-validation">
+							<div id="form">
+								<label for="angkatan" class="form-label mb-3">Angkatan</label>
+								<div class="form-group">
+									<select id="angkatan" name="angkatan" class="form-control select2"
+										style="width: 100%;"></select>
+								</div>
+								<div class="form-group">
+									<label for="biodataId" class="form-label">Biodata</label> <select id="biodataId"
+										name="biodataId" class="form-control select2" style="width: 100%;"></select>
 
-							</div>
-							<div class="form-group">
-								<label for="programPembelajaranId" class="form-label">Program
-									Pembelajaran</label> <input type="number" id="programPembelajaranId"
-									name="programPembelajaranId" class="form-control">
-							</div>
-							<div class="form-group">
-								<label for="currentLevel" class="form-label">Tingkat
-									Pendidikan</label> <input type="number" id="currentLevel"
-									name="currentLevel" class="form-control">
-							</div>
-							<div class="form-group">
-								<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input
-									type="text" id="tahunMasuk" name="tahunMasuk"
-									class="form-control" data-inputmask-alias="datetime"
-									data-inputmask-inputformat="yyyy" data-mask>
-							</div>
-							<div class="form-group">
-								<label for="tanggalMasuk" class="form-label">Tanggal
-									Masuk</label> <input type="text" id="datepicker" name="tanggalMasuk"
-									class="form-control" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<label for="programPembelajaranId" class="form-label">Program
+										Pembelajaran</label> <input type="number" id="programPembelajaranId"
+										name="programPembelajaranId" class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="currentLevel" class="form-label">Tingkat
+										Pendidikan</label> <input type="number" id="currentLevel" name="currentLevel"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input type="text"
+										id="tahunMasuk" name="tahunMasuk" class="form-control"
+										data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask>
+								</div>
+								<div class="form-group">
+									<label for="tanggalMasuk" class="form-label">Tanggal
+										Masuk</label> <input type="text" id="datepicker" name="tanggalMasuk"
+										class="form-control" autocomplete="off">
 
+								</div>
+								<div id="footerModal" class="modal-footer">
+									<button id="closeModal" type="button" class="btn btn-outline-secondary"
+										data-dismiss="modal">
+										<i class="fas fa-times"></i> Batal
+									</button>
+									<button type="submit" class="btn btn-primary">
+										<i class="fas fa-save fa-fw"></i> Simpan
+									</button>
+								</div>
 							</div>
-							<div id="footerModal" class="modal-footer">
-								<button id="closeModal" type="button"
-									class="btn btn-outline-secondary" data-dismiss="modal">
-									<i class="fas fa-times"></i> Batal
-								</button>
-								<button type="submit" class="btn btn-primary">
-									<i class="fas fa-save fa-fw"></i> Simpan
-								</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="editModal" class="modal" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered modal-lg">
-			<div class="modal-content">
-				<div id="headerModal-edit" class="modal-header">
-					<h5 class="modal-title">Form Edit Peserta Program</h5>
-				</div>
-				<div class="modal-body">
-					<div id="msg-edit"></div>
-					<form id="form-validation-edit">
-						<div id="form-edit">
-							<label for="angkatan" class="form-label">Angkatan</label>
-							<div class="form-group">
-								<select id="eAngkatan" name="eAngkatan"
-									class="form-control select2" disabled="disabled"
-									style="width: 100%;"></select>
+		<!-- /addModal -->
+
+		<!-- editModal -->
+		<div id="editModal" class="modal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div id="headerModal-edit" class="modal-header">
+						<h5 class="modal-title">Form Edit Peserta Program</h5>
+					</div>
+					<div class="modal-body">
+						<div id="msg-edit"></div>
+						<form id="form-validation-edit">
+							<div id="form-edit">
+								<label for="angkatan" class="form-label">Angkatan</label>
+								<div class="form-group">
+									<select id="eAngkatan" name="eAngkatan" class="form-control select2"
+										disabled="disabled" style="width: 100%;"></select>
+								</div>
+								<div class="form-group">
+									<label for="eBiodataId" class="form-label">Biodata</label> <select id="eBiodataId"
+										name="eBiodataId" class="form-control select2" disabled="disabled"
+										style="width: 100%;"></select>
+								</div>
+								<div class="form-group">
+									<label for="programPembelajaranId" class="form-label">Program
+										Pembelajaran</label> <input type="number" id="eProgramPembelajaranId"
+										name="programPembelajaranId" class="form-control" disabled="disabled">
+								</div>
+								<div class="form-group">
+									<label for="currentLevel" class="form-label">Tingkat
+										Pendidikan</label> <input type="number" id="eCurrentLevel" name="currentLevel"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input type="text"
+										id="eTahunMasuk" name="tahunMasuk" class="form-control"
+										data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy" data-mask>
+								</div>
+								<div class="form-group">
+									<label for="tanggalMasuk" class="form-label">Tanggal
+										Masuk</label> <input type="text" id="eDatepicker" name="tanggalMasuk"
+										class="form-control" autocomplete="off">
+								</div>
+								<div id="footerModal-edit" class="modal-footer">
+									<button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+										<i class="fas fa-times"></i> Batal
+									</button>
+									<button type="submit" class="btn btn-primary">
+										<i class="fas fa-save fa-fw"></i> Simpan
+									</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="eBiodataId" class="form-label">Biodata</label> <select
-									id="eBiodataId" name="eBiodataId" class="form-control select2"
-									disabled="disabled" style="width: 100%;"></select>
-							</div>
-							<div class="form-group">
-								<label for="programPembelajaranId" class="form-label">Program
-									Pembelajaran</label> <input type="number" id="eProgramPembelajaranId"
-									name="programPembelajaranId" class="form-control"
-									disabled="disabled">
-							</div>
-							<div class="form-group">
-								<label for="currentLevel" class="form-label">Tingkat
-									Pendidikan</label> <input type="number" id="eCurrentLevel"
-									name="currentLevel" class="form-control">
-							</div>
-							<div class="form-group">
-								<label for="tahunMasuk" class="form-label">Tahun Masuk</label> <input
-									type="text" id="eTahunMasuk" name="tahunMasuk"
-									class="form-control" data-inputmask-alias="datetime"
-									data-inputmask-inputformat="yyyy" data-mask>
-							</div>
-							<div class="form-group">
-								<label for="tanggalMasuk" class="form-label">Tanggal
-									Masuk</label> <input type="text" id="eDatepicker" name="tanggalMasuk"
-									class="form-control" autocomplete="off">
-							</div>
-							<div id="footerModal-edit" class="modal-footer">
-								<button type="button" class="btn btn-outline-secondary"
-									data-dismiss="modal">
-									<i class="fas fa-times"></i> Batal
-								</button>
-								<button type="submit" class="btn btn-primary">
-									<i class="fas fa-save fa-fw"></i> Simpan
-								</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- REQUIRED SCRIPTS -->
-
-	<!-- jQuery -->
-	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-	<!-- Script -->
-	<script type="text/javascript" th:src="@{/dist/js/pesertaProgram.js}"></script>
-	<!-- Bootstrap 4 -->
-	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<!-- jQuery UI -->
-	<script th:src="@{/plugins/jquery/jquery-ui.js}"></script>
-	<!-- jQuery Validation -->
-	<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
-	<script
-		th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
-	<!-- date-range-picker -->
-	<script th:src="@{/plugins/moment/moment.min.js}"></script>
-	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-	<!-- input mask -->
-	<script th:src="@{/plugins/inputmask/jquery.inputmask.min.js}"></script>
-	<!-- Select2 -->
-	<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+	<!-- /editModal -->
+	<!-- bottom-script -->
+	<div layout:fragment="bottom-script">
+		<!-- Script -->
+		<script type="text/javascript" th:src="@{/dist/js/pesertaProgram.js}"></script>
+		<!-- jQuery UI -->
+		<script th:src="@{/plugins/jquery/jquery-ui.js}"></script>
+		<!-- date-range-picker -->
+		<script th:src="@{/plugins/moment/moment.min.js}"></script>
+		<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+		<!-- input mask -->
+		<script th:src="@{/plugins/inputmask/jquery.inputmask.min.js}"></script>
+		<!-- Select2 -->
+		<script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
+	</div>
+	<!-- /bottom-script -->
 </body>
 </html>

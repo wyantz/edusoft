@@ -30,6 +30,10 @@ function showData() {
 	});
 }
 $(document).ready(function() {
+	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+	$("#peserta-program-1").addClass("active"); // tambahkan class active pada a dengan id peserta-program-1
+	$("#menu-data-diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-data-diri lalu pada parentnya (li) ditambahkan class menu-open
+
 	//	Menampilkan data tabel
 	showData();
 
@@ -336,7 +340,7 @@ $(document).ready(function() {
 	});
 	//	Input mask
 	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
-	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
+	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })	
 });
 
 //ambil angkatan dari model angkatan
