@@ -1,6 +1,9 @@
 package com.siska.edu.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,6 +32,12 @@ public class PageController {
 	@RequestMapping("/tables/programAngkatan")
 	public String programAngkatanPage() {
 		return "pages/programAngkatan";
+	}
+	@RequestMapping("/tables/program-angkatan-level")
+	public String programAngkatanLevelPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+		String loggedUser = currentUser.getUsername();
+		model.addAttribute("user", loggedUser);
+		return "pages/program-angkatan-level";
 	}
 	@RequestMapping("/tables/programPembelajaran")
 	public String programPembelajaranPage() {
