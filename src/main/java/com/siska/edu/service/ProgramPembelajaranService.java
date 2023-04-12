@@ -17,7 +17,7 @@ public class ProgramPembelajaranService {
 	ProgramPembelajaranRepository repo;
 	
 	public List<ProgramPembelajaran> listAll() {
-		return (List<ProgramPembelajaran>) repo.findAll();
+		return (List<ProgramPembelajaran>) repo.findByOrderByIdAsc();
 	}
 	
 	public void save(ProgramPembelajaran programPembelajaran) {
