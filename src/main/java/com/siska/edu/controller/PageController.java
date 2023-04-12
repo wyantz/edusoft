@@ -35,6 +35,12 @@ public class PageController {
 	public String programAngkatanPage() {
 		return "pages/programAngkatan";
 	}
+	@RequestMapping("/tables/program-angkatan-level")
+	public String programAngkatanLevelPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+		String loggedUser = currentUser.getUsername();
+		model.addAttribute("user", loggedUser);
+		return "pages/program-angkatan-level";
+	}
 	@RequestMapping("/tables/programPembelajaran")
 	public String programPembelajaranPage() {
 		return "pages/programPembelajaran";
