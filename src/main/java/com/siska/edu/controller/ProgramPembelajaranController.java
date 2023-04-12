@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.siska.edu.model.Biodata;
 import com.siska.edu.model.ProgramPembelajaran;
 import com.siska.edu.service.ProgramPembelajaranService;
 
@@ -31,6 +31,11 @@ public class ProgramPembelajaranController {
 		return new ResponseEntity<List<ProgramPembelajaran>>(service.listAll(), HttpStatus.OK);
 	}
 	
+	@GetMapping("/programPembelajaran/{id}")
+	public ResponseEntity<ProgramPembelajaran> getprogramPembelajaran(@PathVariable int id) {
+		return new ResponseEntity<ProgramPembelajaran>(service.get(id), HttpStatus.OK);
+	}
+	
 	@PostMapping("/save")
 	public ResponseEntity<Void> saveOrUpdate(@RequestBody ProgramPembelajaran program) {
 		service.save(program);
@@ -43,7 +48,7 @@ public class ProgramPembelajaranController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@PostMapping("/update")
+	@PostMapping("/update/{id}")
 	public ResponseEntity<ProgramPembelajaran> getProgramPembelajaran(@PathVariable int id) {
 		return new ResponseEntity<ProgramPembelajaran>(service.get(id),HttpStatus.OK);
 	}
