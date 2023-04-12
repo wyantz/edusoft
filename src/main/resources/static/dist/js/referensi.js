@@ -2,7 +2,7 @@ function sukses(){
 	$("#msg").html("<div class='alert alert-success' role='alert'>Data added successfully</div>");
 	$("#input-form").hide();
 	setTimeout(function(){
-		$("#addModal").modal('hide');
+		$("#addModals").modal('hide');
 		$("#kode").val('');
 		$("#jenis").val('');
 		$("#keterangan").val('');
@@ -54,6 +54,10 @@ function tampilkanTable(){
 			});
 }
 $(document).ready(function(){
+	$('li.nav-item').removeClass("menu-open"); 
+	$("#menu_referensi_1").addClass("active"); 
+	$("#menu_referensi").addClass("active").parent().addClass("menu-open");
+	
 	$("#search").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#rows tr").filter(function() {
@@ -74,7 +78,6 @@ $(document).ready(function(){
 					},1000);
 				}
 				if(kode!="" && jenis!="" && keterangan!=""){
-					
 					var dataTerdaftar = false;
 					for(var i = 0;i<json.length;i++){
 						if(kode==json[i].id.kode && jenis ==json[i].id.jenis){
@@ -83,7 +86,6 @@ $(document).ready(function(){
 								$("#msg").html("");
 							},1000);
 							return true;
-							
 						}
 					}
 					if(!dataTerdaftar){
