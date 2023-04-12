@@ -31,11 +31,6 @@ public class ProgramPembelajaranController {
 		return new ResponseEntity<List<ProgramPembelajaran>>(service.listAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/programPembelajaran/{id}")
-	public ResponseEntity<ProgramPembelajaran> getprogramPembelajaran(@PathVariable int id) {
-		return new ResponseEntity<ProgramPembelajaran>(service.get(id), HttpStatus.OK);
-	}
-	
 	@PostMapping("/save")
 	public ResponseEntity<Void> saveOrUpdate(@RequestBody ProgramPembelajaran program) {
 		service.save(program);
