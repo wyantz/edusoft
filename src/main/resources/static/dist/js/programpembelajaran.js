@@ -61,6 +61,10 @@ function sukses(sc) {
 
 $(document).ready(function() {
 	
+	$('li.nav-item').removeClass("menu-open"); 
+	$("#menu_program").addClass("active").parent().addClass("menu-open");
+	$("#menu_program_3").addClass("active"); 
+	
 	showTable();
 	
 	//search
