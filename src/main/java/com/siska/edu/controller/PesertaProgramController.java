@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.siska.edu.model.PesertaProgram;
 import com.siska.edu.model.PesertaProgramId;
-import com.siska.edu.model.ProgramAngkatanId;
 import com.siska.edu.service.PesertaProgramService;
 
 @Controller

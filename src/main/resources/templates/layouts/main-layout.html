@@ -8,17 +8,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" class="no-js h-100">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>edusoft</title>
-
-	<!-- Google Font: Source Sans Pro -->
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-	<!-- Theme style -->
-	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>edusoft</title>
+  <link layout:fragment="upper-link"></link>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
 </head>
 
 <body class="hold-transition sidebar-mini">

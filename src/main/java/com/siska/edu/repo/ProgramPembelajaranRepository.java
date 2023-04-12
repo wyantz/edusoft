@@ -19,5 +19,5 @@ public interface  ProgramPembelajaranRepository extends JpaRepository<ProgramPem
             + " OR p.keterangan LIKE '%' || :keyword || '%'")
     public List<ProgramPembelajaran> search(@Param("keyword") String keyword);
 	
-	List<ProgramPembelajaran> findByOrderByIdAsc();
+	public List<ProgramPembelajaran> findByOrderByIdAsc();
 }
