@@ -21,7 +21,7 @@ import com.siska.edu.repo.ProgramAngkatanDao;
 import com.siska.edu.repo.ProgramPembelajaranRepository;
 
 @RestController
-@RequestMapping("/programAngkatan")
+@RequestMapping("/program-angkatan")
 @CrossOrigin(origins = "*")
 public class ProgramAngkatanController {
 	
