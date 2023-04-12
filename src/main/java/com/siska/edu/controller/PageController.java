@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
-	@RequestMapping("/")
-	public String indexPage() {
+	@RequestMapping("/dashboard")
+	public String indexPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "index";
 	}
-	@RequestMapping("/login.html")
+
+	@RequestMapping("/")
 	public String loginPage() {
 		return "login";
 	}
