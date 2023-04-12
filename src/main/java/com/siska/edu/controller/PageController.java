@@ -24,16 +24,22 @@ public class PageController {
 		return "pages/biodata";
 	}
 	@RequestMapping("/tables/pesertaProgram")
-	public String pesertaProgramPage() {
+	public String pesertaProgramPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/pesertaProgram";
 	}
 	@RequestMapping("/tables/waliSiswa")
-	public String waliSiswaPage() {
+	public String waliSiswaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/waliSiswa";
 	}
-	@RequestMapping("/tables/programAngkatan")
-	public String programAngkatanPage() {
-		return "pages/programAngkatan";
+	@RequestMapping("/tables/program-angkatan")
+	public String programAngkatanPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
+		String loggedUser = currentUser.getUsername();
+		model.addAttribute("user", loggedUser);
+		return "pages/program-angkatan";
 	}
 	@RequestMapping("/tables/program-angkatan-level")
 	public String programAngkatanLevelPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
@@ -42,15 +48,21 @@ public class PageController {
 		return "pages/program-angkatan-level";
 	}
 	@RequestMapping("/tables/programPembelajaran")
-	public String programPembelajaranPage() {
+	public String programPembelajaranPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/programPembelajaran";
 	}
 	@RequestMapping("/tables/jenisNilai")
-	public String jenisNilaiPage() {
+	public String jenisNilaiPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/jenisNilai";
 	}
 	@RequestMapping("/tables/kelasProgram")
-	public String kelasProgramPage() {
+	public String kelasProgramPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/kelasProgram";
 	}
 	@RequestMapping("/tables/kurikulum")
@@ -72,11 +84,15 @@ public class PageController {
 		return "pages/mapelPeserta";
 	}
 	@RequestMapping("/tables/referensi")
-	public String referensiPage() {
+	public String referensiPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/referensi";
 	}
 	@RequestMapping("/tables/silabus")
-	public String silabusPage() {
+	public String silabusPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
+		String name = currentUser.getUsername();
+		m.addAttribute("user", name);
 		return "pages/silabus";
 	}
 }
