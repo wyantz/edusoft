@@ -31,8 +31,8 @@ function showData() {
 }
 $(document).ready(function() {
 	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
-	$("#peserta-program-1").addClass("active"); // tambahkan class active pada a dengan id peserta-program-1
-	$("#menu-data-diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-data-diri lalu pada parentnya (li) ditambahkan class menu-open
+	$("#menu_data_diri_2").addClass("active"); // tambahkan class active pada a dengan id menu_data_diri
+	$("#menu_data_diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu_data_diri-2 lalu pada parentnya (li) ditambahkan class menu-open
 
 	//	Menampilkan data tabel
 	showData();
@@ -81,21 +81,28 @@ $(document).ready(function() {
 			cache: false,
 			success: function(json) {
 				$('#eAngkatan').empty();
-				$('#eBiodataId').empty();
 				var optionsAngkatan = [];
 				optionsAngkatan.push('<option value=' + json.id.angkatan + '>' + json.id.angkatan + '</option>');
 				$('#eAngkatan').append($(optionsAngkatan.join('')));
+				$('#eBiodataId').empty();
 				var optionseBiodataId = [];
 				optionseBiodataId.push('<option value=' + json.id.biodataId + '>' + json.id.biodataId + '</option>');
 				$('#eBiodataId').append($(optionseBiodataId.join('')));
-				$('#eProgramPembelajaranId').val(json.id.programPembelajaranId);
+				$('#eProgramPembelajaranId').empty();
+				var optionseProgramPembelajaranId = [];
+				optionseProgramPembelajaranId.push('<option value=' + json.id.programPembelajaranId + '>' + json.id.programPembelajaranId + '</option>');
+				$('#eProgramPembelajaranId').append($(optionseProgramPembelajaranId.join('')));
 				$('#eCurrentLevel').val(json.currentLevel);
 				$('#eTahunMasuk').val(json.tahunMasuk);
 				$('#eDatepicker').val(json.tanggalMasuk);
 				$("#editModal").modal('show');
 			},
 			error: function() {
-				alert("ID " + id + " tidak ditemukan");
+				$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data tidak ditemukan</strong></div>")
+						.fadeIn()
+						.fadeOut(4000, function() {
+							$('#alert').html("");
+						});
 			}
 		});
 	});
@@ -336,6 +343,7 @@ $(document).ready(function() {
 	$("#addButton").click(function() {
 		listAngkatan();
 		listBiodataId();
+		listProgramPembelajaranId();
 		$("#addModal").modal('show');
 	});
 	//	Input mask
@@ -363,5 +371,16 @@ function listBiodataId() {
 			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
 		}
 		$('#biodataId').append($(options.join('')));
+	})
+}
+//ambil ID program pembelajaran dari model program pembelajaran
+function listProgramPembelajaranId() {
+	$('#programPembelajaranId').empty();
+	$.getJSON("http://localhost:8080/programPembelajaran/", function(json) {
+		var options = [];
+		for (var i = 0; i < json.length; i++) {
+			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
+		}
+		$('#programPembelajaranId').append($(options.join('')));
 	})
 }
