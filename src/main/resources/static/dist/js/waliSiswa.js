@@ -50,6 +50,13 @@ $(document).ready(function() {
 				listBiodataId();
 			})
 			
+			$("#closeModal").click(function() {
+				$("#msg").html("");
+			})
+			$(".close").click(function() {
+				$("#msg").html("");
+			})
+			
 			//add data
 			$(document).delegate('#addNew', 'click', function(event) {
 				$.getJSON('http://localhost:8080/walisiswa', function(json){
