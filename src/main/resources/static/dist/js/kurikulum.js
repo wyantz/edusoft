@@ -106,7 +106,7 @@ $(document).ready(function() {
 				var isExist = false;
 				for (var i = 0; i < json.length; i++) {
 					if ($("#nama").val() === json[i].nama) {
-						$("#msg").html("<span style='color: red;'>Nama kurikulum yang anda masukan sudah terdaftar!</span><br><br>");
+						$("#add-msg").html("<span style='color: red;'>Nama kurikulum yang anda masukan sudah terdaftar!</span><br><br>");
 						isExist = true;
 					}
 				}
