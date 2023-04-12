@@ -25,8 +25,8 @@ function showMapelTable() {
 $(document).ready(function() {
 	// Menipulasi tampilan menu
 	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
-	
-	$("#menu_mapel_1").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
+	$("#menu_mapel_1").addClass("active"); // tambahkan class active pada a dengan id menu-mapel-1
+	$("#menu_mapel").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
 	
 	 
 	showMapelTable();
