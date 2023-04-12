@@ -20,8 +20,8 @@ function showTable() {
 			tr.push('<td>' + json[i].asalSekolah + '</td>');
 			tr.push('<td>' + json[i].levelSekolahAsal + '</td>');
 			tr.push('<td>' + json[i].kodePekerjaan + '</td>');
-			tr.push('<td><a class=\'btn btn-outline-warning edit\' id=' + json[i].id + '><i class="fas fa-edit"></i> Edit</a>&nbsp&nbsp&nbsp;');
-			tr.push('&nbsp;<a class=\'btn btn-outline-danger delete\' id=' + json[i].id + '><i class="fas fa-trash-alt"></i> Delete</a></td>');
+			tr.push('<td class="text-center"><a class=\'btn btn-outline-warning edit\' id=' + json[i].id + '><i class="fas fa-edit"></i> Edit</a></td>');
+			tr.push('<td class="text-center"><a class=\'btn btn-outline-danger delete\' id=' + json[i].id + '><i class="fas fa-trash-alt"></i> Delete</a></td>');
 			tr.push('</tr>');
 		}
 		tr.push('</tbody>');
@@ -40,28 +40,6 @@ $(document).ready(function() {
 
 	$("#table_search").on("keyup", function() {
 		showTable();
-	});
-	
-	// datepicker
-	$(document).ready(function() {
-		$('#tanggalLahir').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			"setDate": new Date(),
-			dateFormat: "yy-mm-dd",
-			"autoclose": true
-		});
-	});
-	
-	// datepicker
-	$(document).ready(function() {
-		$('##etanggalLahir').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			"setDate": new Date(),
-			dateFormat: "yy-mm-dd",
-			"autoclose": true
-		});
 	});
 
 	$.validator.addMethod("uniqueKode", function(value, element) {
@@ -421,6 +399,17 @@ $(document).ready(function() {
 		var value = $(this).val().toLowerCase();
 		$("#biodata tr").filter(function() {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+	
+	// datepicker
+	$(document).ready(function() {
+		$('#tanggalLahir, #etanggalLahir').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			"setDate": new Date(),
+			dateFormat: "yy-mm-dd",
+			"autoclose": true
 		});
 	});
 	
