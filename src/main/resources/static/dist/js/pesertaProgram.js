@@ -1,6 +1,6 @@
 function showData() {
 	$("#tablepp").empty();
-	$.getJSON('http://localhost:8080/pesertaprogram/list', function(json) {
+	$.getJSON('http://localhost:8080/pesertaprogram/list', function (json) {
 		var tr = [];
 		tr.push('<thead>');
 		tr.push('<tr>');
@@ -29,16 +29,20 @@ function showData() {
 		$("#tablepp").append($(tr.join('')));
 	});
 }
-$(document).ready(function() {
+$(document).ready(function () {
+	//	Menampilkan data tabel
+	showData();
+
+	// ambil pk dari model lain
+	listAngkatan();
+	listBiodataId();
+	listProgramPembelajaranId();
 	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
 	$("#menu_data_diri_2").addClass("active"); // tambahkan class active pada a dengan id menu_data_diri
 	$("#menu_data_diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu_data_diri-2 lalu pada parentnya (li) ditambahkan class menu-open
 
-	//	Menampilkan data tabel
-	showData();
-
 	//	Menghapus baris data
-	$(document).delegate('.delete', 'click', function() {
+	$(document).delegate('.delete', 'click', function () {
 		var parent = $(this).parent().parent();
 		var id = $(this).attr('id');
 		if (confirm('Hapus data ini?')) {
@@ -48,21 +52,21 @@ $(document).ready(function() {
 				contentType: "application/json; charset=utf-8",
 				data: id,
 				cache: false,
-				success: function() {
+				success: function () {
 					parent.fadeOut(
-						'slow', function() {
+						'slow', function () {
 							$(this).remove();
 						});
 					$('#alert').html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'><strong> Data berhasil dihapus</strong></div>")
 						.fadeIn()
-						.fadeOut(4000, function() {
+						.fadeOut(4000, function () {
 							$('#alert').html("");
 						});
 				},
-				error: function() {
+				error: function () {
 					$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>")
 						.fadeIn()
-						.fadeOut(4000, function() {
+						.fadeOut(4000, function () {
 							$('#alert').html("");
 						});
 				}
@@ -71,7 +75,7 @@ $(document).ready(function() {
 	});
 
 	//	Mengubah baris data
-	$(document).delegate('.edit', 'click', function() {
+	$(document).delegate('.edit', 'click', function () {
 		var id = $(this).attr('id');
 		$.ajax({
 			type: "POST",
@@ -79,7 +83,7 @@ $(document).ready(function() {
 			url: "http://localhost:8080/pesertaprogram/get",
 			data: id,
 			cache: false,
-			success: function(json) {
+			success: function (json) {
 				$('#eAngkatan').empty();
 				var optionsAngkatan = [];
 				optionsAngkatan.push('<option value=' + json.id.angkatan + '>' + json.id.angkatan + '</option>');
@@ -97,12 +101,12 @@ $(document).ready(function() {
 				$('#eDatepicker').val(json.tanggalMasuk);
 				$("#editModal").modal('show');
 			},
-			error: function() {
+			error: function () {
 				$('#alert').html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Data tidak ditemukan</strong></div>")
-						.fadeIn()
-						.fadeOut(4000, function() {
-							$('#alert').html("");
-						});
+					.fadeIn()
+					.fadeOut(4000, function () {
+						$('#alert').html("");
+					});
 			}
 		});
 	});
@@ -156,17 +160,17 @@ $(document).ready(function() {
 			},
 		},
 		errorElement: 'span',
-		errorPlacement: function(error, element) {
+		errorPlacement: function (error, element) {
 			error.addClass('invalid-feedback');
 			element.closest('.form-group').append(error);
 		},
-		highlight: function(element, errorClass, validClass) {
+		highlight: function (element, errorClass, validClass) {
 			$(element).addClass('is-invalid');
 		},
-		unhighlight: function(element, errorClass, validClass) {
+		unhighlight: function (element, errorClass, validClass) {
 			$(element).removeClass('is-invalid');
 		},
-		submitHandler: function() {
+		submitHandler: function () {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
@@ -183,15 +187,15 @@ $(document).ready(function() {
 						'tanggalMasuk': $('#datepicker').val().toString()
 					}),
 				cache: false,
-				success: function() {
+				success: function () {
 					$("#msg").html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'> Data berhasil ditambahkan</div>").fadeIn()
-						.fadeOut(1999, function() {
+						.fadeOut(1999, function () {
 							$("#msg").html("");
 						});
 					$("#form").hide();
 					$("#headerModal").hide();
 					$("#footerModal").hide();
-					window.setTimeout(function() {
+					window.setTimeout(function () {
 						showData();
 						$("#msg").html("");
 						$('#angkatan').val("");
@@ -204,13 +208,13 @@ $(document).ready(function() {
 						$('#reservationdate').val("");
 						$("#addModal").modal('hide');
 					}, 2000)
-					window.setTimeout(function() {
+					window.setTimeout(function () {
 						$("#form").show();
 						$("#headerModal").show();
 						$("#footerModal").show();
 					}, 2001)
 				},
-				error: function() {
+				error: function () {
 					$("#msg").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>");
 				}
 			});
@@ -266,17 +270,17 @@ $(document).ready(function() {
 			},
 		},
 		errorElement: 'span',
-		errorPlacement: function(error, element) {
+		errorPlacement: function (error, element) {
 			error.addClass('invalid-feedback');
 			element.closest('.form-group').append(error);
 		},
-		highlight: function(element, errorClass, validClass) {
+		highlight: function (element, errorClass, validClass) {
 			$(element).addClass('is-invalid');
 		},
-		unhighlight: function(element, errorClass, validClass) {
+		unhighlight: function (element, errorClass, validClass) {
 			$(element).removeClass('is-invalid');
 		},
-		submitHandler: function() {
+		submitHandler: function () {
 			$.ajax({
 				type: "POST",
 				contentType: "application/json; charset=utf-8",
@@ -284,26 +288,26 @@ $(document).ready(function() {
 				data: JSON.stringify(
 					{ 'id': { 'angkatan': $('#eAngkatan').val(), 'biodataId': $('#eBiodataId').val(), 'programPembelajaranId': $('#eProgramPembelajaranId').val() }, 'currentLevel': $('#eCurrentLevel').val(), 'tahunMasuk': $('#eTahunMasuk').val(), 'tanggalMasuk': $('#eDatepicker').val().toString() }),
 				cache: false,
-				success: function() {
+				success: function () {
 					$("#msg-edit").html("<div class='alert alert-success text-center' role='alert'><i class='icon fas fa-check'> Data berhasil diubah</div>").fadeIn()
-						.fadeOut(1999, function() {
+						.fadeOut(1999, function () {
 							$("#msg-edit").html("");
 						});
 					$("#form-edit").hide();
 					$("#headerModal-edit").hide();
 					$("#footerModal-edit").hide();
-					window.setTimeout(function() {
+					window.setTimeout(function () {
 						showData();
 						$("#msg-edit").html("");
 						$("#editModal").modal('hide');
 					}, 2000)
-					window.setTimeout(function() {
+					window.setTimeout(function () {
 						$("#form-edit").show();
 						$("#headerModal-edit").show();
 						$("#footerModal-edit").show();
 					}, 2001)
 				},
-				error: function() {
+				error: function () {
 					$("#msg-edit").html("<div class='alert alert-danger text-center' role='alert'><i class='icon fas fa-exclamation-triangle'><strong> Input data gagal</strong></div>");
 				}
 			});
@@ -312,7 +316,7 @@ $(document).ready(function() {
 	$('.select2').select2()
 
 	//	datepicker
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$('#datepicker').datepicker({
 			changeMonth: true,
 			changeYear: true,
@@ -321,7 +325,7 @@ $(document).ready(function() {
 			"autoclose": true
 		});
 	});
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$('#eDatepicker').datepicker({
 			changeMonth: true,
 			changeYear: true,
@@ -331,30 +335,32 @@ $(document).ready(function() {
 		});
 	});
 	//	cari data
-	$(document).ready(function() {
-		$("#search").on("keyup", function() {
+	$(document).ready(function () {
+		$("#search").on("keyup", function () {
 			var value = $(this).val().toLowerCase();
-			$("#rows tr").filter(function() {
+			$("#rows tr").filter(function () {
 				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 			});
 		});
 	});
+
 	//	menampilkan modal
-	$("#addButton").click(function() {
-		listAngkatan();
-		listBiodataId();
-		listProgramPembelajaranId();
+	$("#addButton").click(function () {
+		$("#angkatan option").each(function () {
+			$(this).siblings('[value="' + this.value + '"]').remove();
+		});
 		$("#addModal").modal('show');
 	});
+
 	//	Input mask
 	$('#tahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
-	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })	
+	$('#eTahunMasuk').inputmask('yyyy', { 'placeholder': 'yyyy' })
 });
 
 //ambil angkatan dari model angkatan
 function listAngkatan() {
 	$('#angkatan').empty();
-	$.getJSON("http://localhost:8080/program-angkatan/", function(json) {
+	$.getJSON("http://localhost:8080/program-angkatan/", function (json) {
 		var options = [];
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id.angkatan + '>' + json[i].id.angkatan + '</option>')
@@ -365,7 +371,7 @@ function listAngkatan() {
 //ambil ID biodata dari model biodata
 function listBiodataId() {
 	$('#biodataId').empty();
-	$.getJSON("http://localhost:8080/biodata", function(json) {
+	$.getJSON("http://localhost:8080/biodata", function (json) {
 		var options = [];
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
@@ -376,7 +382,7 @@ function listBiodataId() {
 //ambil ID program pembelajaran dari model program pembelajaran
 function listProgramPembelajaranId() {
 	$('#programPembelajaranId').empty();
-	$.getJSON("http://localhost:8080/programPembelajaran/", function(json) {
+	$.getJSON("http://localhost:8080/programPembelajaran/", function (json) {
 		var options = [];
 		for (var i = 0; i < json.length; i++) {
 			options.push('<option value=' + json[i].id + '>' + json[i].id + '</option>')
