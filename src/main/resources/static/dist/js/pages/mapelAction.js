@@ -23,6 +23,12 @@ function showMapelTable() {
 }
 
 $(document).ready(function() {
+	// Menipulasi tampilan menu
+	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+	$("#menu-mapel-2").addClass("active"); // tambahkan class active pada a dengan id menu-mapel-2
+	$("#menu-mapel-1").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
+	
+	 
 	showMapelTable();
 
 	$("#table_search").on("keyup", function() {
@@ -38,10 +44,10 @@ $(document).ready(function() {
 			dataType: "text",
 			success: function(data) {
 				if (data === "false") {
-					console.log(data + ': This email exists.');
+					console.log(data + ': This kode exists.');
 					result = false;
 				} else {
-					console.log(data + ': This email does not exist.');
+					console.log(data + ': This kode does not exist.');
 					result = true;
 				}
 			},

@@ -1,0 +1,165 @@
+<!doctype html>
+<html
+xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main-layout}">
+<head>
+<title>Mata Pelajaran</title>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</head>
+<body class="h-100">
+<div layout:fragment="title">Mata Pelajaran</div>
+<div layout:fragment="subtitle">Mata Pelajaran</div>
+<div layout:fragment="maincontent">
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">Mata Pelajaran</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item"><a href="#">Home</a></li>
+						<li class="breadcrumb-item active">Mata Pelajaran</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+
+	<section class="content">
+		<!-- Default box -->
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Tabel Mata Pelajaran</h3>
+	
+				<div class="card-tools">
+					<div class="input-group input-group-sm" style="width: 150px;">
+						<input type="text" name="table_search" id="table_search"
+							class="form-control float-right" placeholder="Search">
+	
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
+							<a href="#mapel-modal" id="add-button" rel="modal:open"
+								class="btn btn-primary col-auto" data-toggle="modal"> <span>Add</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.card-header -->
+			<div class="card-body table-responsive p-0">
+				<table class="table table-hover text-nowrap" id="mapelTable">
+					<thead>
+						<tr>
+							<th>Kode</th>
+							<th>Nama</th>
+							<th>Nilai</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.card-body -->
+		</div>
+		<!-- /.card -->
+	</section>
+
+
+	<!-- Edit Modal HTML -->
+	<div id="mapel-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Tambah Mata Pelajaran</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<form id='mapel-form'>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Kode Mata Pelajaran</label> 
+							<input type="text" id="kode" name="kode" class="form-control" autocomplete="off">
+							<span id="msg" class="invalid-feedback"></span>
+						</div>
+						<div class="form-group">
+							<label>Nama Mata Pelajaran</label> 
+							<input type="text" id="nama" name="nama" class="form-control" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label>Kode Jenis Nilai</label> <select id="kodeJenisNilai"
+								name="kodeJenisNilai" class="form-control">
+								<option
+									th:each="nilaiOpt : ${T(com.siska.edu.model.JenisNilaiEnum).values()}"
+									th:value="${nilaiOpt}" th:text="${nilaiOpt}"></option>
+							</select>
+						</div>
+					
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal"
+							value="Cancel"> <input type="submit"
+							class="btn btn-success" value="Submit" id="add-mapel">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Edit Modal HTML -->
+	<div id="edit-modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div id="msg"></div>
+
+				<div class="modal-header">
+					<h4 class="modal-title">Edit Mata Pelajaran</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+				</div>
+				<form id='edit-form'>
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Kode Mata Pelajaran</label> <input type="text" id="editKode"
+								name="kode" class="form-control" autocomplete="off" readonly>
+						</div>
+						<div class="form-group">
+							<label>Nama Mata Pelajaran</label> <input type="text" id="editNama"
+								name="nama" class="form-control" autocomplete="off"
+								minlength="3" required>
+						</div>
+						<div class="form-group">
+							<label>Kode Jenis Nilai</label> <select id="editKodeJenisNilai"
+								name="kodeJenisNilai" class="form-control">
+								<option
+									th:each="nilaiOpt : ${T(com.siska.edu.model.JenisNilaiEnum).values()}"
+									th:value="${nilaiOpt}" th:text="${nilaiOpt}"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>This data was created by <span id="creator-name"></span></label> 
+						</div>
+					
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal"
+							value="Cancel"> <input type="submit"
+							class="btn btn-success" value="Submit" id="add-mapel">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+				
+</div>
+</body>
+<script layout:fragment="bottom-script" th:src="@{/dist/js/pages/mapelAction.js}"></script>
+</html>
