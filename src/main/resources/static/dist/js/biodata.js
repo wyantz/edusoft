@@ -1,22 +1,14 @@
 function showTable() {
-	$('#biodataTable').empty();
-	$.getJSON('http://localhost:8080/biodata/', function(json) {
-		var tr = [];
-		tr.push('<thead>');
-		tr.push('<tr>');
-		tr.push('<th>ID</th>');
-		tr.push('<th>NIK</th>');
-		tr.push('<th>Nama</th>');
-		tr.push('<th>Tanggal Lahir</th>');
-		tr.push('<th>Tempat Lahir</th>');
-		tr.push('<th>Jenis Kelamin</th>');
-		tr.push('<th>Asal Sekolah</th>');
-		tr.push('<th>Level Sekolah Asal</th>');
-		tr.push('<th>Pekerjaan</th>');
-		tr.push('<th>Action</th>');
-		tr.push('</tr>');
-		tr.push('</thead>');
-		tr.push('<tbody id="biodata">');
+	$('#biodataTable tbody').empty();
+	let urlPath = "";
+	if ($('#table_search').val() == "") {
+		urlPath = "http://localhost:8080/biodata/";
+	}
+	else {
+		urlPath = "http://localhost:8080/biodata/search/" + $('#table_search').val();
+	}
+	$.getJSON(urlPath, function(json) {
+		let tr = [];
 		for (var i = 0; i < json.length; i++) {
 			tr.push('<tr>');
 			tr.push('<td>' + json[i].id + '</td>');
@@ -28,40 +20,48 @@ function showTable() {
 			tr.push('<td>' + json[i].asalSekolah + '</td>');
 			tr.push('<td>' + json[i].levelSekolahAsal + '</td>');
 			tr.push('<td>' + json[i].kodePekerjaan + '</td>');
-			tr.push('<td><a class=\'btn btn-primary edit\' id=' + json[i].id + '><i class="fas fa-edit fa-fw"></i> Edit</a>&nbsp;&nbsp;&nbsp;<a class=\'btn btn-danger delete\' id=' + json[i].id + '><i class="fas fa-trash fa-fw"></i> Delete</a></td>');
+			tr.push('<td><a class=\'btn btn-outline-warning edit\' id=' + json[i].id + '><i class="fas fa-edit"></i> Edit</a>&nbsp&nbsp&nbsp;');
+			tr.push('&nbsp;<a class=\'btn btn-outline-danger delete\' id=' + json[i].id + '><i class="fas fa-trash-alt"></i> Delete</a></td>');
 			tr.push('</tr>');
 		}
 		tr.push('</tbody>');
-		$('#biodataTable').append($(tr.join('')));
+		$('#biodataTable tbody').append($(tr.join('')));
 	});
 }
 
 $(document).ready(function() {
+	// Menipulasi tampilan menu
+	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+	$("#menu_data_diri_1").addClass("active"); // tambahkan class active pada a dengan id menu-mapel-2
+	$("#menu_data_diri").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
+	
+	 
 	showTable();
 
-	$('.close').click(function() {
-		$("#msg").html("");
-	})
-	$("#closeModal").click(function() {
-		$("#msg").html("");
-	})
-
-	$("#myInput").on("keyup", function() {
-		var value = $(this).val().toLowerCase();
-		$("#biodata tr").filter(function() {
-			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-		});
+	$("#table_search").on("keyup", function() {
+		showTable();
 	});
 
-	// datepicker
-	$(document).ready(function() {
-		$('#tanggalLahir, #etanggalLahir').datepicker({
-			changeMonth: true,
-			changeYear: true,
-			"setDate": new Date(),
-			dateFormat: "yy-mm-dd",
-			"autoclose": true
+	$.validator.addMethod("uniqueKode", function(value, element) {
+		let urlCekKode = "http://localhost:8080/biodata/cek/" + value;
+		let result = false;
+		$.ajax({
+			type: "GET",
+			url: urlCekKode,
+			dataType: "text",
+			success: function(data) {
+				if (data === "false") {
+					console.log(data + ': This data exists.');
+					result = false;
+				} else {
+					console.log(data + ': This data does not exist.');
+					result = true;
+				}
+			},
+			async: false
 		});
+		console.log(result);
+		return result;
 	});
 
 	$('#form-validation').validate({
@@ -387,4 +387,30 @@ $(document).ready(function() {
 		}
 	});
 
+
+	$('.close').click(function() {
+		$("#msg").html("");
+	})
+	$("#closeModal").click(function() {
+		$("#msg").html("");
+	})
+
+	$("#myInput").on("keyup", function() {
+		var value = $(this).val().toLowerCase();
+		$("#biodata tr").filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	});
+
+	// datepicker
+	$(document).ready(function() {
+		$('#tanggalLahir, #etanggalLahir').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			"setDate": new Date(),
+			dateFormat: "yy-mm-dd",
+			"autoclose": true
+		});
+	});
+	
 });

@@ -1,451 +1,266 @@
-
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main-layout}">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AdminLTE 3 | Starter</title>
-
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- jQuery UI -->
-<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
-<!-- Font Awesome Icons -->
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+<title>Biodata</title>
+<!-- upper-link -->
+<div layout:fragment="upper-link">
+	<!-- jQuery UI -->
+	<link rel="stylesheet" th:href="@{/plugins/jquery-ui/jquery-ui.min.css}">
+	<!-- date-range-picker -->
+	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+</div>
+<!-- /upper-link -->
 </head>
-<body class="hold-transition sidebar-mini">
-	<div class="wrapper">
-
-		<!-- Navbar -->
-		<nav th:replace="~{fragments/navbar :: navbar}"></nav>
-		<!-- /.navbar -->
-
-		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a href="index3.html" class="brand-link"> <img
-				th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
-				class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">AdminLTE 3</span>
-			</a>
-
-			<!-- Sidebar -->
-			<div class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img th:src="@{/dist/img/user2-160x160.jpg}"
-							class="img-circle elevation-2" alt="User Image">
+<body class="h-100">
+	<div layout:fragment="title">Biodata</div>
+	<div layout:fragment="subtitle">Biodata</div>
+	<div layout:fragment="maincontent">
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Biodata</h1>
 					</div>
-					<div class="info">
-						<a href="#" class="d-block"><span th:text="${user}" id="username-login"></span></a>
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<ol class="breadcrumb float-sm-right">
+							<li class="breadcrumb-item"><a href="#">Home</a></li>
+							<li class="breadcrumb-item active">Biodata</li>
+						</ol>
 					</div>
+					<!-- /.col -->
 				</div>
-
-				<!-- SidebarSearch Form -->
-				<div class="form-inline">
-					<div class="input-group" data-widget="sidebar-search">
-						<input class="form-control form-control-sidebar" type="search"
-							placeholder="Search" aria-label="Search">
-						<div class="input-group-append">
-							<button class="btn btn-sidebar">
-								<i class="fas fa-search fa-fw"></i>
-							</button>
-						</div>
-					</div>
-				</div>
-
-				<!-- Sidebar Menu -->
-				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column"
-						data-widget="treeview" role="menu" data-accordion="false">
-						<!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-						<li class="nav-item menu-open"><a href="#"
-							class="nav-link active"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Data Diri <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/biodata}"
-									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
-										<p>Biodata</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/pesertaProgram}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Peserta Program</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/waliSiswa}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Wali Siswa</p>
-								</a></li>
-							</ul></li>
-						<!-- end of data diri sidebar -->
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Program <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a
-									th:href="@{/tables/programAngkatan}" class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>Program Angkatan</p>
-								</a></li>
-								<li class="nav-item"><a
-									th:href="@{/tables/programPembelajaran}" class="nav-link">
-										<i class="far fa-circle nav-icon"></i>
-										<p>Program Pembelajaran</p>
-								</a></li>
-							</ul></li>
-						<!-- end of program sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Nilai dan Kurikulum <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/jenisNilai}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Jenis Nilai</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/kelasProgram}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Kelas Program</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/kurikulum}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Kurikulum</p>
-								</a></li>
-							</ul></li>
-						<!-- end of nilai dan kurikulum sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Mapel <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/mapel}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Mapel</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/mapelPeserta}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Mapel Peserta</p>
-								</a></li>
-							</ul></li>
-						<!-- end of mapel sidebar -->
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									Referensi <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/tables/referensi}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Referensi</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/tables/silabus}"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>Silabus</p>
-								</a></li>
-							</ul></li>
-					</ul>
-				</nav>
-				<!-- /.sidebar-menu -->
+				<!-- /.row -->
 			</div>
-			<!-- /.sidebar -->
-		</aside>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /.content-header -->
 
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0">Biodata</h1>
-						</div>
-						<!-- /.col -->
-						<div class="col-sm-6">
-							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Biodata</li>
-							</ol>
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-			</div>
-			<!-- /.content-header -->
 
-			<!-- Main content -->
-			<section class="content">
+		<section class="content">
+			<!-- Default box -->
+			<div class="card">
+				<div class="card-header">
+					<h3 class="card-title">Tabel Biodata</h3>
 
-				<!-- Default box -->
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">Daftar Biodata</div>
-						<div class="card-tools">
-							<button type="button" class="btn btn-tool"
-								data-card-widget="collapse" title="Collapse">
-								<i class="fas fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-tool"
-								data-card-widget="remove" title="Remove">
-								<i class="fas fa-times"></i>
-							</button>
-						</div>
-					</div>
-					<div class="card-header">
-						<a id="addButton" type="button" class="btn btn-primary"
-							data-toggle="modal" data-target="#exampleModal"><i
-							class="fas fa-plus fa-fw"></i> Tambah Biodata Baru</a>
-						<div class="card-tools">
-							<div class="input-group" data-widget="sidebar-search">
-								<input id="myInput" class="form-control" type="search"
-									placeholder="Search" aria-label="Search">
-								<div class="input-group-append">
-									<button class="btn btn-sidebar">
-										<i class="fas fa-search"></i>
-									</button>
-								</div>
+					<div class="card-tools">
+						<div class="input-group input-group-sm">
+							<input type="text" name="table_search" id="table_search"
+								class="form-control float-right" placeholder="Search">
+
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-default">
+									<i class="fas fa-search"></i>
+								</button>
+								<a id="addButton" type="button" class="btn btn-primary col-auto"
+									data-toggle="modal" data-target="#exampleModal"><i
+									class="fas fa-plus fa-fw"></i> Add</a>
 							</div>
 						</div>
 					</div>
-					<table id="biodataTable" class="table table-bordered table-hover">
-
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body table-responsive p-0">
+					<table class="table table-hover text-nowrap" id="biodataTable">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>NIK</th>
+								<th>Nama</th>
+								<th>Tanggal Lahir</th>
+								<th>Tempat Lahir</th>
+								<th>Jenis Kelamin</th>
+								<th>Asal Sekolah</th>
+								<th>Level Sekolah Asal</th>
+								<th>Pekerjaan</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
 					</table>
 				</div>
 				<!-- /.card-body -->
-				<!-- /.card -->
-			</section>
-			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-			<div class="p-3">
-				<h5>Title</h5>
-				<p>Sidebar content</p>
 			</div>
-		</aside>
-		<!-- /.control-sidebar -->
+			<!-- /.card -->
+		</section>
 
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- To the right -->
-			<div class="float-right d-none d-sm-inline">Anything you want</div>
-			<!-- Default to the left -->
-			<strong>Copyright &copy; 2014-2021 <a
-				href="https://adminlte.io">AdminLTE.io</a>.
-			</strong> All rights reserved.
-		</footer>
-	</div>
-	<!-- ./wrapper -->
-	
-	<!-- Add Modal -->
-	<div class="modal fade bd-example-modal-lg" id="exampleModal"
-		tabindex="-1">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div id="headerModal" class="modal-header">
-					<h5 class="modal-title">Form Biodata</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<h3>Tambah Biodata Baru</h3>
-					<div id='msg'></div>
-					<form id="form-validation">
-						<div id="form">
-							<div class="form-group">
-								<label class="form-label">NIK</label> <input type="text"
-									id="nik" name="nik" class="form-control">
+
+
+		<!-- Add Modal -->
+		<div class="modal fade bd-example-modal-lg" id="exampleModal"
+			tabindex="-1">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div id="headerModal" class="modal-header">
+						<h5 class="modal-title">Form Biodata</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h3>Tambah Biodata Baru</h3>
+						<div id='msg'></div>
+						<form id="form-validation">
+							<div id="form">
+								<div class="form-group">
+									<label class="form-label">NIK</label> <input type="text"
+										id="nik" name="nik" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Nama</label> <input type="text"
+										id="nama" name="nama" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Tanggal Lahir</label> <input
+										type="text" id="tanggalLahir" name="tanggalLahir"
+										class="form-control" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label class="form-label">Tempat Lahir</label> <input
+										type="text" id="tempatLahir" name="tempatLahir"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Jenis Kelamin</label> <select
+										class="custom-select mr-sm-2" id="kodeJenisKelamin"
+										name="kodeJenisKelamin">
+										<option selected>Pilih...</option>
+										<option>L</option>
+										<option>P</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="form-label">Asal Sekolah</label> <input
+										type="text" id="asalSekolah" name="asalSekolah"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Level Sekolah Asal</label> <select
+										class="custom-select mr-sm-2" id="levelSekolahAsal"
+										name="levelSekolahAsal">
+										<option selected>Pilih...</option>
+										<option>KB</option>
+										<option>TK</option>
+										<option>SD</option>
+										<option>SMP</option>
+										<option>SMA</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="form-label">Pekerjaan</label> <input type="text"
+										id="kodePekerjaan" name="kodePekerjaan" class="form-control">
+								</div>
+								<div id="footerModal" class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal" id="closeModal">Kembali</button>
+									<button type="submit" class="btn btn-success">
+										<i class='fas fa-save fa-fw'></i> Simpan
+									</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<label class="form-label">Nama</label> <input type="text"
-									id="nama" name="nama" class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Tanggal Lahir</label> <input
-									type="text" id="tanggalLahir" name="tanggalLahir"
-									class="form-control" autocomplete="off" />
-							</div>
-							<div class="form-group">
-								<label class="form-label">Tempat Lahir</label> <input
-									type="text" id="tempatLahir" name="tempatLahir"
-									class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Jenis Kelamin</label> <select
-									class="custom-select mr-sm-2" id="kodeJenisKelamin"
-									name="kodeJenisKelamin">
-									<option selected>Pilih...</option>
-									<option>L</option>
-									<option>P</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Asal Sekolah</label> <input
-									type="text" id="asalSekolah" name="asalSekolah"
-									class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Level Sekolah Asal</label> <select
-									class="custom-select mr-sm-2" id="levelSekolahAsal"
-									name="levelSekolahAsal">
-									<option selected>Pilih...</option>
-									<option>KB</option>
-									<option>TK</option>
-									<option>SD</option>
-									<option>SMP</option>
-									<option>SMA</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Pekerjaan</label> <input type="text"
-									id="kodePekerjaan" name="kodePekerjaan" class="form-control">
-							</div>
-							<div id="footerModal" class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal" id="closeModal">Kembali</button>
-								<button type="submit" class="btn btn-success">
-									<i class='fas fa-save fa-fw'></i> Simpan
-								</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- ./Add Modal -->
-	
-	<!-- Edit Modal -->
-	<div class="modal fade bd-example-modal-lg" id="exampleModal-edit"
-		tabindex="-1">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<div id="headerModal-edit" class="modal-header">
-					<h5 class="modal-title">Form Edit Biodata</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<h3>Edit Biodata</h3>
-					<div id='msg-edit'></div>
-					<form id="form-validation-edit">
-						<div id="form-edit">
-							<input type="hidden" id="biodataId">
-							<input type="hidden" id="createdAt">
-							<div class="form-group">
-								<label class="form-label">NIK</label> <input type="text"
-									id="enik" name="enik" class="form-control">
+		<!-- ./Add Modal -->
+
+		<!-- Edit Modal -->
+		<div class="modal fade bd-example-modal-lg" id="exampleModal-edit"
+			tabindex="-1">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div id="headerModal-edit" class="modal-header">
+						<h5 class="modal-title">Form Edit Biodata</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h3>Edit Biodata</h3>
+						<div id='msg-edit'></div>
+						<form id="form-validation-edit">
+							<div id="form-edit">
+								<input type="hidden" id="biodataId"> <input
+									type="hidden" id="createdAt">
+								<div class="form-group">
+									<label class="form-label">NIK</label> <input type="text"
+										id="enik" name="enik" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Nama</label> <input type="text"
+										id="enama" name="enama" class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Tanggal Lahir</label> <input
+										type="text" id="etanggalLahir" name="etanggalLahir"
+										class="form-control" autocomplete="off" />
+								</div>
+								<div class="form-group">
+									<label class="form-label">Tempat Lahir</label> <input
+										type="text" id="etempatLahir" name="etempatLahir"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Jenis Kelamin</label> <select
+										class="custom-select mr-sm-2" id="ekodeJenisKelamin"
+										name="ekodeJenisKelamin">
+										<option selected>Pilih...</option>
+										<option>L</option>
+										<option>P</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="form-label">Asal Sekolah</label> <input
+										type="text" id="easalSekolah" name="easalSekolah"
+										class="form-control">
+								</div>
+								<div class="form-group">
+									<label class="form-label">Level Sekolah Asal</label> <select
+										class="custom-select mr-sm-2" id="elevelSekolahAsal"
+										name="elevelSekolahAsal">
+										<option selected>Pilih...</option>
+										<option>KB</option>
+										<option>TK</option>
+										<option>SD</option>
+										<option>SMP</option>
+										<option>SMA</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label class="form-label">Pekerjaan</label> <input type="text"
+										id="ekodePekerjaan" name="ekodePekerjaan" class="form-control">
+								</div>
+								<div id="footerModal-edit" class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal" id="closeModal">Kembali</button>
+									<button type="submit" class="btn btn-success">
+										<i class='fas fa-save fa-fw'></i> Simpan
+									</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<label class="form-label">Nama</label> <input type="text"
-									id="enama" name="enama" class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Tanggal Lahir</label> <input
-									type="text" id="etanggalLahir" name="etanggalLahir"
-									class="form-control" autocomplete="off" />
-							</div>
-							<div class="form-group">
-								<label class="form-label">Tempat Lahir</label> <input
-									type="text" id="etempatLahir" name="etempatLahir"
-									class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Jenis Kelamin</label> <select
-									class="custom-select mr-sm-2" id="ekodeJenisKelamin"
-									name="ekodeJenisKelamin">
-									<option selected>Pilih...</option>
-									<option>L</option>
-									<option>P</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Asal Sekolah</label> <input
-									type="text" id="easalSekolah" name="easalSekolah"
-									class="form-control">
-							</div>
-							<div class="form-group">
-								<label class="form-label">Level Sekolah Asal</label> <select
-									class="custom-select mr-sm-2" id="elevelSekolahAsal"
-									name="elevelSekolahAsal">
-									<option selected>Pilih...</option>
-									<option>KB</option>
-									<option>TK</option>
-									<option>SD</option>
-									<option>SMP</option>
-									<option>SMA</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label class="form-label">Pekerjaan</label> <input type="text"
-									id="ekodePekerjaan" name="ekodePekerjaan" class="form-control">
-							</div>
-							<div id="footerModal-edit" class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal" id="closeModal">Kembali</button>
-								<button type="submit" class="btn btn-success">
-									<i class='fas fa-save fa-fw'></i> Simpan
-								</button>
-							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- ./Edit Modal -->
-
-	<!-- REQUIRED SCRIPTS -->
-
-	<!-- jQuery -->
-	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-	<!-- jQuery UI -->
-	<script th:src="@{/plugins/jquery-ui/jquery-ui.js}"></script>
-	<!-- Bootstrap 4 -->
-	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<!-- InputMask -->
-	<script th:src="@{/plugins/moment/moment.min.js}"></script>
-	<!-- date-range-picker -->
-	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-	<!-- jquery-validation -->
-	<script th:src="@{/plugins/jquery-validation/jquery.validate.min.js}"></script>
-	<script th:src="@{/plugins/jquery-validation/additional-methods.min.js}"></script>
-
-	<script th:src="@{/dist/js/biodata.js}"></script>
+		<!-- ./Edit Modal -->
+		</div>
+		<!-- bottom-script -->
+		<div layout:fragment="bottom-script">
+			<!-- Script -->
+			<script type="text/javascript" th:src="@{/dist/js/biodata.js}"></script>
+			<!-- jQuery UI -->
+			<script th:src="@{/plugins/jquery/jquery-ui.js}"></script>
+			<!-- date-range-picker -->
+			<script th:src="@{/plugins/moment/moment.min.js}"></script>
+			<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+		</div>
+		<!-- /bottom-script -->
 </body>
 </html>
