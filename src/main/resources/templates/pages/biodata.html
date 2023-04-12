@@ -54,9 +54,11 @@
 								<button type="submit" class="btn btn-default">
 									<i class="fas fa-search"></i>
 								</button>
+								&nbsp;
+								&nbsp;
 								<a id="addButton" type="button" class="btn btn-primary col-auto"
 									data-toggle="modal" data-target="#exampleModal"><i
-									class="fas fa-plus fa-fw"></i> Add</a>
+									class="fas fa-plus fa-fw"></i><span> Add New</span></a>
 							</div>
 						</div>
 					</div>
@@ -75,7 +77,7 @@
 								<th>Asal Sekolah</th>
 								<th>Level Sekolah Asal</th>
 								<th>Pekerjaan</th>
-								<th>Action</th>
+								<th colspan="2" class="text-center">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -256,7 +258,7 @@
 			<!-- Script -->
 			<script type="text/javascript" th:src="@{/dist/js/biodata.js}"></script>
 			<!-- jQuery UI -->
-			<script th:src="@{/plugins/jquery/jquery-ui.js}"></script>
+			<script th:src="@{/plugins/jquery-ui/jquery-ui.js}"></script>
 			<!-- date-range-picker -->
 			<script th:src="@{/plugins/moment/moment.min.js}"></script>
 			<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
