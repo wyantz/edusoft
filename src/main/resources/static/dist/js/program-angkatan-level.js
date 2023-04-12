@@ -66,7 +66,7 @@ function showData() {
 // Fungsi untuk menambah opsi program belajar pada menu dropdown
 function listProgBel() {
 	$('#program_pembelajaran_id, #edit_progbel_id').empty();
-	$.getJSON("http://localhost:8080/programAngkatan/progbel", function (json) {
+	$.getJSON("http://localhost:8080/program-angkatan/progbel", function (json) {
 		var options = [];
 		options.push('<option value="" selected disabled>-- program belajar --</option>');
 		for (i = 0; i < json.length; i++) {
@@ -80,7 +80,7 @@ function listProgBel() {
 // Fungsi untuk menambah opsi angkatan pada menu dropdown
 function listAngkatan() {
 	$('#angkatan, #edit_angkatan').empty();
-	$.getJSON("http://localhost:8080/programAngkatan/", function (json) {
+	$.getJSON("http://localhost:8080/program-angkatan/", function (json) {
 		var options = [];
 		options.push('<option value="" selected disabled>-- tahun angkatan --</option>');
 		for (i = 0; i < json.length; i++) {
@@ -117,6 +117,12 @@ function listTahun() {
 
 
 $(document).ready(function() {
+	// manipulasi active sidebar
+	$('li.nav-item').removeClass("menu-open");
+	$("#menu_program_2").addClass("active");
+	$("#menu_program").addClass("active").parent().addClass("menu-open");
+	// ./manipulasi sidebar
+
 	// memanggil beberapa fungsi yang diperlukan sebagai initiator
 	showData();
 	listProgBel();
