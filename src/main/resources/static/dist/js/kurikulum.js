@@ -76,6 +76,10 @@ function showTable(keyword) {
 
 
 $(document).ready(function() {
+	$('li.nav-item').removeClass("menu-open"); // remove class menu-open pada semua li yang aktif
+	$("#menu-kurikulum").addClass("active"); // tambahkan class active pada a dengan id menu-mapel-2
+	$("#menu-nilai-kurikulum").addClass("active").parent().addClass("menu-open"); // tambahkan class active pada a dengan id menu-mapel-1 lalu pada parentnya (li) ditambahkan class menu-open
+	
 	showTable("");
 
 
