@@ -271,7 +271,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
     <div layout:fragment="bottom-script">
-      <script th:src="@{/dist/js/program-angkatan-level.js}"></script>
+      <!-- Program Angkatan Level -->
+      <script th:src="@{/dist/js/pages/program-angkatan-level.js}"></script>
+      <!-- Select2 Bootstrap Plugin -->
+      <script th:src="@{/plugins/select2/js/select2.full.min.js}"></script>
     </div>
   </body>
 </html>
