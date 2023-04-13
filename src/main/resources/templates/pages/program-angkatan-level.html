@@ -27,7 +27,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </div><!-- /.col -->
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item"><a th:href="@{/dashboard}">Home</a></li>
                   <li class="breadcrumb-item active">Program Angkatan Level</li>
                 </ol>
               </div><!-- /.col -->
@@ -49,8 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <button type="submit" class="btn btn-default">
                       <i class="fas fa-search"></i>
                     </button>
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_modal"
-                      id="show_add_modal">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add_modal" id="show_add_modal">
                       <i class="fas fa-plus"></i> Add New
                     </button>
                   </div>
@@ -59,14 +58,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-              <table id="program_angkatan_level" class="table table-hover text-nowrap">
-
-              </table>
+              <table id="program_angkatan_level" class="table table-hover text-nowrap"></table>
             </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-
         </section>
         <!-- /.content -->
 
@@ -87,65 +83,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <select name="program_pembelajaran_id" id="program_pembelajaran_id"
                         class="select2 form-control"></select>
                     </div>
-                    <div class="form-group">
-                      <label for="angkatan">Angkatan : </label>
-                      <select name="angkatan" id="angkatan" class="select2 form-control"></select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="level">Level : </label>
+                          <select name="level" id="level" class="select2 form-control"></select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="angkatan">Angkatan : </label>
+                          <select name="angkatan" id="angkatan" class="select2 form-control"></select>
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="level">Level : </label>
-                      <select name="level" id="level" class="select2 form-control"></select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="tahun_mulai">Tahun Mulai : </label>
+                          <select name="tahun_mulai" id="tahun_mulai" class="select2 form-control"></select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="bulan_mulai">Bulan Mulai : </label>
+                          <select id="bulan_mulai" name="bulan_mulai" class="form-control select2" style="width: 100%;">
+                            <option value="" selected disabled>-- pilih bulan --</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-      
-                    <div class="form-group">
-                      <label for="tahun_mulai">Tahun Mulai : </label>
-                      <select name="tahun_mulai" id="tahun_mulai" class="select2 form-control"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="bulan_mulai">Bulan Mulai : </label>
-                      <select id="bulan_mulai" name="bulan_mulai" class="form-control select2" style="width: 100%;">
-                        <option value="" selected disabled>-- pilih bulan --</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="tahun_berakhir">Tahun Berakhir : </label>
-                      <select name="tahun_berakhir" id="tahun_berakhir" class="select2 form-control"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="bulan_berakhir">Bulan Berakhir : </label>
-                      <select id="bulan_berakhir" name="bulan_berakhir" class="form-control select2" style="width: 100%;">
-                        <option value="" selected disabled>-- pilih bulan --</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                      </select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="tahun_berakhir">Tahun Berakhir : </label>
+                          <select name="tahun_berakhir" id="tahun_berakhir" class="select2 form-control"></select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="bulan_berakhir">Bulan Berakhir : </label>
+                          <select id="bulan_berakhir" name="bulan_berakhir" class="form-control select2" style="width: 100%;">
+                            <option value="" selected disabled>-- pilih bulan --</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
-                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i
-                      class="fas fa-times"></i>&nbsp; Cancel</button>
+                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
                 </div>
               </form>
             </div>
@@ -171,65 +183,81 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <label for="edit_progbel_id">Program Pembelajaran : </label>
                       <select name="edit_progbel_id" id="edit_progbel_id" class="select2 form-control" disabled></select>
                     </div>
-                    <div class="form-group">
-                      <label for="edit_angkatan">Angkatan : </label>
-                      <select name="edit_angkatan" id="edit_angkatan" class="select2 form-control" disabled></select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_angkatan">Angkatan : </label>
+                          <select name="edit_angkatan" id="edit_angkatan" class="select2 form-control" disabled></select>
+                        </div>      
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_level">Level : </label>
+                          <select name="edit_level" id="edit_level" class="select2 form-control" disabled></select>
+                        </div>
+                      </div>
                     </div>
-                    <div class="form-group">
-                      <label for="edit_level">Level : </label>
-                      <select name="edit_level" id="edit_level" class="select2 form-control" disabled></select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_tahun_mulai">Tahun Mulai : </label>
+                          <select name="edit_tahun_mulai" id="edit_tahun_mulai" class="select2 form-control"></select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_bulan_mulai">Bulan Mulai : </label>
+                          <select id="edit_bulan_mulai" name="edit_bulan_mulai" class="form-control select2" style="width: 100%;">
+                            <option value="" selected disabled>-- pilih bulan --</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-      
-                    <div class="form-group">
-                      <label for="edit_tahun_mulai">Tahun Mulai : </label>
-                      <select name="edit_tahun_mulai" id="edit_tahun_mulai" class="select2 form-control"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_bulan_mulai">Bulan Mulai : </label>
-                      <select id="edit_bulan_mulai" name="edit_bulan_mulai" class="form-control select2" style="width: 100%;">
-                        <option value="" selected disabled>-- pilih bulan --</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_tahun_berakhir">Tahun Berakhir : </label>
-                      <select name="edit_tahun_berakhir" id="edit_tahun_berakhir" class="select2 form-control"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="edit_bulan_berakhir">Bulan Berakhir : </label>
-                      <select id="edit_bulan_berakhir" name="edit_bulan_berakhir" class="form-control select2" style="width: 100%;">
-                        <option value="" selected disabled>-- pilih bulan --</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                      </select>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_tahun_berakhir">Tahun Berakhir : </label>
+                          <select name="edit_tahun_berakhir" id="edit_tahun_berakhir" class="select2 form-control"></select>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="edit_bulan_berakhir">Bulan Berakhir : </label>
+                          <select id="edit_bulan_berakhir" name="edit_bulan_berakhir" class="form-control select2" style="width: 100%;">
+                            <option value="" selected disabled>-- pilih bulan --</option>
+                            <option value="1">Januari</option>
+                            <option value="2">Februari</option>
+                            <option value="3">Maret</option>
+                            <option value="4">April</option>
+                            <option value="5">Mei</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">Agustus</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-outline-primary" id=""><i class="fas fa-save"></i>&nbsp; Save</button>
-                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i
-                      class="fas fa-times"></i>&nbsp; Cancel</button>
+                  <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; Cancel</button>
                 </div>
               </form>
             </div>
@@ -238,26 +266,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- ./edit modal -->
       </div>
       <!-- /.content-wrapper -->
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-          <h5>Title</h5>
-          <p>Sidebar content</p>
-        </div>
-      </aside>
-      <!-- /.control-sidebar -->
-
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-          Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-      </footer>
     </div>
     <!-- ./wrapper -->
 
