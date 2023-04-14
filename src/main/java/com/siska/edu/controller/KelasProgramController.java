@@ -28,6 +28,11 @@ public class KelasProgramController {
         return new ResponseEntity<List<KelasProgram>>(kelasProgramService.listKelasProgram(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<KelasProgram> getKelasProgramById(@PathVariable int id) {
+        return new ResponseEntity<KelasProgram>(kelasProgramService.findById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/")
     private ResponseEntity<Void> Save(@RequestBody KelasProgram kelasProgram) {
         kelasProgramService.saveKelasProgram(kelasProgram);

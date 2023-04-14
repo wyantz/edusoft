@@ -2,6 +2,7 @@ package com.siska.edu.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class KelasProgramService {
         kelasProgramRepository.deleteById(id);
     }
 
+    public KelasProgram findById(int id) {
+        if (kelasProgramRepository.findById(id) == null) {
+            throw new EntityNotFoundException();
+        }
+
+        return kelasProgramRepository.findById(id).get();
+    }
 }
-
-
