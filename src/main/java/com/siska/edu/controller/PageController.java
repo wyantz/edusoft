@@ -1,101 +1,81 @@
 package com.siska.edu.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.siska.edu.model.User;
+import com.siska.edu.service.UserService;
+
 @Controller
+@RequestMapping("/user/")
 public class PageController {
-	@RequestMapping("/dashboard")
-	public String indexPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
-		return "index";
-	}
-
-	@RequestMapping("/")
-	public String loginPage() {
-		return "login";
-	}
-
-	@RequestMapping("/tables/biodata")
-	public String biodataPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@Autowired
+    private UserService userRepository;
+    @ModelAttribute
+    private void userDetails(Model model, Principal principal) {
+        String name = principal.getName();
+        User user = userRepository.findById(name);
+        model.addAttribute("user", user);
+    }
+    @RequestMapping("/dashboard")
+    public String indexPage() {
+        return "index";
+    }
+    @RequestMapping("/biodata")
+	public String biodataPage() {
 		return "pages/biodata";
 	}
-	@RequestMapping("/tables/pesertaProgram")
-	public String pesertaProgramPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/pesertaProgram")
+	public String pesertaProgramPage() {
 		return "pages/pesertaProgram";
 	}
-	@RequestMapping("/tables/waliSiswa")
-	public String waliSiswaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/waliSiswa")
+	public String waliSiswaPage() {
 		return "pages/waliSiswa";
 	}
-	@RequestMapping("/tables/program-angkatan")
-	public String programAngkatanPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
-		String loggedUser = currentUser.getUsername();
-		model.addAttribute("user", loggedUser);
+	@RequestMapping("/program-angkatan")
+	public String programAngkatanPage() {
 		return "pages/program-angkatan";
 	}
-	@RequestMapping("/tables/program-angkatan-level")
-	public String programAngkatanLevelPage(Model model, @AuthenticationPrincipal UserDetails currentUser) {
-		String loggedUser = currentUser.getUsername();
-		model.addAttribute("user", loggedUser);
+	@RequestMapping("/program-angkatan-level")
+	public String programAngkatanLevelPage() {
 		return "pages/program-angkatan-level";
 	}
-	@RequestMapping("/tables/programPembelajaran")
-	public String programPembelajaranPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/programPembelajaran")
+	public String programPembelajaranPage() {
 		return "pages/programPembelajaran";
 	}
-	@RequestMapping("/tables/jenisNilai")
-	public String jenisNilaiPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/jenisNilai")
+	public String jenisNilaiPage() {
 		return "pages/jenisNilai";
 	}
-	@RequestMapping("/tables/kelasProgram")
-	public String kelasProgramPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/kelasProgram")
+	public String kelasProgramPage() {
 		return "pages/kelasProgram";
 	}
-	@RequestMapping("/tables/kurikulum")
-	public String kurikulumPage(Model m, @AuthenticationPrincipal UserDetails curentUser) {
-		String name = curentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/kurikulum")
+	public String kurikulumPage() {
 		return "pages/kurikulum";
 	}
-	@RequestMapping("/tables/mapel")
-	public String mapelPage(Model m, @AuthenticationPrincipal UserDetails curentUser) {
-		String name = curentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/mapel")
+	public String mapelPage() {
 		return "pages/mapel-new";
 	}
-	@RequestMapping("/tables/mapelPeserta")
-	public String mapelPesertaPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/mapelPeserta")
+	public String mapelPesertaPage() {
 		return "pages/mapelPeserta";
 	}
-	@RequestMapping("/tables/referensi")
-	public String referensiPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/referensi")
+	public String referensiPage() {
 		return "pages/referensi";
 	}
-	@RequestMapping("/tables/silabus")
-	public String silabusPage(Model m, @AuthenticationPrincipal UserDetails currentUser) {
-		String name = currentUser.getUsername();
-		m.addAttribute("user", name);
+	@RequestMapping("/silabus")
+	public String silabusPage() {
 		return "pages/silabus";
 	}
 }

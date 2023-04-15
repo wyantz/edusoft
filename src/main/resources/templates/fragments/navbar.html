@@ -12,7 +12,7 @@
         </a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a th:href="@{/dashboard}" class="nav-link">Home</a>
+        <a th:href="@{/user/dashboard}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -40,7 +40,7 @@
           <li class="user-header bg-secondary">
             <img th:src="@{/dist/img/user2-160x160.jpg}" class="img-circle elevation-2" alt="User Image">
             <p>
-              <span th:text="${user}" id="username-login"></span>
+              <span th:text="${user.name}" id="username-login"></span>
               <small>Member since Mar. 2023</small>
             </p>
           </li>

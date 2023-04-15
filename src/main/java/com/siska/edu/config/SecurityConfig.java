@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginPage("/")
 				//.failureUrl("/?error=1")
-				.defaultSuccessUrl("/dashboard")
+				.defaultSuccessUrl("/user/dashboard")
 				.loginProcessingUrl("/login")
 				.usernameParameter("userid")
 				.passwordParameter("password")
@@ -61,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(
 						"/",
+						"/user/",
 						"/accessdenied",
 						"/dist/**",
 						"/plugins/**",
